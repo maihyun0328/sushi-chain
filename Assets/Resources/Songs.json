@@ -3,11 +3,13 @@
     [
         {
             "Name" : "와",
-            "Difficulty" : 3
+            "Difficulty" : 3,
+            "Vol" : 1
         },
         {
             "Name" : "와1",
-            "Difficulty" : 4
+            "Difficulty" : 4,
+            "Vol" : 1
         }
     ]
 }
