@@ -4,15 +4,19 @@ using System.IO;
 using System.Collections.Generic;
 
 [Serializable]
-public class SongData
+public class Score
 {
-    public string Name;
-    public int Difficulty;
+    public int score;
+    public int Perfect;
+    public int Great;
+    public int Good;
+    public int Bad;
+    public int Miss;
 }
 [Serializable]
-public class SongList
+public class ScoreList
 {
-    public List<SongData> songs = new List<SongData>();
+    public List<Score> songs = new List<Score>();
 }
 
 public class SaveManager : MonoBehaviour
@@ -20,10 +24,14 @@ public class SaveManager : MonoBehaviour
     public static SaveManager i;
     public void InitSongsData()
     {
-        SongList list = new SongList();
-        SongData song1 = new SongData();
-        song1.Name = "와";
-        song1.Difficulty = 3;
+        ScoreList list = new ScoreList();
+        Score song1 = new Score();
+        song1.score = 0;
+        song1.Perfect = 0;
+        song1.Great = 0;
+        song1.Good = 0;
+        song1.Bad = 0;
+        song1.Miss = 0;
 
         list.songs.Add(song1);
         string json = JsonUtility.ToJson(list, true);
@@ -33,16 +41,17 @@ public class SaveManager : MonoBehaviour
     {
         i = this;
         string path = Application.persistentDataPath + "/songs.json";
+        Debug.Log(Application.persistentDataPath);
         if(!File.Exists(path))
         {
             InitSongsData();
         }
     }
 
-    public SongData TakeSongData(int index)
+    public Score TakeSongData(int index)
     {
         string json = File.ReadAllText(Application.persistentDataPath + "/songs.json");
-        SongList list = JsonUtility.FromJson<SongList>(json);
+        ScoreList list = JsonUtility.FromJson<ScoreList>(json);
         return list.songs[index];
     }
 
