@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using Unity.AppUI.UI;
 
 [Serializable]
 public class Score
@@ -33,7 +34,7 @@ public class SongList
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager i;
-    public void InitSongsData()
+    public void InitScoresData()
     {
         ScoreList list = new ScoreList();
         Score song1 = new Score();
@@ -46,36 +47,29 @@ public class SaveManager : MonoBehaviour
 
         list.Scores.Add(song1);
         string json = JsonUtility.ToJson(list, true);
-        File.WriteAllText(Application.persistentDataPath + "/songs.json", json);
+        File.WriteAllText(Application.persistentDataPath + "/Scores.json", json);
     }
     void Awake()
     {
         i = this;
-        string path = Application.persistentDataPath + "/songs.json";
-        Debug.Log(Application.persistentDataPath);
+        string path = Application.persistentDataPath + "/Scores.json";
         if(!File.Exists(path))
         {
-            InitSongsData();
+            InitScoresData();
         }
-        Debug.Log(File.ReadAllText("Assets/Resources/Songs.json"));
-        Debug.Log(File.ReadAllText(Application.persistentDataPath + "/songs.json"));
-        string json = File.ReadAllText("Assets/Resources/Songs.json");
-        List<SongData> list = JsonUtility.FromJson<List<SongData>>(json);
-        Debug.Log(list);
-        Debug.Log(TakeSongData(0));
     }
 
-    public Score TakeScoreData(int index)
+    public ScoreList TakeScoreData()
     {
-        string json = File.ReadAllText(Application.persistentDataPath + "/songs.json");
+        string json = File.ReadAllText(Application.persistentDataPath + "/Scores.json");
         ScoreList list = JsonUtility.FromJson<ScoreList>(json);
-        return list.Scores[index];
+        return list;
     }
-    public SongData TakeSongData(int index)
+    public SongList TakeSongData()
     {
-        string json = File.ReadAllText("Assets/Resources/Songs.json");
-        SongList list = JsonUtility.FromJson<SongList>(json);
-        return list.Songs[index];
+        TextAsset file = Resources.Load<TextAsset>("Songs");
+        SongList list = JsonUtility.FromJson<SongList>(file.text);
+        return list;
     }
 
     // Update is called once per frame

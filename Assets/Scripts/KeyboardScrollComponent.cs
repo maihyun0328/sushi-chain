@@ -9,7 +9,14 @@ public class KeyboardScrollComponent : MonoBehaviour
     int index = 0;
     int MaximumIndex = 5;
     int SongsCount;
+    SongList SongsInfo;
+    ScoreList ScoreInfo;
     float speed = 5f;
+    [SerializeField] Text SongName;
+    [SerializeField] Text Point;
+    [SerializeField] Text Album;
+    [SerializeField] Text Credit;
+    [SerializeField] GameObject SongPrefab;
     [SerializeField] GameObject Arrow;
     [SerializeField] GameObject UpArrow;
     [SerializeField] GameObject DownArrow;
@@ -29,12 +36,17 @@ public class KeyboardScrollComponent : MonoBehaviour
     RectTransform content;
     void Start()
     {
-        SongsCount = content.childCount;
+        SongsInfo = SaveManager.i.TakeSongData();
+        ScoreInfo = SaveManager.i.TakeScoreData();
+        SongsCount = SongsInfo.Songs.Count;
         for(int i = 0; i < SongsCount; i++)
         {
-            Songs.Add(content.GetChild(i).gameObject);
-            ArrowTargetPosition = Arrow.transform.position;
+            GameObject Song = Instantiate(SongPrefab, content);
+            Songs.Add(Song);
         }
+        ArrowTargetPosition = Arrow.transform.position;
+        SongName.text = SongsInfo.Songs[index].Name;
+        Point.text = ScoreInfo.Scores[index].score.ToString();
     }
 
     void Update()
@@ -54,6 +66,8 @@ public class KeyboardScrollComponent : MonoBehaviour
                 ArrowTargetPosition += new Vector2(0, 130f);
             }
             index -= 1;
+            SongName.text = SongsInfo.Songs[index].Name;
+            Point.text = ScoreInfo.Scores[index].score.ToString();
         }
         if((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && index != SongsCount - 1)
         {
@@ -68,6 +82,8 @@ public class KeyboardScrollComponent : MonoBehaviour
                 ArrowTargetPosition -= new Vector2(0, 130f);
             }
             index += 1;
+            SongName.text = SongsInfo.Songs[index].Name;
+            Point.text = ScoreInfo.Scores[index].score.ToString();
         }
     }
     void ScrollMove(float ScrollAmount)
