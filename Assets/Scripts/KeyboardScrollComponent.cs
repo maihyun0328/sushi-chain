@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,7 +43,14 @@ public class KeyboardScrollComponent : MonoBehaviour
         for(int i = 0; i < SongsCount; i++)
         {
             GameObject Song = Instantiate(SongPrefab, content);
+            Image[] Stars = new Image[5];
             Songs.Add(Song);
+            Song.transform.GetChild(0).GetComponent<Text>().text = SongsInfo.Songs[i].Name;
+            for(int j = 1; j < 6; j++)
+            {
+                Stars[j - 1] = Song.transform.GetChild(j).GetComponent<Image>();
+                if(j > SongsInfo.Songs[i].Difficulty) Stars[j - 1].color = Color.black;
+            }
         }
         ArrowTargetPosition = Arrow.transform.position;
         SetSong();
