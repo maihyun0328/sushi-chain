@@ -8900,9 +8900,9 @@ Animation:
   m_GameObject: {fileID: 4117996092670291016}
   m_Enabled: 1
   serializedVersion: 4
-  m_Animation: {fileID: -203655887218126122, guid: a7f11e3db4f4442b796bccfdc5112ef4, type: 3}
+  m_Animation: {fileID: 7400000, guid: 528c72edfe6794f97a21dd7f75eb8666, type: 2}
   m_Animations:
-  - {fileID: -203655887218126122, guid: a7f11e3db4f4442b796bccfdc5112ef4, type: 3}
+  - {fileID: 7400000, guid: 528c72edfe6794f97a21dd7f75eb8666, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
