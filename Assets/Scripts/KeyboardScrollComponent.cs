@@ -133,6 +133,8 @@ public class KeyboardScrollComponent : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
+            GameManager.i.GameStart();
+            UIManager.i.GameStart();
             UIManager.i.Songs.SetActive(false);
         }
     }

@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject Songs;
     public GameObject Options;
     public GameObject Credits;
+    public GameObject GamePlay;
     
     void Awake()
     {
@@ -35,5 +36,9 @@ public class UIManager : MonoBehaviour
         Songs.SetActive(false);
         Options.SetActive(false);
         Credits.SetActive(false);
+    }
+    public void GameStart()
+    {
+        GamePlay.SetActive(true);
     }
 }
