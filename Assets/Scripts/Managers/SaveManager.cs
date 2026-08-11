@@ -18,11 +18,17 @@ public class ScoreList
 {
     public List<Score> Scores = new List<Score>();
 }
+[Serializable]
 public class SongData
 {
     public string Name;
     public int Difficulty;
     public int Vol;
+}
+[Serializable]
+public class SongList
+{
+    public List<SongData> Songs = new List<SongData>();
 }
 public class SaveManager : MonoBehaviour
 {
@@ -51,6 +57,12 @@ public class SaveManager : MonoBehaviour
         {
             InitSongsData();
         }
+        Debug.Log(File.ReadAllText("Assets/Resources/Songs.json"));
+        Debug.Log(File.ReadAllText(Application.persistentDataPath + "/songs.json"));
+        string json = File.ReadAllText("Assets/Resources/Songs.json");
+        List<SongData> list = JsonUtility.FromJson<List<SongData>>(json);
+        Debug.Log(list);
+        Debug.Log(TakeSongData(0));
     }
 
     public Score TakeScoreData(int index)
@@ -62,8 +74,8 @@ public class SaveManager : MonoBehaviour
     public SongData TakeSongData(int index)
     {
         string json = File.ReadAllText("Assets/Resources/Songs.json");
-        List<SongData> list = JsonUtility.FromJson<List<SongData>>(json);
-        return list[index];
+        SongList list = JsonUtility.FromJson<SongList>(json);
+        return list.Songs[index];
     }
 
     // Update is called once per frame
