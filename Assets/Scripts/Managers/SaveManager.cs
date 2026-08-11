@@ -25,6 +25,8 @@ public class SongData
     public string Name;
     public int Difficulty;
     public int Vol;
+    public string Album;
+    public string Credit;
 }
 [Serializable]
 public class SongList
@@ -37,15 +39,17 @@ public class SaveManager : MonoBehaviour
     public void InitScoresData()
     {
         ScoreList list = new ScoreList();
-        Score song1 = new Score();
-        song1.score = 0;
-        song1.Perfect = 0;
-        song1.Great = 0;
-        song1.Good = 0;
-        song1.Bad = 0;
-        song1.Miss = 0;
-
-        list.Scores.Add(song1);
+        for(int i = 0; i < 2; i++)
+        {
+            Score song1 = new Score();
+            song1.score = 0;
+            song1.Perfect = 0;
+            song1.Great = 0;
+            song1.Good = 0;
+            song1.Bad = 0;
+            song1.Miss = 0;
+            list.Scores.Add(song1);
+        }
         string json = JsonUtility.ToJson(list, true);
         File.WriteAllText(Application.persistentDataPath + "/Scores.json", json);
     }

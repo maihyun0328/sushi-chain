@@ -45,8 +45,7 @@ public class KeyboardScrollComponent : MonoBehaviour
             Songs.Add(Song);
         }
         ArrowTargetPosition = Arrow.transform.position;
-        SongName.text = SongsInfo.Songs[index].Name;
-        Point.text = ScoreInfo.Scores[index].score.ToString();
+        SetSong();
     }
 
     void Update()
@@ -67,8 +66,7 @@ public class KeyboardScrollComponent : MonoBehaviour
                 ArrowTargetPosition += new Vector2(0, 130f);
             }
             index -= 1;
-            SongName.text = SongsInfo.Songs[index].Name;
-            Point.text = ScoreInfo.Scores[index].score.ToString();
+            SetSong();
         }
         if((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && index != SongsCount - 1)
         {
@@ -83,8 +81,7 @@ public class KeyboardScrollComponent : MonoBehaviour
                 ArrowTargetPosition -= new Vector2(0, 130f);
             }
             index += 1;
-            SongName.text = SongsInfo.Songs[index].Name;
-            Point.text = ScoreInfo.Scores[index].score.ToString();
+            SetSong();
         }
     }
     void ScrollMove(float ScrollAmount)
@@ -137,5 +134,12 @@ public class KeyboardScrollComponent : MonoBehaviour
             UIManager.i.GameStart();
             UIManager.i.Songs.SetActive(false);
         }
+    }
+    void SetSong()
+    {
+        SongName.text = SongsInfo.Songs[index].Name;
+        Point.text = ScoreInfo.Scores[index].score.ToString();
+        Album.text = SongsInfo.Songs[index].Album;
+        Credit.text = SongsInfo.Songs[index].Credit;
     }
 }
