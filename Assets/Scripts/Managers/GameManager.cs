@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager i;
+    [SerializeField] public GameObject GamePlay;
+    void Awake()
+    {
+        i = this;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +18,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+    public void GameStart()
+    {
+        GamePlay.SetActive(true);
     }
 }

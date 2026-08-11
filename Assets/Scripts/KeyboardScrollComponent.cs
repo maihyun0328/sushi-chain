@@ -51,6 +51,7 @@ public class KeyboardScrollComponent : MonoBehaviour
 
     void Update()
     {
+        GameStartCheck();
         Move();
         ArrowCheck();
         if((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && index != 0)
@@ -126,6 +127,13 @@ public class KeyboardScrollComponent : MonoBehaviour
         else
         {
             DownArrow.SetActive(true);
+        }
+    }
+    void GameStartCheck()
+    {
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            UIManager.i.Songs.SetActive(false);
         }
     }
 }
