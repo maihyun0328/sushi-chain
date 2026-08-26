@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LongNoteComponent : MonoBehaviour
+public class LongNoteComponent : MonoBehaviour, INote
 {
     [Header("Note")]
     [SerializeField] NOTE_DIRECT dir;
@@ -16,7 +16,7 @@ public class LongNoteComponent : MonoBehaviour
     [SerializeField] float judgeRange;
     [SerializeField] float FailRange;
 
-    [SerializeField] KeyCode inputKey = KeyCode.D;
+    [SerializeField] KeyCode inputKey;
 
     NOTE_STATE state = NOTE_STATE.WAITING;
     List<Renderer> rends = new List<Renderer>();
@@ -37,12 +37,11 @@ public class LongNoteComponent : MonoBehaviour
     void Update()
     {
         Move();
-        switch (state)
+        switch(state)
         {
             case NOTE_STATE.WAITING:
-                CheckHead();
+                MissCheck(head.position.x);
                 break;
-
             case NOTE_STATE.HOLDING:
                 CheckHolding();
                 break;
@@ -62,42 +61,22 @@ public class LongNoteComponent : MonoBehaviour
         }
     }
 
-    void CheckHead()
+    public void NoteCheck(KeyCode key)
     {
-        // 키를 누른 순간
-        if (Input.GetKeyDown(inputKey))
+        inputKey = key;
+        if (IsInJudgeRange(head.position.x))
         {
-            if (IsInJudgeRange(head.position.x))
-            {
-                Debug.Log("Head 성공");
-                head.gameObject.SetActive(false);
-                Vector3 scale = body.transform.localScale;
-                scale.x = Mathf.Abs(tail.position.x - judgeX);
-                body.transform.localScale = scale;
-                Vector3 pos = body.position;
-                pos.x = (tail.position.x + judgeX) / 2;
-                body.position = pos;
-                SetHoldingMat();
-                state = NOTE_STATE.HOLDING;
-                return;
-            }
-        }
-        switch(dir)
-        {
-            case NOTE_DIRECT.RIGHT:
-                // Head가 판정선을 지나쳤는데 입력하지 않음
-                if (head.position.x < judgeX - FailRange)
-                {
-                    Fail();
-                }
-                break;
-            case NOTE_DIRECT.LEFT:
-                // Head가 판정선을 지나쳤는데 입력하지 않음
-                if (head.position.x > judgeX + FailRange)
-                {
-                    Fail();
-                }
-                break;
+            Debug.Log("Head 성공");
+            head.gameObject.SetActive(false);
+            Vector3 scale = body.transform.localScale;
+            scale.x = Mathf.Abs(tail.position.x - judgeX);
+            body.transform.localScale = scale;
+            Vector3 pos = body.position;
+            pos.x = (tail.position.x + judgeX) / 2;
+            body.position = pos;
+            SetHoldingMat();
+            state = NOTE_STATE.HOLDING;
+            return;
         }
     }
 
@@ -116,21 +95,24 @@ public class LongNoteComponent : MonoBehaviour
                 // 너무 일찍 떼었다
                 Fail();
             }
-
             return;
         }
+        MissCheck(tail.transform.position.x);
+    }
+    void MissCheck(float NoteX)
+    {
         switch(dir)
         {
             case NOTE_DIRECT.RIGHT:
                 // Tail이 판정선을 완전히 지나갔는데도 안 뗐음
-                if (tail.position.x < judgeX - judgeRange)
+                if (NoteX < judgeX - judgeRange)
                 {
                     Fail();
                 }
                 break;
             case NOTE_DIRECT.LEFT:
                 // Tail이 판정선을 완전히 지나갔는데도 안 뗐음
-                if (tail.position.x > judgeX + judgeRange)
+                if (NoteX > judgeX + judgeRange)
                 {
                     Fail();
                 }
@@ -142,7 +124,10 @@ public class LongNoteComponent : MonoBehaviour
     {
         return Mathf.Abs(x - judgeX) <= judgeRange;
     }
-
+    public float GetJudgeX()
+    {
+        return head.position.x;
+    }
     void Complete()
     {
         state = NOTE_STATE.COMPLETED;

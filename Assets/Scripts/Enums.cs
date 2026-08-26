@@ -19,3 +19,8 @@ public enum SUSHI_TYPE
     R1,
     R2
 }
+public enum NOTE_TYPE
+{
+    SHORT,
+    LONG
+}

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShortNoteComponent : MonoBehaviour
+public class ShortNoteComponent : MonoBehaviour, INote
 {
     [Header("Note")]
     [SerializeField] NOTE_DIRECT dir;
@@ -15,8 +15,6 @@ public class ShortNoteComponent : MonoBehaviour
     [SerializeField] float judgeRange;
     [SerializeField] float FailRange;
 
-    [SerializeField] KeyCode inputKey = KeyCode.D;
-
     void Awake()
     {
         
@@ -28,7 +26,7 @@ public class ShortNoteComponent : MonoBehaviour
     void Update()
     {
         Move();
-        NoteCheck();
+        MissCheck();
     }
 
     void Move()
@@ -44,18 +42,16 @@ public class ShortNoteComponent : MonoBehaviour
         }
     }
 
-    void NoteCheck()
+    public void NoteCheck(KeyCode key)
     {
-        // 키를 누른 순간
-        if (Input.GetKeyDown(inputKey))
+        if (IsInJudgeRange(head.position.x))
         {
-            if (IsInJudgeRange(head.position.x))
-            {
-                Debug.Log("Head 성공");
-                Complete();
-                return;
-            }
+            Complete();
+            return;
         }
+    }
+    void MissCheck()
+    {
         switch(dir)
         {
             case NOTE_DIRECT.RIGHT:
@@ -74,7 +70,10 @@ public class ShortNoteComponent : MonoBehaviour
                 break;
         }
     }
-
+    public float GetJudgeX()
+    {
+        return head.position.x;
+    }
     bool IsInJudgeRange(float x)
     {
         return Mathf.Abs(x - judgeX) <= judgeRange;
