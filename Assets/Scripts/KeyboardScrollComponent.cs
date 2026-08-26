@@ -125,7 +125,7 @@ public class KeyboardScrollComponent : MonoBehaviour
         {
             UpArrow.SetActive(true);
         }
-        if(MaximumIndex == SongsCount - 1)
+        if(MaximumIndex == SongsCount - 1 || SongsCount < 7)
         {
             DownArrow.SetActive(false);
         }

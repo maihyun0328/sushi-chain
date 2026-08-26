@@ -4,14 +4,17 @@ using UnityEngine;
 public class LongNoteComponent : MonoBehaviour
 {
     [Header("Note")]
+    [SerializeField] NOTE_DIRECT dir;
     [SerializeField] Transform head;
     [SerializeField] Transform body;
     [SerializeField] Transform tail;
+    [SerializeField] SUSHI_TYPE type;
 
     [Header("Setting")]
     [SerializeField] float speed;
     [SerializeField] float judgeX;
-    [SerializeField] float judgeRange = 0.3f;
+    [SerializeField] float judgeRange;
+    [SerializeField] float FailRange;
 
     [SerializeField] KeyCode inputKey = KeyCode.D;
 
@@ -48,7 +51,15 @@ public class LongNoteComponent : MonoBehaviour
 
     void Move()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        switch(dir)
+        {
+            case NOTE_DIRECT.RIGHT:
+                transform.position += Vector3.left * speed * Time.deltaTime;
+                break;
+            case NOTE_DIRECT.LEFT:
+                transform.position += Vector3.right * speed * Time.deltaTime;
+                break;
+        }
     }
 
     void CheckHead()
@@ -67,15 +78,26 @@ public class LongNoteComponent : MonoBehaviour
                 pos.x = (tail.position.x + judgeX) / 2;
                 body.position = pos;
                 SetHoldingMat();
-                
                 state = NOTE_STATE.HOLDING;
+                return;
             }
         }
-
-        // Head가 판정선을 지나쳤는데 입력하지 않음
-        if (head.position.x < judgeX - judgeRange)
+        switch(dir)
         {
-            Fail();
+            case NOTE_DIRECT.RIGHT:
+                // Head가 판정선을 지나쳤는데 입력하지 않음
+                if (head.position.x < judgeX - FailRange)
+                {
+                    Fail();
+                }
+                break;
+            case NOTE_DIRECT.LEFT:
+                // Head가 판정선을 지나쳤는데 입력하지 않음
+                if (head.position.x > judgeX + FailRange)
+                {
+                    Fail();
+                }
+                break;
         }
     }
 
@@ -97,11 +119,22 @@ public class LongNoteComponent : MonoBehaviour
 
             return;
         }
-
-        // Tail이 판정선을 완전히 지나갔는데도 안 뗐음
-        if (tail.position.x < judgeX - judgeRange)
+        switch(dir)
         {
-            Fail();
+            case NOTE_DIRECT.RIGHT:
+                // Tail이 판정선을 완전히 지나갔는데도 안 뗐음
+                if (tail.position.x < judgeX - judgeRange)
+                {
+                    Fail();
+                }
+                break;
+            case NOTE_DIRECT.LEFT:
+                // Tail이 판정선을 완전히 지나갔는데도 안 뗐음
+                if (tail.position.x > judgeX + judgeRange)
+                {
+                    Fail();
+                }
+                break;
         }
     }
 
