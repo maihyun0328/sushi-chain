@@ -14,5 +14,8 @@ public enum NOTE_DIRECT
 }
 public enum SUSHI_TYPE
 {
-    
+    L1,
+    L2,
+    R1,
+    R2
 }
