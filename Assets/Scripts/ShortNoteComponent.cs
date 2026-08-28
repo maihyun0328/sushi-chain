@@ -81,15 +81,11 @@ public class ShortNoteComponent : MonoBehaviour, INote
 
     void Complete()
     {
-        Debug.Log("노트 성공!");
-
-        Destroy(gameObject);
+        SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.SHORT, gameObject);
     }
 
     void Fail()
     {
-        Debug.Log("노트 실패!");
-
-        Destroy(gameObject);
+        SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.SHORT, gameObject);
     }
 }

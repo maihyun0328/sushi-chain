@@ -32,7 +32,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     }
     void Start()
     {
-        SetOriginMat();
+        
     }
     void Update()
     {
@@ -68,20 +68,14 @@ public class LongNoteComponent : MonoBehaviour, INote
         {
             Debug.Log("Head 성공");
             head.gameObject.SetActive(false);
-            Vector3 scale = body.transform.localScale;
-            scale.x = Mathf.Abs(tail.position.x - judgeX);
-            body.transform.localScale = scale;
-            Vector3 pos = body.position;
-            pos.x = (tail.position.x + judgeX) / 2;
-            body.position = pos;
-            SetHoldingMat();
-            state = NOTE_STATE.HOLDING;
+            
             return;
         }
     }
 
     void CheckHolding()
     {
+        SetBody();
         // 키를 떼었을 때
         if (Input.GetKeyUp(inputKey))
         {
@@ -132,32 +126,23 @@ public class LongNoteComponent : MonoBehaviour, INote
     {
         state = NOTE_STATE.COMPLETED;
 
-        Debug.Log("노트 성공!");
-
-        Destroy(gameObject);
+        SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
     }
 
     void Fail()
     {
-        SetOriginMat();
         state = NOTE_STATE.FAILED;
 
-        Debug.Log("노트 실패!");
-
-        Destroy(gameObject);
+        SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
     }
-    void SetOriginMat()
+    void SetBody()
     {
-        for(int i = 0; i < rends.Count; i++)
-        {
-            rends[i].sharedMaterial = OriginMat;
-        }
-    }
-    void SetHoldingMat()
-    {
-        for(int i = 0; i < rends.Count; i++)
-        {
-            rends[i].sharedMaterial = HoldingMat;
-        }
+        Vector3 scale = body.transform.localScale;
+        scale.x = Mathf.Abs(tail.position.x - judgeX);
+        body.transform.localScale = scale;
+        Vector3 pos = body.position;
+        pos.x = (tail.position.x + judgeX) / 2;
+        body.position = pos;
+        state = NOTE_STATE.HOLDING;
     }
 }
