@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class SushiPoolComponent : MonoBehaviour
@@ -46,22 +44,16 @@ public class SushiPoolComponent : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SushiCreate(SUSHI_TYPE.L1, NOTE_TYPE.SHORT);
-        SushiCreate(SUSHI_TYPE.L2, NOTE_TYPE.SHORT);
-        SushiCreate(SUSHI_TYPE.R1, NOTE_TYPE.SHORT);
-        SushiCreate(SUSHI_TYPE.R2, NOTE_TYPE.SHORT);
-        /* SushiCreate(SUSHI_TYPE.L1, NOTE_TYPE.LONG, 15);
+        SushiCreate(SUSHI_TYPE.L1, NOTE_TYPE.SHORT, 15);
+        SushiCreate(SUSHI_TYPE.L2, NOTE_TYPE.SHORT, 15);
+        SushiCreate(SUSHI_TYPE.R1, NOTE_TYPE.SHORT, 15);
+        SushiCreate(SUSHI_TYPE.R2, NOTE_TYPE.SHORT, 15);
+        SushiCreate(SUSHI_TYPE.L1, NOTE_TYPE.LONG, 15);
         SushiCreate(SUSHI_TYPE.L2, NOTE_TYPE.LONG, 15);
         SushiCreate(SUSHI_TYPE.R1, NOTE_TYPE.LONG, 15);
-        SushiCreate(SUSHI_TYPE.R2, NOTE_TYPE.LONG, 15); */
-        UseSushi(SUSHI_TYPE.L1, NOTE_TYPE.SHORT);
-        UseSushi(SUSHI_TYPE.R1, NOTE_TYPE.SHORT);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SushiCreate(SUSHI_TYPE.R2, NOTE_TYPE.LONG, 15);
+        UseSushi(SUSHI_TYPE.L1, NOTE_TYPE.LONG);
+        UseSushi(SUSHI_TYPE.R1, NOTE_TYPE.LONG);
     }
     public void SushiCreate(SUSHI_TYPE sushi, NOTE_TYPE note, int val = 1)
     {

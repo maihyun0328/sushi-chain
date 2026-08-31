@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShortNoteComponent : MonoBehaviour, INote
@@ -10,7 +9,7 @@ public class ShortNoteComponent : MonoBehaviour, INote
     [SerializeField] SUSHI_TYPE type;
 
     [Header("Setting")]
-    [SerializeField] float speed;
+    public float speed;
     [SerializeField] float judgeX;
     [SerializeField] float judgeRange;
     [SerializeField] float FailRange;
@@ -86,6 +85,7 @@ public class ShortNoteComponent : MonoBehaviour, INote
 
     void Fail()
     {
+        PointManager.i.Miss += 1;
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.SHORT, gameObject);
     }
 }

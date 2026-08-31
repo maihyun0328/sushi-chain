@@ -5414,10 +5414,10 @@ MonoBehaviour:
   L2_Short_Prefab: {fileID: 42600184169370125, guid: e87bdeadd6f134811b084d58e6e26955, type: 3}
   R1_Short_Prefab: {fileID: 3470814636257776235, guid: 9a4dab5b440134ca6b3fea2f29b56af8, type: 3}
   R2_Short_Prefab: {fileID: 5959711355877142868, guid: 21849e0a82b904cab82ba8bfc1e0cb97, type: 3}
-  L1_Long_Prefab: {fileID: 0}
-  L2_Long_Prefab: {fileID: 0}
-  R1_Long_Prefab: {fileID: 0}
-  R2_Long_Prefab: {fileID: 0}
+  L1_Long_Prefab: {fileID: 9094855738731432613, guid: ce892fc1020084616b739a42c5d32f1e, type: 3}
+  L2_Long_Prefab: {fileID: 5028486043965870216, guid: 4c4834eb85ddc4d7e91fd4e76ec07269, type: 3}
+  R1_Long_Prefab: {fileID: 3283155647359878219, guid: 7b53472842e4f4a2eb982f09779df1ae, type: 3}
+  R2_Long_Prefab: {fileID: 196535436904415834, guid: c5c5eb96bbaf042468b31bc8870afc71, type: 3}
   Inactive_L1_Short: {fileID: 33503380}
   Inactive_L2_Short: {fileID: 1374219896}
   Inactive_R1_Short: {fileID: 1034618432}
@@ -5426,6 +5426,56 @@ MonoBehaviour:
   Inactive_L2_Long: {fileID: 606031162}
   Inactive_R1_Long: {fileID: 2137294563}
   Inactive_R2_Long: {fileID: 717683174}
+--- !u!1 &1044944674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1044944676}
+  - component: {fileID: 1044944675}
+  m_Layer: 0
+  m_Name: PointManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1044944675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044944674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de3c1049dc7ff41ceadb467da6488de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: 0
+  Perfect: 0
+  Great: 0
+  Good: 0
+  Bad: 0
+  Miss: 0
+--- !u!4 &1044944676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044944674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1048659238
 GameObject:
   m_ObjectHideFlags: 0
@@ -11469,3 +11519,4 @@ SceneRoots:
   - {fileID: 630639878}
   - {fileID: 1833167235}
   - {fileID: 1042139979}
+  - {fileID: 1044944676}

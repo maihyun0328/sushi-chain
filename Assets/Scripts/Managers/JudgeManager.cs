@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,6 +26,20 @@ public class JudgeManager : MonoBehaviour
     [SerializeField] GameObject Active_R2_Long;
     [SerializeField] float LeftJudgeX;
     [SerializeField] float RightJudgeX;
+    [Serializable]
+    public class NoteData
+    {
+        public float startTime;
+        public float endTime;
+        public SUSHI_TYPE sushi;
+        public NOTE_TYPE type;
+    }
+
+    [Serializable]
+    public class NoteDataList
+    {
+        public List<NoteData> notes;
+    }
     void Awake()
     {
         i = this;

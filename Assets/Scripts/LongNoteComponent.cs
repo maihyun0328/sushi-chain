@@ -11,7 +11,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     [SerializeField] SUSHI_TYPE type;
 
     [Header("Setting")]
-    [SerializeField] float speed;
+    public float speed;
     [SerializeField] float judgeX;
     [SerializeField] float judgeRange;
     [SerializeField] float FailRange;
@@ -20,8 +20,6 @@ public class LongNoteComponent : MonoBehaviour, INote
 
     NOTE_STATE state = NOTE_STATE.WAITING;
     List<Renderer> rends = new List<Renderer>();
-    [SerializeField] Material OriginMat;
-    [SerializeField] Material HoldingMat;
 
     void Awake()
     {
@@ -68,7 +66,7 @@ public class LongNoteComponent : MonoBehaviour, INote
         {
             Debug.Log("Head 성공");
             head.gameObject.SetActive(false);
-            
+            state = NOTE_STATE.HOLDING;
             return;
         }
     }
@@ -132,17 +130,16 @@ public class LongNoteComponent : MonoBehaviour, INote
     void Fail()
     {
         state = NOTE_STATE.FAILED;
-
+        PointManager.i.Miss += 1;
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
     }
     void SetBody()
     {
         Vector3 scale = body.transform.localScale;
-        scale.x = Mathf.Abs(tail.position.x - judgeX);
+        scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
         body.transform.localScale = scale;
         Vector3 pos = body.position;
         pos.x = (tail.position.x + judgeX) / 2;
         body.position = pos;
-        state = NOTE_STATE.HOLDING;
     }
 }
