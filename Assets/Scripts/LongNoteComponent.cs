@@ -136,7 +136,17 @@ public class LongNoteComponent : MonoBehaviour, INote
     void SetBody()
     {
         Vector3 scale = body.transform.localScale;
-        scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
+        switch(dir)
+        {
+            case NOTE_DIRECT.LEFT:
+                if(tail.position.x - judgeX < 0)
+                    scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
+                break;
+            case NOTE_DIRECT.RIGHT:
+                if(tail.position.x - judgeX > 0)
+                    scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
+                break;
+        }
         body.transform.localScale = scale;
         Vector3 pos = body.position;
         pos.x = (tail.position.x + judgeX) / 2;
