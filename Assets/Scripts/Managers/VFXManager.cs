@@ -13,6 +13,7 @@ public class VFXManager : MonoBehaviour
     void Awake()
     {
         i = this;
+        CreateSushiVFX(10);
     }
     void Start()
     {
@@ -23,10 +24,13 @@ public class VFXManager : MonoBehaviour
     {
         
     }
-    void CreateSushiVFX()
+    void CreateSushiVFX(int count = 1)
     {
-        Instantiate(LightVFX, LightPool.transform).SetActive(false);
-        Instantiate(PurpleVFX, PurplePool.transform).SetActive(false);
+        for(int i = 0; i < count; i++)
+        {
+            Instantiate(LightVFX, LightPool.transform).SetActive(false);
+            Instantiate(PurpleVFX, PurplePool.transform).SetActive(false);
+        }
     }
     public void SushiVFX(NOTE_DIRECT dir)
     {
