@@ -37,8 +37,8 @@ public class KeyboardScrollComponent : MonoBehaviour
     RectTransform content;
     void Start()
     {
-        SongsInfo = SaveManager.i.TakeSongData();
-        ScoreInfo = SaveManager.i.TakeScoreData();
+        SongsInfo = JsonManager.i.TakeSongData();
+        ScoreInfo = JsonManager.i.TakeScoreData();
         SongsCount = SongsInfo.Songs.Count;
         for(int i = 0; i < SongsCount; i++)
         {

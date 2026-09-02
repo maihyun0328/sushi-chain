@@ -29,3 +29,9 @@ public enum VFX_TYPE
     LIGHT,
     PURPLE
 }
+public enum GAME_DIFFICULTY
+{
+    EASY,
+    NORMAL,
+    HARD
+}

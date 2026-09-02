@@ -52,8 +52,8 @@ public class SushiPoolComponent : MonoBehaviour
         SushiCreate(SUSHI_TYPE.L2, NOTE_TYPE.LONG, 15);
         SushiCreate(SUSHI_TYPE.R1, NOTE_TYPE.LONG, 15);
         SushiCreate(SUSHI_TYPE.R2, NOTE_TYPE.LONG, 15);
-        UseSushi(SUSHI_TYPE.L1, NOTE_TYPE.LONG);
-        UseSushi(SUSHI_TYPE.R1, NOTE_TYPE.LONG);
+        UseSushi(SUSHI_TYPE.L1, NOTE_TYPE.SHORT);
+        UseSushi(SUSHI_TYPE.R1, NOTE_TYPE.SHORT);
     }
     public void SushiCreate(SUSHI_TYPE sushi, NOTE_TYPE note, int val = 1)
     {

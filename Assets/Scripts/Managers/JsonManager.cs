@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using Unity.AppUI.UI;
 
 [Serializable]
 public class Score
@@ -33,9 +32,9 @@ public class SongList
 {
     public List<SongData> Songs = new List<SongData>();
 }
-public class SaveManager : MonoBehaviour
+public class JsonManager : MonoBehaviour
 {
-    public static SaveManager i;
+    public static JsonManager i;
     public void InitScoresData()
     {
         ScoreList list = new ScoreList();

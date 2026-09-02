@@ -9,7 +9,7 @@ public class ShortNoteComponent : MonoBehaviour, INote
     [SerializeField] SUSHI_TYPE type;
 
     [Header("Setting")]
-    public float speed;
+    float speed;
     [SerializeField] float judgeX;
     [SerializeField] float judgeRange;
     [SerializeField] float FailRange;
@@ -17,6 +17,21 @@ public class ShortNoteComponent : MonoBehaviour, INote
     void Awake()
     {
         
+    }
+    void OnEnable()
+    {
+        switch(GameManager.i.GameDifficulty)
+        {
+            case GAME_DIFFICULTY.EASY:
+                speed = 4.5f;
+                break;
+            case GAME_DIFFICULTY.NORMAL:
+                speed = 6f;
+                break;
+            case GAME_DIFFICULTY.HARD:
+                speed = 7.5f;
+                break;
+        }
     }
     void Start()
     {

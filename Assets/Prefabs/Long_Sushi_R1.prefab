@@ -257,12 +257,11 @@ MonoBehaviour:
   body: {fileID: 8880643810237431804}
   tail: {fileID: 2999389265371490470}
   type: 2
-  speed: 2
+  speed: 8
   judgeX: 1.33
   judgeRange: 1
   FailRange: 1
   inputKey: 0
-  cutMeshFilters: []
 --- !u!1 &3308652672408108644
 GameObject:
   m_ObjectHideFlags: 0

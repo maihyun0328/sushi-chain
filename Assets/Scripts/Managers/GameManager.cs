@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager i;
     [SerializeField] public GameObject GamePlay;
+    public GAME_DIFFICULTY GameDifficulty = GAME_DIFFICULTY.EASY;
     void Awake()
     {
         i = this;

@@ -548,11 +548,8 @@ MonoBehaviour:
   body: {fileID: 318853078483824875}
   tail: {fileID: 6552926545961710137}
   type: 0
-  speed: 2
+  speed: 8
   judgeX: -1.33
   judgeRange: 1
   FailRange: 1
   inputKey: 0
-  cutMeshFilters:
-  - {fileID: 5236155829213946157}
-  - {fileID: 2409215017593935671}

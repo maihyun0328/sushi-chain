@@ -12,7 +12,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     [SerializeField] SUSHI_TYPE type;
 
     [Header("Setting")]
-    public float speed;
+    float speed;
     [SerializeField] float judgeX;
     [SerializeField] float judgeRange;
     [SerializeField] float FailRange;
@@ -28,6 +28,22 @@ public class LongNoteComponent : MonoBehaviour, INote
         for(int i = 0; i < transform.childCount; i++)
         {
             rends.Add(transform.GetChild(i).GetComponent<Renderer>());
+        }
+    }
+    void OnEnable()
+    {
+        head.gameObject.SetActive(true);
+        switch(GameManager.i.GameDifficulty)
+        {
+            case GAME_DIFFICULTY.EASY:
+                speed = 4.5f;
+                break;
+            case GAME_DIFFICULTY.NORMAL:
+                speed = 6f;
+                break;
+            case GAME_DIFFICULTY.HARD:
+                speed = 7.5f;
+                break;
         }
     }
     void Start()
@@ -133,7 +149,7 @@ public class LongNoteComponent : MonoBehaviour, INote
 
     void Fail()
     {
-        StopCoroutine(cor);
+        if(cor != null) StopCoroutine(cor);
         state = NOTE_STATE.FAILED;
         PointManager.i.Miss += 1;
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
