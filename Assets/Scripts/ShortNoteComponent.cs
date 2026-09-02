@@ -43,7 +43,7 @@ public class ShortNoteComponent : MonoBehaviour, INote
 
     public void NoteCheck(KeyCode key)
     {
-        if (IsInJudgeRange(head.position.x))
+        if (IsInJudgeRange(transform.position.x))
         {
             Complete();
             return;
@@ -54,15 +54,15 @@ public class ShortNoteComponent : MonoBehaviour, INote
         switch(dir)
         {
             case NOTE_DIRECT.RIGHT:
-                // Head가 판정선을 지나쳤는데 입력하지 않음
-                if (head.position.x < judgeX - FailRange)
+                // 노트가 판정선을 지나쳤는데 입력하지 않음
+                if (transform.position.x < judgeX - FailRange)
                 {
                     Fail();
                 }
                 break;
             case NOTE_DIRECT.LEFT:
-                // Head가 판정선을 지나쳤는데 입력하지 않음
-                if (head.position.x > judgeX + FailRange)
+                // 노트가 판정선을 지나쳤는데 입력하지 않음
+                if (transform.position.x > judgeX + FailRange)
                 {
                     Fail();
                 }
@@ -80,6 +80,7 @@ public class ShortNoteComponent : MonoBehaviour, INote
 
     void Complete()
     {
+        VFXManager.i.SushiVFX(dir);
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.SHORT, gameObject);
     }
 

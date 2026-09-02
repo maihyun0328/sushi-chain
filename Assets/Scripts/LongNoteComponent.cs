@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class LongNoteComponent : MonoBehaviour, INote
@@ -20,6 +21,7 @@ public class LongNoteComponent : MonoBehaviour, INote
 
     NOTE_STATE state = NOTE_STATE.WAITING;
     List<Renderer> rends = new List<Renderer>();
+    IEnumerator cor;
 
     void Awake()
     {
@@ -64,7 +66,8 @@ public class LongNoteComponent : MonoBehaviour, INote
         inputKey = key;
         if (IsInJudgeRange(head.position.x))
         {
-            Debug.Log("Head 성공");
+            cor = HoldingParticle();
+            StartCoroutine(cor);
             head.gameObject.SetActive(false);
             state = NOTE_STATE.HOLDING;
             return;
@@ -122,13 +125,15 @@ public class LongNoteComponent : MonoBehaviour, INote
     }
     void Complete()
     {
+        StopCoroutine(cor);
         state = NOTE_STATE.COMPLETED;
-
+        VFXManager.i.SushiVFX(dir);
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
     }
 
     void Fail()
     {
+        StopCoroutine(cor);
         state = NOTE_STATE.FAILED;
         PointManager.i.Miss += 1;
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
@@ -151,5 +156,13 @@ public class LongNoteComponent : MonoBehaviour, INote
         Vector3 pos = body.position;
         pos.x = (tail.position.x + judgeX) / 2;
         body.position = pos;
+    }
+    IEnumerator HoldingParticle() 
+    {
+        while(true)
+        {
+            VFXManager.i.SushiVFX(dir);
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 }

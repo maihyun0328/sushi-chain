@@ -24,3 +24,8 @@ public enum NOTE_TYPE
     SHORT,
     LONG
 }
+public enum VFX_TYPE
+{
+    LIGHT,
+    PURPLE
+}
