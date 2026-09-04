@@ -28,6 +28,20 @@ public class SongData
     public string Credit;
 }
 [Serializable]
+public class NoteData
+{
+    public NOTE_DIRECT dir;
+    public SUSHI_TYPE type;
+    public float StartTime;
+    public float EndTime;
+}
+
+[Serializable]
+public class NoteList
+{
+    public List<NoteData> Notes = new List<NoteData>();
+}
+[Serializable]
 public class SongList
 {
     public List<SongData> Songs = new List<SongData>();
@@ -35,6 +49,10 @@ public class SongList
 public class JsonManager : MonoBehaviour
 {
     public static JsonManager i;
+    public NoteList CurrentSongNote;
+    public int NoteIndex;
+    public float speed;
+    float distance = 8.67f;
     public void InitScoresData()
     {
         ScoreList list = new ScoreList();
@@ -68,16 +86,38 @@ public class JsonManager : MonoBehaviour
         ScoreList list = JsonUtility.FromJson<ScoreList>(json);
         return list;
     }
+    public NoteList TakeSongNoteData(string song)
+    {
+        TextAsset file = Resources.Load<TextAsset>(song);
+        NoteList list = JsonUtility.FromJson<NoteList>(file.text);
+        return list;
+    }
     public SongList TakeSongData()
     {
         TextAsset file = Resources.Load<TextAsset>("Songs");
         SongList list = JsonUtility.FromJson<SongList>(file.text);
         return list;
     }
-
-    // Update is called once per frame
     void Update()
     {
+        if(!GameManager.i.IsGameStart) return;
+        SpawnCheck();
+    }
+    void SpawnCheck()
+    {
+        if(NoteIndex >= CurrentSongNote.Notes.Count) return;
+        NoteData note = CurrentSongNote.Notes[NoteIndex];
+        if(AudioManager.i.music.time >= GetSpawnTime(note))
+        {
+            if(note.EndTime == 0) SushiPoolComponent.i.UseSushi(note.type, NOTE_TYPE.SHORT);
+            else SushiPoolComponent.i.UseSushi(note.type, NOTE_TYPE.LONG);
+            NoteIndex++;
+        }
         
+    }
+    float GetSpawnTime(NoteData note)
+    {
+        float MoveTime = distance / speed;
+        return note.StartTime - MoveTime;
     }
 }

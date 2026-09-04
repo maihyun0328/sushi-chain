@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -138,7 +136,7 @@ public class KeyboardScrollComponent : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            GameManager.i.GameStart();
+            GameManager.i.GameStart(index);
             UIManager.i.GameStart();
             UIManager.i.Songs.SetActive(false);
         }

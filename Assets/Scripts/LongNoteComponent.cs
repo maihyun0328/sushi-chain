@@ -33,18 +33,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     void OnEnable()
     {
         head.gameObject.SetActive(true);
-        switch(GameManager.i.GameDifficulty)
-        {
-            case GAME_DIFFICULTY.EASY:
-                speed = 4.5f;
-                break;
-            case GAME_DIFFICULTY.NORMAL:
-                speed = 6f;
-                break;
-            case GAME_DIFFICULTY.HARD:
-                speed = 7.5f;
-                break;
-        }
+        speed = JsonManager.i.speed;
     }
     void Start()
     {

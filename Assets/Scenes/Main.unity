@@ -3935,6 +3935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a9eef50abf345f7b8c48e7ea70ba8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music: {fileID: 241872949}
+  songs:
+  - {fileID: 8300000, guid: b55845cc06c064250a8d9de10fa78363, type: 3}
+  BGM: {fileID: 0}
 --- !u!4 &832651847
 Transform:
   m_ObjectHideFlags: 0
@@ -5020,6 +5024,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b14286fd2b864dccb028367900ea968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentSongNote:
+    Notes: []
+  NoteIndex: 0
+  speed: 0
 --- !u!1 &990852340
 GameObject:
   m_ObjectHideFlags: 0
