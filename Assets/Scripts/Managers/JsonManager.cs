@@ -110,7 +110,11 @@ public class JsonManager : MonoBehaviour
         if(AudioManager.i.music.time >= GetSpawnTime(note))
         {
             if(note.EndTime == 0) SushiPoolComponent.i.UseSushi(note.type, NOTE_TYPE.SHORT);
-            else SushiPoolComponent.i.UseSushi(note.type, NOTE_TYPE.LONG);
+            else 
+            {
+                float length = (CurrentSongNote.Notes[NoteIndex].EndTime - CurrentSongNote.Notes[NoteIndex].StartTime) * speed;
+                SushiPoolComponent.i.UseSushi(note.type, NOTE_TYPE.LONG, length);
+            }
             NoteIndex++;
         }
         

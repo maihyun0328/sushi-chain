@@ -26,14 +26,15 @@ public class GameManager : MonoBehaviour
                 JsonManager.i.speed = 4.5f;
                 break;
             case GAME_DIFFICULTY.NORMAL:
-                JsonManager.i.speed = 6f;
+                JsonManager.i.speed = 8f;
                 break;
             case GAME_DIFFICULTY.HARD:
-                JsonManager.i.speed = 7.5f;
+                JsonManager.i.speed = 11.5f;
                 break;
         }
         AudioManager.i.StopSong();
         AudioManager.i.ChangeSong(AudioManager.i.songs[index]);
+        AudioManager.i.music.loop = false;
         AudioManager.i.PlaySong();
         IsGameOver = false;
         IsGameStart = true;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
         AudioManager.i.StopSong();
         AudioManager.i.ChangeSong(AudioManager.i.BGM);
+        AudioManager.i.music.loop = true;
         AudioManager.i.PlaySong();
     }
 }

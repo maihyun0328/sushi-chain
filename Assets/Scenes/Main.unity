@@ -2157,7 +2157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &470341041
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2850,7 +2850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &630639878
 Transform:
   m_ObjectHideFlags: 0
@@ -3936,6 +3936,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 241872949}
+  UI: {fileID: 0}
+  VFX: {fileID: 0}
   songs:
   - {fileID: 8300000, guid: b55845cc06c064250a8d9de10fa78363, type: 3}
   BGM: {fileID: 0}
@@ -5504,10 +5506,10 @@ MonoBehaviour:
   L2_Short_Prefab: {fileID: 42600184169370125, guid: e87bdeadd6f134811b084d58e6e26955, type: 3}
   R1_Short_Prefab: {fileID: 3470814636257776235, guid: 9a4dab5b440134ca6b3fea2f29b56af8, type: 3}
   R2_Short_Prefab: {fileID: 5959711355877142868, guid: 21849e0a82b904cab82ba8bfc1e0cb97, type: 3}
-  L1_Long_Prefab: {fileID: 9094855738731432613, guid: ce892fc1020084616b739a42c5d32f1e, type: 3}
-  L2_Long_Prefab: {fileID: 5028486043965870216, guid: 4c4834eb85ddc4d7e91fd4e76ec07269, type: 3}
-  R1_Long_Prefab: {fileID: 3283155647359878219, guid: 7b53472842e4f4a2eb982f09779df1ae, type: 3}
-  R2_Long_Prefab: {fileID: 196535436904415834, guid: c5c5eb96bbaf042468b31bc8870afc71, type: 3}
+  L1_Long_Prefab: {fileID: 7368623397309705281, guid: ce892fc1020084616b739a42c5d32f1e, type: 3}
+  L2_Long_Prefab: {fileID: 7368623397309705281, guid: 278c1b9151af243e685dcf3b50690e3e, type: 3}
+  R1_Long_Prefab: {fileID: 7368623397309705281, guid: d5863c4d5ef834c5493f5eefc42e8f34, type: 3}
+  R2_Long_Prefab: {fileID: 7368623397309705281, guid: 636d8b82015504bd0b4bd3992519f1a7, type: 3}
   Inactive_L1_Short: {fileID: 33503380}
   Inactive_L2_Short: {fileID: 1374219896}
   Inactive_R1_Short: {fileID: 1034618432}
@@ -8032,7 +8034,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 6, y: 0.12, z: 0}
-  m_LocalScale: {x: 500, y: 400, z: 400}
+  m_LocalScale: {x: 500, y: 500, z: 400}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 630639878}
@@ -11199,7 +11201,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -6, y: 0.12, z: 0}
-  m_LocalScale: {x: 500, y: 400, z: 400}
+  m_LocalScale: {x: 500, y: 500, z: 400}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 630639878}
