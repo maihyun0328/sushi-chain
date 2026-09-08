@@ -56,7 +56,7 @@ public class JsonManager : MonoBehaviour
     public void InitScoresData()
     {
         ScoreList list = new ScoreList();
-        for(int i = 0; i < 8; i++)
+        for(int i = 0; i < 1; i++)
         {
             Score song1 = new Score();
             song1.score = 0;

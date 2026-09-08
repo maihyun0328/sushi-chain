@@ -50,8 +50,6 @@ public class KeyboardScrollComponent : MonoBehaviour
         }
         ArrowTargetPosition = Arrow.transform.position;
         SetSong();
-        Debug.Log("Songs Count : " + SongsInfo.Songs.Count);
-        Debug.Log("Scores Count : " + ScoreInfo.Scores.Count);
     }
 
     void Update()
