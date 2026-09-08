@@ -6,15 +6,13 @@ public class KeyboardScrollComponent : MonoBehaviour
 {
     int MinimumIndex = 0;
     int index = 0;
-    int MaximumIndex = 5;
+    int MaximumIndex = 4;
     int SongsCount;
     SongList SongsInfo;
     ScoreList ScoreInfo;
     float speed = 5f;
     [SerializeField] Text SongName;
     [SerializeField] Text Point;
-    [SerializeField] Text Album;
-    [SerializeField] Text Credit;
     [SerializeField] GameObject SongPrefab;
     [SerializeField] GameObject Arrow;
     [SerializeField] GameObject UpArrow;
@@ -52,6 +50,8 @@ public class KeyboardScrollComponent : MonoBehaviour
         }
         ArrowTargetPosition = Arrow.transform.position;
         SetSong();
+        Debug.Log("Songs Count : " + SongsInfo.Songs.Count);
+        Debug.Log("Scores Count : " + ScoreInfo.Scores.Count);
     }
 
     void Update()
@@ -145,7 +145,5 @@ public class KeyboardScrollComponent : MonoBehaviour
     {
         SongName.text = SongsInfo.Songs[index].Name;
         Point.text = ScoreInfo.Scores[index].score.ToString();
-        Album.text = SongsInfo.Songs[index].Album;
-        Credit.text = SongsInfo.Songs[index].Credit;
     }
 }
