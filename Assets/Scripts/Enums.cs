@@ -35,3 +35,11 @@ public enum GAME_DIFFICULTY
     NORMAL,
     HARD
 }
+public enum JUDGE_RESULT
+{
+    PERFECT,
+    GREAT,
+    GOOD,
+    BAD,
+    MISS
+}

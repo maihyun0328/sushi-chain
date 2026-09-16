@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
         SongList list = JsonManager.i.TakeSongData();
         JsonManager.i.CurrentSongNote = JsonManager.i.TakeSongNoteData(list.Songs[index].Name);
         JsonManager.i.NoteIndex = 0;
+        PointManager.i.SetPoint();
+        UIManager.i.PointUIInitialization();
         switch(GameDifficulty)
         {
             case GAME_DIFFICULTY.EASY:

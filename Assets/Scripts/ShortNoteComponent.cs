@@ -13,19 +13,11 @@ public class ShortNoteComponent : MonoBehaviour, INote
     [SerializeField] float judgeX;
     [SerializeField] float judgeRange;
     [SerializeField] float FailRange;
-
-    void Awake()
-    {
-        
-    }
     void OnEnable()
     {
         speed = JsonManager.i.speed;
     }
-    void Start()
-    {
-        
-    }
+    
     void Update()
     {
         Move();
@@ -84,13 +76,14 @@ public class ShortNoteComponent : MonoBehaviour, INote
 
     void Complete()
     {
+        UIManager.i.SetPointUI(PointManager.i.GetPoint(Mathf.Abs(transform.position.x - judgeX)));
         VFXManager.i.SushiVFX(dir);
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.SHORT, gameObject);
     }
 
     void Fail()
     {
-        PointManager.i.Miss += 1;
+        UIManager.i.SetPointUI(PointManager.i.GetPoint(Mathf.Abs(transform.position.x - judgeX)));
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.SHORT, gameObject);
     }
 }

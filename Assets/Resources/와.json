@@ -4,13 +4,13 @@
             "dir": 0,
             "type": 0,
             "StartTime": 2.601,
-            "EndTime": 3
+            "EndTime": 0
         },
         {
             "dir": 1,
             "type": 2,
             "StartTime": 3.03,
-            "EndTime": 4
+            "EndTime": 0
         },
         {
             "dir": 0,

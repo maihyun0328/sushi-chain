@@ -5246,6 +5246,13 @@ MonoBehaviour:
   Good: 0
   Bad: 0
   Miss: 0
+  Combo: 0
+  MaxCombo: 0
+  perfectRange: 0.15
+  greatRange: 0.35
+  goodRange: 0.65
+  badRange: 1
+  MissRange: 0.35
 --- !u!4 &1044944676
 Transform:
   m_ObjectHideFlags: 0
@@ -6726,6 +6733,12 @@ MonoBehaviour:
   Options: {fileID: 349849627}
   Credits: {fileID: 1147216501}
   GamePlay: {fileID: 57021889}
+  Score: {fileID: 1190241835}
+  Perfect: {fileID: 218097725}
+  Great: {fileID: 1201091615}
+  Good: {fileID: 907332185}
+  Bad: {fileID: 221084200}
+  Miss: {fileID: 475721509}
 --- !u!4 &1417694019
 Transform:
   m_ObjectHideFlags: 0
