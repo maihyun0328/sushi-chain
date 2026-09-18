@@ -5251,8 +5251,6 @@ MonoBehaviour:
   perfectRange: 0.15
   greatRange: 0.35
   goodRange: 0.65
-  badRange: 1
-  MissRange: 0.35
 --- !u!4 &1044944676
 Transform:
   m_ObjectHideFlags: 0

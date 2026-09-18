@@ -17,10 +17,8 @@ public class PointManager : MonoBehaviour
 
     [Header("Judge Distance")]
     [SerializeField] float perfectRange = 0.15f;
-    [SerializeField] float greatRange = 0.2f;
-    [SerializeField] float goodRange = 0.25f;
-    [SerializeField] float badRange = 0.3f;
-    [SerializeField] float MissRange = 0.35f;
+    [SerializeField] float greatRange = 0.45f;
+    [SerializeField] float goodRange = 0.75f;
     void Awake()
     {
         i = this;
@@ -56,17 +54,12 @@ public class PointManager : MonoBehaviour
             Score += 400;
             result = JUDGE_RESULT.GOOD;
         }
-        else if (distance <= badRange)
+        else
         {
             Bad++;
             Score += 100;
             result = JUDGE_RESULT.BAD;
         }
-        else
-        {
-            return AddMiss();
-        }
-
         Combo++;
         MaxCombo = Mathf.Max(MaxCombo, Combo);
 

@@ -41,5 +41,6 @@ public enum JUDGE_RESULT
     GREAT,
     GOOD,
     BAD,
-    MISS
+    MISS,
+    IGNORE
 }

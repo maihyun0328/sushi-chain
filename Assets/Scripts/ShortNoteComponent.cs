@@ -51,14 +51,14 @@ public class ShortNoteComponent : MonoBehaviour, INote
         {
             case NOTE_DIRECT.RIGHT:
                 // 노트가 판정선을 지나쳤는데 입력하지 않음
-                if (transform.position.x < judgeX - FailRange)
+                if (transform.position.x <= judgeX - FailRange)
                 {
                     Fail();
                 }
                 break;
             case NOTE_DIRECT.LEFT:
                 // 노트가 판정선을 지나쳤는데 입력하지 않음
-                if (transform.position.x > judgeX + FailRange)
+                if (transform.position.x >= judgeX + FailRange)
                 {
                     Fail();
                 }
@@ -71,7 +71,7 @@ public class ShortNoteComponent : MonoBehaviour, INote
     }
     bool IsInJudgeRange(float x)
     {
-        return Mathf.Abs(x - judgeX) <= judgeRange;
+        return Mathf.Abs(x - judgeX) < judgeRange;
     }
 
     void Complete()
@@ -83,7 +83,7 @@ public class ShortNoteComponent : MonoBehaviour, INote
 
     void Fail()
     {
-        UIManager.i.SetPointUI(PointManager.i.GetPoint(Mathf.Abs(transform.position.x - judgeX)));
+        UIManager.i.SetPointUI(PointManager.i.AddMiss());
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.SHORT, gameObject);
     }
 }
