@@ -198,8 +198,7 @@ public class LongNoteComponent : MonoBehaviour, INote
         while(true)
         {
             VFXManager.i.SushiVFX(dir);
-            PointManager.i.Perfect++;
-            UIManager.i.SetPointUI(JUDGE_RESULT.PERFECT);
+            UIManager.i.SetPointUI(PointManager.i.GetPoint(0f));
             yield return new WaitForSeconds(0.2f);
         }
     }
