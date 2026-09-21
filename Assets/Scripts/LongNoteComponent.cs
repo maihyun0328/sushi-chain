@@ -14,6 +14,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     [Header("Setting")]
     float speed;
     [SerializeField] float judgeX;
+    [SerializeField] float FailedX;
     [SerializeField] float judgeRange;
     [SerializeField] float FailRange;
 
@@ -34,10 +35,9 @@ public class LongNoteComponent : MonoBehaviour, INote
     {
         head.gameObject.SetActive(true);
         speed = JsonManager.i.speed;
-    }
-    void Start()
-    {
-        
+        state = NOTE_STATE.WAITING;
+        SetTransparency(0);
+        cor = null;
     }
     void Update()
     {
@@ -74,6 +74,7 @@ public class LongNoteComponent : MonoBehaviour, INote
             cor = HoldingParticle();
             StartCoroutine(cor);
             head.gameObject.SetActive(false);
+            UIManager.i.SetPointUI(PointManager.i.GetPoint(Mathf.Abs(GetJudgeX() - judgeX)));
             state = NOTE_STATE.HOLDING;
             return;
         }
@@ -105,14 +106,14 @@ public class LongNoteComponent : MonoBehaviour, INote
         {
             case NOTE_DIRECT.RIGHT:
                 // Tail이 판정선을 완전히 지나갔는데도 안 뗐음
-                if (NoteX < judgeX - judgeRange)
+                if (NoteX < FailedX)
                 {
                     Fail();
                 }
                 break;
             case NOTE_DIRECT.LEFT:
                 // Tail이 판정선을 완전히 지나갔는데도 안 뗐음
-                if (NoteX > judgeX + judgeRange)
+                if (NoteX > FailedX)
                 {
                     Fail();
                 }
@@ -133,33 +134,63 @@ public class LongNoteComponent : MonoBehaviour, INote
         StopCoroutine(cor);
         state = NOTE_STATE.COMPLETED;
         VFXManager.i.SushiVFX(dir);
+        UIManager.i.SetPointUI(PointManager.i.GetPoint(Mathf.Abs(tail.transform.position.x - judgeX)));
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
     }
 
     void Fail()
     {
         if(cor != null) StopCoroutine(cor);
+        cor = Failing();
         state = NOTE_STATE.FAILED;
-        PointManager.i.Miss += 1;
-        SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
+        StartCoroutine(cor);
     }
     void SetBody()
     {
         Vector3 scale = body.transform.localScale;
+        Vector3 pos = body.position;
         switch(dir)
         {
             case NOTE_DIRECT.LEFT:
-                if(tail.position.x - judgeX < 0)
-                    scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
+                switch(state)
+                {
+                    case NOTE_STATE.HOLDING:
+                        if(tail.position.x - judgeX < 0)
+                        {
+                            scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
+                            pos.x = (tail.position.x + judgeX) / 2;
+                        }
+                        break;
+                    case NOTE_STATE.FAILED:
+                        if(tail.position.x - FailedX < 0)
+                        {
+                            scale.z = Mathf.Abs(tail.position.x - FailedX) * 100;
+                            pos.x = (tail.position.x + FailedX) / 2;
+                        }
+                        break;
+                }
                 break;
             case NOTE_DIRECT.RIGHT:
-                if(tail.position.x - judgeX > 0)
-                    scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
+                switch(state)
+                {
+                    case NOTE_STATE.HOLDING:
+                        if(tail.position.x - judgeX > 0)
+                        {
+                            scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
+                            pos.x = (tail.position.x + judgeX) / 2;
+                        }
+                        break;
+                    case NOTE_STATE.FAILED:
+                        if(tail.position.x - FailedX > 0)
+                        {
+                            scale.z = Mathf.Abs(tail.position.x - FailedX) * 100;
+                            pos.x = (tail.position.x + FailedX) / 2;
+                        }
+                        break;
+                }
                 break;
         }
         body.transform.localScale = scale;
-        Vector3 pos = body.position;
-        pos.x = (tail.position.x + judgeX) / 2;
         body.position = pos;
     }
     IEnumerator HoldingParticle() 
@@ -167,7 +198,56 @@ public class LongNoteComponent : MonoBehaviour, INote
         while(true)
         {
             VFXManager.i.SushiVFX(dir);
+            PointManager.i.Perfect++;
+            UIManager.i.SetPointUI(JUDGE_RESULT.PERFECT);
             yield return new WaitForSeconds(0.2f);
         }
+    }
+    IEnumerator Failing()
+    {
+        UIManager.i.SetPointUI(PointManager.i.AddMiss());
+        SetTransparency(-0.5f);
+        head.gameObject.SetActive(false);
+        while(!EndCheck())
+        {
+            SetBody();
+            yield return null;
+        }
+        SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
+    }
+    bool EndCheck()
+    {
+        switch(dir)
+        {
+            case NOTE_DIRECT.LEFT:
+                if(tail.transform.position.x > FailedX)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case NOTE_DIRECT.RIGHT:
+                if(tail.transform.position.x < FailedX)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            default:
+                return false;
+        }
+    }
+    void SetTransparency(float value)
+    {
+        Renderer rend = body.GetComponent<Renderer>();
+        rend.material.SetFloat("_Tweak_transparency", value);
+        rend = tail.GetChild(0).GetComponent<Renderer>();
+        rend.material.SetFloat("_Tweak_transparency", value);
+        rend = tail.GetChild(1).GetComponent<Renderer>();
+        rend.material.SetFloat("_Tweak_transparency", value);
     }
 }

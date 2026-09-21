@@ -4,32 +4,15 @@
             "dir": 0,
             "type": 0,
             "StartTime": 2.601,
-            "EndTime": 0
+            "EndTime": 4
         },
         {
             "dir": 1,
             "type": 2,
-            "StartTime": 3.03,
-            "EndTime": 0
+            "StartTime": 2.601,
+            "EndTime": 4
         },
-        {
-            "dir": 0,
-            "type": 0,
-            "StartTime": 3.458,
-            "EndTime": 0
-        },
-        {
-            "dir": 1,
-            "type": 2,
-            "StartTime": 3.887,
-            "EndTime": 0
-        },
-        {
-            "dir": 0,
-            "type": 0,
-            "StartTime": 4.315,
-            "EndTime": 0
-        },
+
         {
             "dir": 1,
             "type": 2,

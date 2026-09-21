@@ -344,6 +344,7 @@ MonoBehaviour:
   tail: {fileID: 7723143700653545248}
   type: 2
   judgeX: 1.33
+  FailedX: 0.33
   judgeRange: 1
   FailRange: 1
   inputKey: 0
