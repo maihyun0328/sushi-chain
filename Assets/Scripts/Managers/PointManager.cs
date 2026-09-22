@@ -13,12 +13,11 @@ public class PointManager : MonoBehaviour
 
     [Header("Combo")]
     public int Combo;
-    public int MaxCombo;
 
     [Header("Judge Distance")]
-    [SerializeField] float perfectRange = 0.15f;
-    [SerializeField] float greatRange = 0.45f;
-    [SerializeField] float goodRange = 0.75f;
+    [SerializeField] float perfectRange = 0.2f;
+    [SerializeField] float greatRange = 0.5f;
+    [SerializeField] float goodRange = 0.8f;
     void Awake()
     {
         i = this;
@@ -40,28 +39,30 @@ public class PointManager : MonoBehaviour
         {
             Perfect++;
             Score += 1000;
+            Combo++;
             result = JUDGE_RESULT.PERFECT;
         }
         else if (distance <= greatRange)
         {
             Great++;
             Score += 700;
+            Combo++;
             result = JUDGE_RESULT.GREAT;
         }
         else if (distance <= goodRange)
         {
             Good++;
             Score += 400;
+            Combo = 0;
             result = JUDGE_RESULT.GOOD;
         }
         else
         {
             Bad++;
             Score += 100;
+            Combo = 0;
             result = JUDGE_RESULT.BAD;
         }
-        Combo++;
-        MaxCombo = Mathf.Max(MaxCombo, Combo);
 
         // 추후 여기서 UIManager에 판정 결과 전달
         // UIManager.i.ShowJudge(result);

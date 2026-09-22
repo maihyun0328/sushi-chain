@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public Text Good;
     public Text Bad;
     public Text Miss;
+    public Text Combo;
     
     void Awake()
     {
@@ -51,6 +52,7 @@ public class UIManager : MonoBehaviour
     public void SetPointUI(JUDGE_RESULT judge_result)
     {
         Score.text = "Score : " + PointManager.i.Score;
+        Combo.text = "Combo : " + PointManager.i.Combo;
         switch(judge_result)
         {
             case JUDGE_RESULT.PERFECT:
