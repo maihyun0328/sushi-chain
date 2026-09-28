@@ -13,7 +13,7 @@ public class BackComponent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            UIManager.i.OnBack();
+            UIManager.i.OnMenu();
         }
     }
 }

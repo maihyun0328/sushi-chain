@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
-using JetBrains.Annotations;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public Text Bad;
     public Text Miss;
     public Text Combo;
+    public GameObject TansitionUI;
     
     void Awake()
     {
@@ -25,25 +26,24 @@ public class UIManager : MonoBehaviour
     }
     public void OnSongs()
     {
-        Songs.SetActive(true);
-        Menu.SetActive(false);
+        StartCoroutine(TransitionCor(Menu, Songs));
     }
     public void OnOptoins()
     {
-        Options.SetActive(true);
-        Menu.SetActive(false);
+        StartCoroutine(TransitionCor(Menu, Options));
     }
     public void OnCredits()
     {
-        Credits.SetActive(true);
-        Menu.SetActive(false);
+        StartCoroutine(TransitionCor(Menu, Credits));
     }
-    public void OnBack()
+    public void OnMenu()
     {
-        Menu.SetActive(true);
-        Songs.SetActive(false);
-        Options.SetActive(false);
-        Credits.SetActive(false);
+        GameObject obj = Songs.activeSelf ? Songs : Options.activeSelf ? Options : Credits.activeSelf ? Credits : Title;
+        StartCoroutine(TransitionCor(obj, Menu));
+    }
+    public void OnTitle()
+    {
+        StartCoroutine(TransitionCor(Menu, Title));
     }
     public void GameStart()
     {
@@ -81,5 +81,12 @@ public class UIManager : MonoBehaviour
         Bad.text = "Bad : 0";
         Miss.text = "Miss : 0";
         Combo.text = "";
+    }
+    public IEnumerator TransitionCor(GameObject obj1, GameObject obj2)
+    {
+
+        yield return new WaitForSeconds(0.3f);
+        obj1.SetActive(false);
+        obj2.SetActive(true);
     }
 }
