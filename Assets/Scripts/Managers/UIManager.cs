@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
     public void SetPointUI(JUDGE_RESULT judge_result)
     {
         Score.text = "Score : " + PointManager.i.Score;
-        Combo.text = "Combo : " + PointManager.i.Combo;
+        Combo.text = judge_result.ToString() + "\nX" + PointManager.i.Combo;
         switch(judge_result)
         {
             case JUDGE_RESULT.PERFECT:
@@ -80,5 +80,6 @@ public class UIManager : MonoBehaviour
         Good.text = "Good : 0";
         Bad.text = "Bad : 0";
         Miss.text = "Miss : 0";
+        Combo.text = "";
     }
 }
