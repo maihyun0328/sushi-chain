@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GAME_DIFFICULTY GameDifficulty = GAME_DIFFICULTY.EASY;
     public bool IsGameStart {get; private set;}
     public bool IsGameOver {get; private set;}
+    public bool IsGameClear {get; private set;}
     void Awake()
     {
         i = this;
@@ -51,4 +52,5 @@ public class GameManager : MonoBehaviour
         AudioManager.i.music.loop = true;
         AudioManager.i.PlaySong();
     }
+    public void GameClear() {}
 }

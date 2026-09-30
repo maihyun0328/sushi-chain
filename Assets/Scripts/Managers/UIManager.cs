@@ -1,6 +1,9 @@
 using UnityEngine.UI;
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
+using UnityEngine.Rendering;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,7 +21,10 @@ public class UIManager : MonoBehaviour
     public Text Bad;
     public Text Miss;
     public Text Combo;
-    public GameObject TansitionUI;
+    public GameObject TransitionUI;
+    public Material TransitionMat;
+    public Transform ComboObj;
+    private bool IsTransitioning = false;
     
     void Awake()
     {
@@ -26,28 +32,28 @@ public class UIManager : MonoBehaviour
     }
     public void OnSongs()
     {
-        StartCoroutine(TransitionCor(Menu, Songs));
+        Transition(Menu, Songs);
     }
     public void OnOptoins()
     {
-        StartCoroutine(TransitionCor(Menu, Options));
+        Transition(Menu, Options);
     }
     public void OnCredits()
     {
-        StartCoroutine(TransitionCor(Menu, Credits));
+        Transition(Menu, Credits);
     }
     public void OnMenu()
     {
         GameObject obj = Songs.activeSelf ? Songs : Options.activeSelf ? Options : Credits.activeSelf ? Credits : Title;
-        StartCoroutine(TransitionCor(obj, Menu));
+        Transition(obj, Menu);
     }
     public void OnTitle()
     {
-        StartCoroutine(TransitionCor(Menu, Title));
+        Transition(Menu, Title);
     }
-    public void GameStart()
+    public void GameStart(int index = 0)
     {
-        GamePlay.SetActive(true);
+        Transition(Songs, GamePlay, true, index);
     }
     public void SetPointUI(JUDGE_RESULT judge_result)
     {
@@ -71,6 +77,7 @@ public class UIManager : MonoBehaviour
                 Miss.text = "Miss : " + PointManager.i.Miss;
                 break;
         }
+        ComboAnim();
     }
     public void PointUIInitialization()
     {
@@ -82,11 +89,38 @@ public class UIManager : MonoBehaviour
         Miss.text = "Miss : 0";
         Combo.text = "";
     }
-    public IEnumerator TransitionCor(GameObject obj1, GameObject obj2)
+    public void Transition(GameObject obj1, GameObject obj2, bool IsGameStart = false, int index = 0)
     {
-
-        yield return new WaitForSeconds(0.3f);
-        obj1.SetActive(false);
-        obj2.SetActive(true);
+        if(IsTransitioning) return;
+        IsTransitioning = true;
+        TransitionUI.SetActive(true);
+        TransitionMat.DOFloat(2.6f, "_Scroll", 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            TransitionMat.SetFloat("_Scroll", 0f);
+            TransitionMat.SetFloat("_IsOutColor", 1f);
+            TransitionMat.SetColor("_OutColor", Color.black);
+            TransitionMat.SetColor("_InColor", Color.white);
+            if(IsGameStart) GameManager.i.GameStart(index);
+            obj1.SetActive(false);
+            obj2.SetActive(true);
+            TransitionMat.DOFloat(2.6f, "_Scroll", 0.5f).SetEase(Ease.InQuad).OnComplete(() =>
+            {
+                TransitionMat.SetColor("_OutColor", Color.white);
+                TransitionMat.SetColor("_InColor", Color.black);
+                TransitionMat.SetFloat("_IsOutColor", 0f);
+                TransitionMat.SetFloat("_Scroll", 0f);
+                TransitionUI.SetActive(false);
+                IsTransitioning = false;
+            });
+        });
+    }
+    public void ComboAnim()
+    {
+        ComboObj.DOKill();
+        ComboObj.localScale = Vector2.one * 0.6f;
+        ComboObj.DOScale(Vector3.one, 0.1f).OnComplete(() =>
+        {
+            ComboObj.DOScale(Vector3.one * 0.8f, 0.05f);
+        });
     }
 }
