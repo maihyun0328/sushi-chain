@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
         camera.orthographic = false;
         DOVirtual.DelayedCall(1.0f, () =>
         {
-            camera.transform.DOMoveZ(-26f, 0.5f);
-            DOVirtual.DelayedCall(0.75f, () =>
+            camera.transform.DOMoveZ(-26f, 1f);
+            DOVirtual.DelayedCall(0.9f, () =>
             {
                 SushiPoolComponent.i.ReturnAllSushi();
                 GamePlay.SetActive(false);
