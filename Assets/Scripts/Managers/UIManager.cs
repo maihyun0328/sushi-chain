@@ -117,10 +117,10 @@ public class UIManager : MonoBehaviour
     public void ComboAnim()
     {
         ComboObj.DOKill();
-        ComboObj.localScale = Vector2.one * 0.6f;
-        ComboObj.DOScale(Vector3.one, 0.1f).OnComplete(() =>
+        ComboObj.localScale = Vector3.one * 0.6f;
+        ComboObj.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutQuad).OnComplete(() =>
         {
-            ComboObj.DOScale(Vector3.one * 0.8f, 0.05f);
+            ComboObj.DOScale(Vector3.one * 0.8f, 0.05f).SetEase(Ease.OutQuad);
         });
     }
 }
