@@ -53,7 +53,7 @@ public class PointManager : MonoBehaviour
         {
             Good++;
             Score += 400;
-            Combo = 0;
+            Combo++;
             result = JUDGE_RESULT.GOOD;
         }
         else
