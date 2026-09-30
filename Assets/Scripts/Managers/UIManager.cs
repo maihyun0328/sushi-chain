@@ -1,9 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
-using System.Collections;
 using DG.Tweening;
-using UnityEngine.Rendering;
-using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +21,12 @@ public class UIManager : MonoBehaviour
     public GameObject TransitionUI;
     public Material TransitionMat;
     public Transform ComboObj;
+    private Color Perfect_Color = new Color32(0, 255, 204, 255);
+    private Color Great_Color = new Color32(124, 255, 0, 255);
+    private Color Good_Color = new Color32(255, 217, 0, 255);
+    private Color Bad_Color = new Color32(255, 51, 51, 255);
+    private Color Miss_Color = new Color32(107, 88, 117, 255);
+    
     private bool IsTransitioning = false;
     
     void Awake()
@@ -58,25 +61,30 @@ public class UIManager : MonoBehaviour
     public void SetPointUI(JUDGE_RESULT judge_result)
     {
         Score.text = "Score : " + PointManager.i.Score;
-        Combo.text = judge_result.ToString() + "\nX" + PointManager.i.Combo;
         switch(judge_result)
         {
             case JUDGE_RESULT.PERFECT:
                 Perfect.text = "Perfect : " + PointManager.i.Perfect;
+                Combo.color = Perfect_Color;
                 break;
             case JUDGE_RESULT.GREAT:
                 Great.text = "Great : " + PointManager.i.Great;
+                Combo.color = Great_Color;
                 break;
             case JUDGE_RESULT.GOOD:
                 Good.text = "Good : " + PointManager.i.Good;
+                Combo.color = Good_Color;
                 break;
             case JUDGE_RESULT.BAD:
                 Bad.text = "Bad : " + PointManager.i.Bad;
+                Combo.color = Bad_Color;
                 break;
             case JUDGE_RESULT.MISS:
                 Miss.text = "Miss : " + PointManager.i.Miss;
+                Combo.color = Miss_Color;
                 break;
         }
+        Combo.text = judge_result.ToString() + "\nX" + PointManager.i.Combo;
         ComboAnim();
     }
     public void PointUIInitialization()
