@@ -20,6 +20,7 @@ public class ShortNoteComponent : MonoBehaviour, INote
     
     void Update()
     {
+        if(GameManager.i.IsGameOver) return;
         Move();
         MissCheck();
     }

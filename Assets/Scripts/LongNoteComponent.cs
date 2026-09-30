@@ -41,6 +41,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     }
     void Update()
     {
+        if(GameManager.i.IsGameOver) return;
         Move();
         switch(state)
         {

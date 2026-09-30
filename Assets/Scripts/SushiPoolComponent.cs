@@ -259,4 +259,23 @@ public class SushiPoolComponent : MonoBehaviour
                 break;
         }
     }
+    public void ReturnAllSushi()
+    {
+        ReturnAll(Active_L1_Short.transform, SUSHI_TYPE.L1, NOTE_TYPE.SHORT);
+        ReturnAll(Active_L2_Short.transform, SUSHI_TYPE.L2, NOTE_TYPE.SHORT);
+        ReturnAll(Active_R1_Short.transform, SUSHI_TYPE.R1, NOTE_TYPE.SHORT);
+        ReturnAll(Active_R2_Short.transform, SUSHI_TYPE.R2, NOTE_TYPE.SHORT);
+        ReturnAll(Active_L1_Long.transform, SUSHI_TYPE.L1, NOTE_TYPE.LONG);
+        ReturnAll(Active_L2_Long.transform, SUSHI_TYPE.L2, NOTE_TYPE.LONG);
+        ReturnAll(Active_R1_Long.transform, SUSHI_TYPE.R1, NOTE_TYPE.LONG);
+        ReturnAll(Active_R2_Long.transform, SUSHI_TYPE.R2, NOTE_TYPE.LONG);
+    }
+    public void ReturnAll(Transform Parent, SUSHI_TYPE type, NOTE_TYPE note)
+    {
+        while(Parent.childCount > 0)
+        {
+            GameObject obj = Parent.GetChild(0).gameObject;
+            ReturnSushi(type, note, obj);
+        }
+    }
 }
