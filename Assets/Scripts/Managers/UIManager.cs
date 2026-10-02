@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     public GameObject TransitionUI;
     public Material TransitionMat;
     public Transform ComboObj;
+    public GameObject GameResult;
     private Color Perfect_Color = new Color32(0, 255, 204, 255);
     private Color Great_Color = new Color32(124, 255, 0, 255);
     private Color Good_Color = new Color32(255, 217, 0, 255);
@@ -47,7 +48,13 @@ public class UIManager : MonoBehaviour
     }
     public void OnMenu()
     {
-        GameObject obj = Songs.activeSelf ? Songs : Options.activeSelf ? Options : Credits.activeSelf ? Credits : Title;
+        GameObject obj;
+        if(Songs.activeSelf) obj = Songs;
+        else if(Options.activeSelf) obj = Options;
+        else if(Credits.activeSelf) obj = Credits;
+        else if(Title.activeSelf) obj = Title;
+        else if(GameResult.activeSelf) obj = GameResult;
+        else return;
         Transition(obj, Menu);
     }
     public void OnTitle()
@@ -56,7 +63,11 @@ public class UIManager : MonoBehaviour
     }
     public void GameStart(int index = 0)
     {
-        Transition(Songs, GamePlay, true, index);
+        Transition(Songs, GamePlay, true, false, index);
+    }
+    public void GameClear()
+    {
+        Transition(GamePlay, GameResult, false, true);
     }
     public void SetPointUI(JUDGE_RESULT judge_result)
     {
@@ -97,7 +108,8 @@ public class UIManager : MonoBehaviour
         Miss.text = "Miss : 0";
         Combo.text = "";
     }
-    public void Transition(GameObject obj1, GameObject obj2, bool IsGameStart = false, int index = 0)
+    public void Transition(GameObject obj1, GameObject obj2, bool IsGameStart = false,bool IsGameClear = false,
+     int index = 0)
     {
         if(IsTransitioning) return;
         IsTransitioning = true;
@@ -109,6 +121,7 @@ public class UIManager : MonoBehaviour
             TransitionMat.SetColor("_OutColor", Color.black);
             TransitionMat.SetColor("_InColor", Color.white);
             if(IsGameStart) GameManager.i.GameStart(index);
+            if(IsGameClear) GameManager.i.GameClear();
             obj1.SetActive(false);
             obj2.SetActive(true);
             TransitionMat.DOFloat(2.6f, "_Scroll", 0.5f).SetEase(Ease.InQuad).OnComplete(() =>

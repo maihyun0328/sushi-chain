@@ -44,10 +44,10 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _ColorMask: 15
-    - _IsOutColor: 0
+    - _IsOutColor: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scroll: 0
+    - _Scroll: 2.129725
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -57,8 +57,8 @@ Material:
     - _UIMaskSoftnessY: 1
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
-    - _InColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutColor: {r: 1, g: 1, b: 1, a: 1}
+    - _InColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

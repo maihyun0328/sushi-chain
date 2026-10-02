@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver {get; private set;}
     public bool IsGameClear {get; private set;}
     public int Life;
-    public Camera camera;
+    public Camera GameCamera;
     public ParticleSystem GameOverVFX;
     void Awake()
     {
@@ -18,13 +18,14 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.W)) AudioManager.i.StopSong();
         if(!IsGameStart) return;
         if(Life <= 0) 
         {
             GameOver();
             return;
         }
-        if(!AudioManager.i.music.isPlaying) GameClear();
+        if(!AudioManager.i.music.isPlaying) UIManager.i.GameClear();
     }
     public void GameStart(int index)
     {
@@ -60,17 +61,17 @@ public class GameManager : MonoBehaviour
         IsGameStart = false;
         IsGameOver = true;
         AudioManager.i.StopSong();
-        camera.orthographic = false;
+        GameCamera.orthographic = false;
         DOVirtual.DelayedCall(1.0f, () =>
         {
-            camera.transform.DOMoveZ(-26f, 1f);
+            GameCamera.transform.DOMoveZ(-26f, 1f);
             DOVirtual.DelayedCall(0.9f, () =>
             {
                 SushiPoolComponent.i.ReturnAllSushi();
                 GamePlay.SetActive(false);
                 UIManager.i.GamePlay.SetActive(false);
                 GameOverVFX.Play();
-                camera.transform.DOShakePosition(1f, 6f, 30, 180f, false, true);
+                GameCamera.transform.DOShakePosition(1f, 6f, 30, 180f, false, true);
             });
         });
     }

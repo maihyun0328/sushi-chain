@@ -7,8 +7,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource music;
     public AudioSource UI;
     public AudioSource VFX;
-    [SerializeField] public List<AudioClip> songs;
-    [SerializeField] public AudioClip BGM;
+    public List<AudioClip> songs;
+    public AudioClip BGM;
     void Awake()
     {
         i = this;
