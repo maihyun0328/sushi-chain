@@ -18,11 +18,4 @@ public class GameResultComponent : MonoBehaviour
         Bad.text = UIManager.i.Bad.text;
         Miss.text = UIManager.i.Miss.text;
     }
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            UIManager.i.OnMenu();
-        }
-    }
 }

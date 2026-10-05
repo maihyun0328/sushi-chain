@@ -51,7 +51,12 @@ public class KeyboardScrollComponent : MonoBehaviour
         ArrowTargetPosition = Arrow.transform.position;
         SetSong();
     }
-
+    void OnEnable()
+    {
+        SongsInfo = JsonManager.i.TakeSongData();
+        ScoreInfo = JsonManager.i.TakeScoreData();
+        SetSong();
+    }
     void Update()
     {
         GameStartCheck();

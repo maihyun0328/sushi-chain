@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class TitleComponent : MonoBehaviour
+public class MenuEnterComponent : MonoBehaviour
 {
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))

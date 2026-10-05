@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     public Material TransitionMat;
     public Transform ComboObj;
     public GameObject GameResult;
+    public GameObject GameOverUI;
+    public Text GameOverText;
     private Color Perfect_Color = new Color32(0, 255, 204, 255);
     private Color Great_Color = new Color32(124, 255, 0, 255);
     private Color Good_Color = new Color32(255, 217, 0, 255);
@@ -54,6 +56,7 @@ public class UIManager : MonoBehaviour
         else if(Credits.activeSelf) obj = Credits;
         else if(Title.activeSelf) obj = Title;
         else if(GameResult.activeSelf) obj = GameResult;
+        else if(GameOverUI.activeSelf) obj = GameOverUI;
         else return;
         Transition(obj, Menu);
     }
@@ -68,6 +71,14 @@ public class UIManager : MonoBehaviour
     public void GameClear()
     {
         Transition(GamePlay, GameResult, false, true);
+    }
+    public void GameOver()
+    {
+        Color color = GameOverText.color;
+        color.a = 0f;
+        GameOverText.color = color;
+        GameOverUI.SetActive(true);
+        GameOverText.DOFade(1f, 1f);
     }
     public void SetPointUI(JUDGE_RESULT judge_result)
     {

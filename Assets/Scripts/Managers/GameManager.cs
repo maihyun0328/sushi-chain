@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int Life;
     public Camera GameCamera;
     public ParticleSystem GameOverVFX;
+    public int GameIndex;
     void Awake()
     {
         i = this;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public void GameStart(int index)
     {
         Life = 3;
+        GameIndex = index;
         SongList list = JsonManager.i.TakeSongData();
         JsonManager.i.CurrentSongNote = JsonManager.i.TakeSongNoteData(list.Songs[index].Name);
         JsonManager.i.NoteIndex = 0;
@@ -71,7 +73,10 @@ public class GameManager : MonoBehaviour
                 GamePlay.SetActive(false);
                 UIManager.i.GamePlay.SetActive(false);
                 GameOverVFX.Play();
-                GameCamera.transform.DOShakePosition(1f, 6f, 30, 180f, false, true);
+                GameCamera.transform.DOShakePosition(1f, 6f, 30, 180f, false, true).OnComplete(() =>
+                {
+                    UIManager.i.GameOver();
+                });
             });
         });
     }
@@ -82,5 +87,6 @@ public class GameManager : MonoBehaviour
         AudioManager.i.ChangeSong(AudioManager.i.BGM);
         AudioManager.i.music.loop = true;
         AudioManager.i.PlaySong();
+        JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
     }
 }

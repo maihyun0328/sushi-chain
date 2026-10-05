@@ -78,4 +78,15 @@ public class PointManager : MonoBehaviour
 
         return JUDGE_RESULT.MISS;
     }
+    public Score GetScore()
+    {
+        Score score = new Score();
+        score.score = Score;
+        score.Perfect = Perfect;
+        score.Great = Great;
+        score.Good = Good;
+        score.Bad = Bad;
+        score.Miss = Miss;
+        return score;
+    }
 }

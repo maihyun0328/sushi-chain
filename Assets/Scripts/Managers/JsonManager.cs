@@ -78,6 +78,7 @@ public class JsonManager : MonoBehaviour
         {
             InitScoresData();
         }
+        Debug.Log(Application.persistentDataPath);
     }
 
     public ScoreList TakeScoreData()
@@ -123,5 +124,12 @@ public class JsonManager : MonoBehaviour
     {
         float MoveTime = distance / speed;
         return note.StartTime - MoveTime;
+    }
+    public void SavePoint(Score score, int num)
+    {
+        ScoreList list = TakeScoreData();
+        list.Scores[num] = score;
+        string json = JsonUtility.ToJson(list, true);
+        File.WriteAllText(Application.persistentDataPath + "/Scores.json", json);
     }
 }
