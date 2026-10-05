@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager i;
     public AudioSource music;
     public AudioSource UI;
-    public AudioSource VFX;
+    public AudioSource SFX;
     public List<AudioClip> songs;
     public AudioClip BGM;
     void Awake()
@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayVFX(AudioClip audio)
     {
-        VFX.PlayOneShot(audio);
+        SFX.PlayOneShot(audio);
     }
     public void PlaySong()
     {

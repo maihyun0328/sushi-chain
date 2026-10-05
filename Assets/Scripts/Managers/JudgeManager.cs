@@ -8,14 +8,10 @@ using UnityEngine.InputSystem;
 public class JudgeManager : MonoBehaviour
 {
     public static JudgeManager i;
-    int L1_Count = 0;
-    int L2_Count = 0;
-    int R1_Count = 0;
-    int R2_Count = 0;
-    KeyCode L1_Key = KeyCode.A;
-    KeyCode L2_Key = KeyCode.S;
-    KeyCode R1_Key = KeyCode.J;
-    KeyCode R2_Key = KeyCode.K;
+    public KeyCode L1_Key = KeyCode.A;
+    public KeyCode L2_Key = KeyCode.S;
+    public KeyCode R1_Key = KeyCode.J;
+    public KeyCode R2_Key = KeyCode.K;
     [SerializeField] GameObject Active_L1_Short;
     [SerializeField] GameObject Active_L2_Short;
     [SerializeField] GameObject Active_R1_Short;
@@ -106,5 +102,24 @@ public class JudgeManager : MonoBehaviour
         }
         note = obj[count].GetComponent<INote>();
         note.NoteCheck(key);
+    }
+    public void SetKey(SUSHI_TYPE type, KeyCode key)
+    {
+        switch(type)
+        {
+            case SUSHI_TYPE.L1:
+                L1_Key = key;
+                break;
+            case SUSHI_TYPE.L2:
+                L2_Key = key;
+                break;
+            case SUSHI_TYPE.R1:
+                R1_Key = key;
+                break;
+            case SUSHI_TYPE.R2:
+                R2_Key = key;
+                break;
+            
+        }
     }
 }

@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class BackComponent : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField] private GameObject priorityPanel;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!Input.GetKeyDown(KeyCode.Escape)) return;
+
+        if (priorityPanel != null && priorityPanel.activeSelf)
         {
-            UIManager.i.OnMenu();
+            priorityPanel.SetActive(false);
+            return;
         }
+
+        UIManager.i.OnMenu();
     }
 }
