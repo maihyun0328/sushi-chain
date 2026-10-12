@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     {
         IsGameStart = false;
         IsGameClear = true;
+        SushiPoolComponent.i.ReturnAllSushi();
         AudioManager.i.ChangeSong(AudioManager.i.BGM);
         AudioManager.i.music.loop = true;
         AudioManager.i.PlaySong();
