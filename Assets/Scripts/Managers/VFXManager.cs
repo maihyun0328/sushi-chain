@@ -8,8 +8,10 @@ public class VFXManager : MonoBehaviour
     [SerializeField] GameObject PurpleVFX;
     [SerializeField] GameObject LightPool;
     [SerializeField] GameObject PurplePool;
-    Vector3 LeftVFX = new Vector3(-1.33f, 1.1f, 0);
-    Vector3 RightVFX = new Vector3(1.33f, 1.1f, 0);
+    Vector3 L1VFX = new Vector3(-1.33f, 3.94f, 0);
+    Vector3 L2VFX = new Vector3(-1.33f, 1.1f, 0);
+    Vector3 R1VFX = new Vector3(1.33f, 3.94f, 0);
+    Vector3 R2VFX = new Vector3(1.33f, 1.1f, 0);
     void Awake()
     {
         i = this;
@@ -32,7 +34,7 @@ public class VFXManager : MonoBehaviour
             Instantiate(PurpleVFX, PurplePool.transform).SetActive(false);
         }
     }
-    public void SushiVFX(NOTE_DIRECT dir)
+    public void SushiVFX(SUSHI_TYPE sushi)
     {
         if(LightPool.transform.childCount == 0 || PurplePool.transform.childCount == 0) CreateSushiVFX();
         GameObject Lightobj = LightPool.transform.GetChild(0).gameObject;
@@ -41,15 +43,23 @@ public class VFXManager : MonoBehaviour
         Purpleobj.transform.SetParent(null);
         Lightobj.SetActive(true);
         Purpleobj.SetActive(true);
-        switch(dir)
+        switch(sushi)
         {
-            case NOTE_DIRECT.LEFT:
-                Lightobj.transform.position = LeftVFX;
-                Purpleobj.transform.position = LeftVFX;
+            case SUSHI_TYPE.L1:
+                Lightobj.transform.position = L1VFX;
+                Purpleobj.transform.position = L1VFX;
                 break;
-            case NOTE_DIRECT.RIGHT:
-                Lightobj.transform.position = RightVFX;
-                Purpleobj.transform.position = RightVFX;
+            case SUSHI_TYPE.L2:
+                Lightobj.transform.position = L2VFX;
+                Purpleobj.transform.position = L2VFX;
+                break;
+            case SUSHI_TYPE.R1:
+                Lightobj.transform.position = R1VFX;
+                Purpleobj.transform.position = R1VFX;
+                break;
+            case SUSHI_TYPE.R2:
+                Lightobj.transform.position = R2VFX;
+                Purpleobj.transform.position = R2VFX;
                 break;
         }
     }

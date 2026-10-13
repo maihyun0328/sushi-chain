@@ -134,7 +134,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     {
         StopCoroutine(cor);
         state = NOTE_STATE.COMPLETED;
-        VFXManager.i.SushiVFX(dir);
+        VFXManager.i.SushiVFX(type);
         UIManager.i.SetPointUI(PointManager.i.GetPoint(Mathf.Abs(tail.transform.position.x - judgeX)));
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
     }
@@ -158,14 +158,14 @@ public class LongNoteComponent : MonoBehaviour, INote
                     case NOTE_STATE.HOLDING:
                         if(tail.position.x - judgeX < 0)
                         {
-                            scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
+                            scale.z = Mathf.Abs(tail.position.x - judgeX) * 0.9f;
                             pos.x = (tail.position.x + judgeX) / 2;
                         }
                         break;
                     case NOTE_STATE.FAILED:
                         if(tail.position.x - FailedX < 0)
                         {
-                            scale.z = Mathf.Abs(tail.position.x - FailedX) * 100;
+                            scale.z = Mathf.Abs(tail.position.x - FailedX) * 0.9f;
                             pos.x = (tail.position.x + FailedX) / 2;
                         }
                         break;
@@ -177,14 +177,14 @@ public class LongNoteComponent : MonoBehaviour, INote
                     case NOTE_STATE.HOLDING:
                         if(tail.position.x - judgeX > 0)
                         {
-                            scale.z = Mathf.Abs(tail.position.x - judgeX) * 100;
+                            scale.z = Mathf.Abs(tail.position.x - judgeX) * 0.9f;
                             pos.x = (tail.position.x + judgeX) / 2;
                         }
                         break;
                     case NOTE_STATE.FAILED:
                         if(tail.position.x - FailedX > 0)
                         {
-                            scale.z = Mathf.Abs(tail.position.x - FailedX) * 100;
+                            scale.z = Mathf.Abs(tail.position.x - FailedX) * 0.9f;
                             pos.x = (tail.position.x + FailedX) / 2;
                         }
                         break;
@@ -198,7 +198,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     {
         while(true)
         {
-            VFXManager.i.SushiVFX(dir);
+            VFXManager.i.SushiVFX(type);
             UIManager.i.SetPointUI(PointManager.i.GetPoint(0f));
             yield return new WaitForSeconds(0.2f);
         }
@@ -243,7 +243,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     }
     void SetTransparency(float value)
     {
-        Renderer rend = body.GetComponent<Renderer>();
+        Renderer rend = body.GetChild(0).GetComponent<Renderer>();
         rend.material.SetFloat("_Tweak_transparency", value);
         rend = tail.GetChild(0).GetComponent<Renderer>();
         rend.material.SetFloat("_Tweak_transparency", value);

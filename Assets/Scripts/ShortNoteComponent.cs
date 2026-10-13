@@ -78,7 +78,7 @@ public class ShortNoteComponent : MonoBehaviour, INote
     void Complete()
     {
         UIManager.i.SetPointUI(PointManager.i.GetPoint(Mathf.Abs(transform.position.x - judgeX)));
-        VFXManager.i.SushiVFX(dir);
+        VFXManager.i.SushiVFX(type);
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.SHORT, gameObject);
     }
 

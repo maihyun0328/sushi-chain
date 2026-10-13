@@ -130,9 +130,9 @@ public class SushiPoolComponent : MonoBehaviour
                         Obj.transform.rotation = LeftEuler;
                         Obj.transform.GetChild(0).position = L1Vector;
                         Obj.transform.GetChild(2).position = L1Vector - new Vector3(length, 0, 0);
-                        Obj.transform.GetChild(1).position = L1Vector - new Vector3(length, 0.12f, 1.124f) / 2;
+                        Obj.transform.GetChild(1).position = L1Vector - new Vector3(length * 0.45f, 0f, 0f);
                         Obj.transform.SetParent(Active_L1_Long.transform);
-                        Obj.transform.GetChild(1).localScale = new Vector3(105.0872f, 96.16399f, length * 93.7024f);
+                        Obj.transform.GetChild(1).localScale = new Vector3(1f, 1f, length * 0.9f);
                         break;
                 }
                 break;
@@ -154,9 +154,9 @@ public class SushiPoolComponent : MonoBehaviour
                         Obj.transform.rotation = LeftEuler;
                         Obj.transform.GetChild(0).position = L2Vector;
                         Obj.transform.GetChild(2).position = L2Vector - new Vector3(length, 0, 0);
-                        Obj.transform.GetChild(1).position = L2Vector - new Vector3(length, 0.12f, 1.124f) / 2;
+                        Obj.transform.GetChild(1).position = L2Vector - new Vector3(length * 0.45f, 0f, 0f);
                         Obj.transform.SetParent(Active_L2_Long.transform);
-                        Obj.transform.GetChild(1).localScale = new Vector3(105.0872f, 96.16399f, length * 93.7024f);
+                        Obj.transform.GetChild(1).localScale = new Vector3(1, 1f, length * 0.9f);
                         break;
                 }
                 break;
@@ -178,9 +178,9 @@ public class SushiPoolComponent : MonoBehaviour
                         Obj.transform.rotation = RightEuler;
                         Obj.transform.GetChild(0).position = R1Vector;
                         Obj.transform.GetChild(2).position = R1Vector + new Vector3(length, 0, 0);
-                        Obj.transform.GetChild(1).position = R1Vector + new Vector3(length, -0.08f, 1.206f) / 2;
+                        Obj.transform.GetChild(1).position = R1Vector + new Vector3(length * 0.45f, 0f, 0f);
                         Obj.transform.SetParent(Active_R1_Long.transform);
-                        Obj.transform.GetChild(1).localScale = new Vector3(105.0872f, 96.16399f, length * 93.7024f);
+                        Obj.transform.GetChild(1).localScale = new Vector3(1f, 1f, length * 0.9f);
                         break;
                 }
                 break;
@@ -202,9 +202,9 @@ public class SushiPoolComponent : MonoBehaviour
                         Obj.transform.rotation = RightEuler;
                         Obj.transform.GetChild(0).position = R2Vector;
                         Obj.transform.GetChild(2).position = R2Vector + new Vector3(length, 0, 0);
-                        Obj.transform.GetChild(1).position = R2Vector + new Vector3(length, -0.08f, 1.206f) / 2;
+                        Obj.transform.GetChild(1).position = R2Vector + new Vector3(length * 0.45f, 0f, 0f);
                         Obj.transform.SetParent(Active_R2_Long.transform);
-                        Obj.transform.GetChild(1).localScale = new Vector3(105.0872f, 96.16399f, length * 94f);
+                        Obj.transform.GetChild(1).localScale = new Vector3(1f, 1f, length * 0.9f);
                         break;
                 }
                 break;
