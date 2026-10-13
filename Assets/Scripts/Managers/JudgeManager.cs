@@ -50,6 +50,7 @@ public class JudgeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.i.IsGameOver || !GameManager.i.IsGameStart) return;
         InputCheck();
     }
     void InputCheck()

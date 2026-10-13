@@ -73,7 +73,6 @@ public class PointManager : MonoBehaviour
     {
         Miss++;
         Combo = 0;
-        GameManager.i.Life -= 1;
         // UIManager.i.ShowJudge(JUDGE_RESULT.MISS);
 
         return JUDGE_RESULT.MISS;

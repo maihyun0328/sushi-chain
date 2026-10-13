@@ -70,6 +70,7 @@ public class LongNoteComponent : MonoBehaviour, INote
     public void NoteCheck(KeyCode key)
     {
         inputKey = key;
+        if(state == NOTE_STATE.FAILED) return;
         if (IsInJudgeRange(head.position.x))
         {
             cor = HoldingParticle();

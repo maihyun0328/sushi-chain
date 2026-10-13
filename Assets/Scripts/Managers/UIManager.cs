@@ -1,6 +1,8 @@
 using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
+using UnityEditor.Experimental.GraphView;
+using DG.Tweening.Plugins.Options;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +26,9 @@ public class UIManager : MonoBehaviour
     public GameObject GameResult;
     public GameObject GameOverUI;
     public Text GameOverText;
+    public Slider Gauge;
+    public GameObject GaugeObj;
+    public Image[] Hearts;
     private Color Perfect_Color = new Color32(0, 255, 204, 255);
     private Color Great_Color = new Color32(124, 255, 0, 255);
     private Color Good_Color = new Color32(255, 217, 0, 255);
@@ -71,6 +76,13 @@ public class UIManager : MonoBehaviour
     public void GameStart(int index = 0)
     {
         Transition(Songs, GamePlay, true, false, index);
+        Gauge.maxValue = 10;
+        Gauge.value = 0;
+        for(int i = 0; i < 3; i++)
+        {
+            Hearts[i].color = Color.white;
+        }
+        GaugeObj.SetActive(false);
     }
     public void GameClear()
     {
@@ -92,14 +104,17 @@ public class UIManager : MonoBehaviour
             case JUDGE_RESULT.PERFECT:
                 Perfect.text = "Perfect : " + PointManager.i.Perfect;
                 Combo.color = Perfect_Color;
+                SetLifeGauge(1);
                 break;
             case JUDGE_RESULT.GREAT:
                 Great.text = "Great : " + PointManager.i.Great;
                 Combo.color = Great_Color;
+                SetLifeGauge(1);
                 break;
             case JUDGE_RESULT.GOOD:
                 Good.text = "Good : " + PointManager.i.Good;
                 Combo.color = Good_Color;
+                SetLifeGauge(1);
                 break;
             case JUDGE_RESULT.BAD:
                 Bad.text = "Bad : " + PointManager.i.Bad;
@@ -108,6 +123,7 @@ public class UIManager : MonoBehaviour
             case JUDGE_RESULT.MISS:
                 Miss.text = "Miss : " + PointManager.i.Miss;
                 Combo.color = Miss_Color;
+                RemoveLife();
                 break;
         }
         Combo.text = judge_result.ToString() + "\nX" + PointManager.i.Combo;
@@ -158,5 +174,27 @@ public class UIManager : MonoBehaviour
         {
             ComboObj.DOScale(Vector3.one * 0.8f, 0.05f).SetEase(Ease.OutQuad);
         });
+    }
+    public void SetLifeGauge(float value)
+    {
+        if(GameManager.i.Life >= 3) return;
+        Gauge.value += value;
+        if(Gauge.value >= Gauge.maxValue)
+        {
+            Gauge.value = 0;
+            AddLife();
+        }
+    }
+    public void AddLife()
+    {
+        Hearts[GameManager.i.Life].color = Color.white;
+        GameManager.i.Life += 1;
+        if(GameManager.i.Life == 3) GaugeObj.SetActive(false);
+    }
+    public void RemoveLife()
+    {
+        GaugeObj.SetActive(true);
+        GameManager.i.Life -= 1;
+        Hearts[GameManager.i.Life].color = Color.black;
     }
 }
