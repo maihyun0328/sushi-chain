@@ -31,9 +31,9 @@ public class SushiPoolComponent : MonoBehaviour
     [SerializeField] GameObject Inactive_L2_Long;
     [SerializeField] GameObject Inactive_R1_Long;
     [SerializeField] GameObject Inactive_R2_Long;
-    Vector3 L1Vector = new Vector3(-11, 3.87f, -0.82f);
+    Vector3 L1Vector = new Vector3(-11, 3.12f, -0.82f);
     Vector3 L2Vector = new Vector3(-11, 1.03f, -0.82f);
-    Vector3 R1Vector = new Vector3(11, 3.87f, 0.338f);
+    Vector3 R1Vector = new Vector3(11, 3.12f, 0.338f);
     Vector3 R2Vector = new Vector3(11, 1.03f, 0.338f);
     Quaternion LeftEuler = Quaternion.Euler(0, 270, 0);
     Quaternion RightEuler = Quaternion.Euler(0, 90, 0);

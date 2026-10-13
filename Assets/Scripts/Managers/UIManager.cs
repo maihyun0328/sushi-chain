@@ -109,12 +109,12 @@ public class UIManager : MonoBehaviour
             case JUDGE_RESULT.GREAT:
                 Great.text = "Great : " + PointManager.i.Great;
                 Combo.color = Great_Color;
-                SetLifeGauge(1);
+                SetLifeGauge(0.5f);
                 break;
             case JUDGE_RESULT.GOOD:
                 Good.text = "Good : " + PointManager.i.Good;
                 Combo.color = Good_Color;
-                SetLifeGauge(1);
+                SetLifeGauge(0.25f);
                 break;
             case JUDGE_RESULT.BAD:
                 Bad.text = "Bad : " + PointManager.i.Bad;

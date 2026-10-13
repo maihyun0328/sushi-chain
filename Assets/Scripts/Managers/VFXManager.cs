@@ -8,9 +8,9 @@ public class VFXManager : MonoBehaviour
     [SerializeField] GameObject PurpleVFX;
     [SerializeField] GameObject LightPool;
     [SerializeField] GameObject PurplePool;
-    Vector3 L1VFX = new Vector3(-1.33f, 3.94f, 0);
+    Vector3 L1VFX = new Vector3(-1.33f, 3.12f, 0);
     Vector3 L2VFX = new Vector3(-1.33f, 1.1f, 0);
-    Vector3 R1VFX = new Vector3(1.33f, 3.94f, 0);
+    Vector3 R1VFX = new Vector3(1.33f, 3.12f, 0);
     Vector3 R2VFX = new Vector3(1.33f, 1.1f, 0);
     void Awake()
     {
