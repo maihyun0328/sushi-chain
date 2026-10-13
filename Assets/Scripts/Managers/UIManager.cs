@@ -56,7 +56,11 @@ public class UIManager : MonoBehaviour
         else if(Credits.activeSelf) obj = Credits;
         else if(Title.activeSelf) obj = Title;
         else if(GameResult.activeSelf) obj = GameResult;
-        else if(GameOverUI.activeSelf) obj = GameOverUI;
+        else if(GameOverUI.activeSelf) 
+        {
+            GameManager.i.CameraReset();
+            obj = GameOverUI;
+        }
         else return;
         Transition(obj, Menu);
     }

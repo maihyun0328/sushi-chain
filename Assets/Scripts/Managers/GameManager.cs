@@ -90,4 +90,9 @@ public class GameManager : MonoBehaviour
         AudioManager.i.PlaySong();
         JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
     }
+    public void CameraReset()
+    {
+        GameCamera.orthographic = true;
+        GameCamera.transform.position = new Vector3(0, 3.24f, -10f);
+    }
 }
