@@ -8,10 +8,10 @@ using UnityEngine.InputSystem;
 public class JudgeManager : MonoBehaviour
 {
     public static JudgeManager i;
-    public KeyCode L1_Key = KeyCode.A;
-    public KeyCode L2_Key = KeyCode.S;
-    public KeyCode R1_Key = KeyCode.J;
-    public KeyCode R2_Key = KeyCode.K;
+    public KeyCode L1_Key = KeyCode.Q;
+    public KeyCode L2_Key = KeyCode.A;
+    public KeyCode R1_Key = KeyCode.P;
+    public KeyCode R2_Key = KeyCode.L;
     [SerializeField] GameObject Active_L1_Short;
     [SerializeField] GameObject Active_L2_Short;
     [SerializeField] GameObject Active_R1_Short;
