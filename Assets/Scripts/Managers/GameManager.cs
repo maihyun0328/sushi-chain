@@ -63,10 +63,8 @@ public class GameManager : MonoBehaviour
         IsGameStart = false;
         IsGameOver = true;
         AudioManager.i.StopSong();
-        GameCamera.orthographic = false;
         DOVirtual.DelayedCall(1.0f, () =>
         {
-            GameCamera.transform.DOMoveZ(-26f, 1f);
             DOVirtual.DelayedCall(0.9f, () =>
             {
                 SushiPoolComponent.i.ReturnAllSushi();
@@ -89,10 +87,5 @@ public class GameManager : MonoBehaviour
         AudioManager.i.music.loop = true;
         AudioManager.i.PlaySong();
         JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
-    }
-    public void CameraReset()
-    {
-        GameCamera.orthographic = true;
-        GameCamera.transform.position = new Vector3(0, 3.24f, -10f);
     }
 }
