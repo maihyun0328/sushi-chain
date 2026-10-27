@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource SFX;
     public List<AudioClip> songs;
     public AudioClip BGM;
+    public AudioSource Metronome;
     void Awake()
     {
         i = this;
@@ -29,7 +30,7 @@ public class AudioManager : MonoBehaviour
     {
         UI.PlayOneShot(audio);
     }
-    public void PlayVFX(AudioClip audio)
+    public void PlaySFX(AudioClip audio)
     {
         SFX.PlayOneShot(audio);
     }

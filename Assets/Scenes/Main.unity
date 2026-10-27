@@ -5982,6 +5982,7 @@ MonoBehaviour:
   songs:
   - {fileID: 8300000, guid: b55845cc06c064250a8d9de10fa78363, type: 3}
   BGM: {fileID: 0}
+  Metronome: {fileID: 0}
 --- !u!4 &832651847
 Transform:
   m_ObjectHideFlags: 0
@@ -6556,6 +6557,7 @@ MonoBehaviour:
   GameCamera: {fileID: 330585545}
   GameOverVFX: {fileID: 4593184486429470047}
   GameIndex: 0
+  InputCalibration: 0
 --- !u!4 &895641811
 Transform:
   m_ObjectHideFlags: 0
