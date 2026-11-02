@@ -5977,10 +5977,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 241872949}
-  UI: {fileID: 0}
-  SFX: {fileID: 0}
+  UI: {fileID: 426205526}
+  SFX: {fileID: 640485342}
   songs:
-  - {fileID: 8300000, guid: b55845cc06c064250a8d9de10fa78363, type: 3}
+  - {fileID: 8300000, guid: 9eadb505411b94036908ebb6dc82e139, type: 3}
   BGM: {fileID: 0}
   Metronome: {fileID: 0}
 --- !u!4 &832651847
@@ -12923,10 +12923,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 586134557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 60}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1910870610
 MonoBehaviour:

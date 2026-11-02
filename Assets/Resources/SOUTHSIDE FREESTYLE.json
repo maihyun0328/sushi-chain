@@ -1,0 +1,3484 @@
+{
+    "Notes": [
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 4.032,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 4.12,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 4.28,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 4.496,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 5.048,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 5.224,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 5.416,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 5.673,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 5.824,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 5.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 6.136,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 6.352,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 6.576,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 6.944,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 7.12,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 7.288,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 7.4,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 7.936,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 8.256,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 8.448,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 8.861,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 9.048,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 9.352,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 9.798,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 9.928,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 10.12,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 10.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 10.548,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 10.923,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 11.111,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 11.872,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 11.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 12.352,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 12.648,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 12.733,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 13.12,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 13.296,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 13.829,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 14.112,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 14.224,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 14.44,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 14.824,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 14.954,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 15.208,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 15.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 15.968,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 16.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 16.52,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 16.704,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 17.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 17.456,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 17.624,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 17.792,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 18.232,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 18.536,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 18.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 19.136,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 19.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 19.48,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 19.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 20.088,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 20.464,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 20.88,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 21.016,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 21.235,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 21.6,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 22.104,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 22.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 22.712,
+            "EndTime": 23.392
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 23.472,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 23.808,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 24.248,
+            "EndTime": 24.718
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 24.798,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 25.008,
+            "EndTime": 25.4
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 25.48,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 25.712,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 26.16,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 26.432,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 26.6,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 26.8,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 27.016,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 27.216,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 27.64,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 27.824,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 27.984,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 28.36,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 28.552,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 28.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 29.08,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 29.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 29.488,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 29.848,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 30.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 30.61,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 30.798,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 30.992,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 31.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 31.552,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 31.712,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 32.072,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 32.272,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 32.488,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 32.848,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 33.224,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 33.46,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 33.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 33.968,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 34.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 34.52,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 34.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 35.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 35.464,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 35.624,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 35.861,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 36.24,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 36.544,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 36.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 37.144,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 37.304,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 37.728,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 38.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 38.579,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 38.954,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 39.236,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 39.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 40.079,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 40.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 40.712,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 40.888,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 41.16,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 41.392,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 41.861,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 42.216,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 42.423,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 42.66,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 43.173,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 43.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 43.52,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 43.712,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 44.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 44.34,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 44.472,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 44.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 45.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 45.376,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 45.584,
+            "EndTime": 46.272
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 46.352,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 46.536,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 46.704,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 46.928,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 47.16,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 47.34,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 47.486,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 47.84,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 48.168,
+            "EndTime": 48.688
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 48.768,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 48.96,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 49.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 49.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 50.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 50.224,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 50.464,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 50.936,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 51.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 51.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 52.184,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 52.512,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 52.728,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 53.16,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 53.504,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 53.673,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 53.856,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 54.232,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 54.66,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 54.984,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 55.168,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 55.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 55.528,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 55.712,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 56.204,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 56.6,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 56.864,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 57.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 57.576,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 58.173,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 58.296,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 58.712,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 59.104,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 59.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 59.464,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 59.848,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 60.208,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 60.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 60.798,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 60.92,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 61.361,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 61.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 61.936,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 62.24,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 62.62,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 62.792,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 63.016,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 63.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 63.376,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 63.576,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 63.986,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 64.548,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 64.829,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 65.472,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 65.656,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 65.856,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 66.18,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 66.456,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 66.632,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 67.008,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 67.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 67.642,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 67.829,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 68.416,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 68.954,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 69.216,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 69.64,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 69.752,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 70.136,
+            "EndTime": 70.624
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 70.704,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 70.968,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 71.232,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 71.504,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 71.864,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 72.232,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 72.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 72.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 72.992,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 73.272,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 73.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 73.928,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 74.104,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 74.298,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 74.673,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 74.896,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 75.048,
+            "EndTime": 75.531
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 75.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 75.96,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 76.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 76.52,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 76.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 77.088,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 77.456,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 77.624,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 77.832,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 78.232,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 78.544,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 78.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 79.136,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 79.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 79.48,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 79.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 80.08,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 80.464,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 80.848,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 81.016,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 81.236,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 81.6,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 82.104,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 82.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 82.712,
+            "EndTime": 83.152
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 83.232,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 83.464,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 83.808,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 84.236,
+            "EndTime": 84.718
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 84.798,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 85.008,
+            "EndTime": 85.4
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 85.48,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 85.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 86.204,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 86.486,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 86.6,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 86.8,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 87.016,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 87.208,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 87.64,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 87.832,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 87.984,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 88.36,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 88.552,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 88.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 89.088,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 89.272,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 89.488,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 89.848,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 90.0,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 90.224,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 90.66,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 91.173,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 91.552,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 91.728,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 92.08,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 92.272,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 92.488,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 92.848,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 93.224,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 93.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 93.798,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 93.96,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 94.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 94.52,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 94.704,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 95.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 95.424,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 95.624,
+            "EndTime": 96.16
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 96.24,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 96.544,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 96.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 97.144,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 97.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 97.712,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 98.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 98.579,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 98.954,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 99.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 99.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 99.968,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 100.144,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 100.267,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 100.5,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 100.688,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 101.104,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 101.384,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 101.472,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 101.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 101.861,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 102.0,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 102.168,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 102.66,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 102.792,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 103.056,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 103.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 103.768,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 104.08,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 104.486,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 104.88,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 105.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 105.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 105.64,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 105.792,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 106.16,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 106.328,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 106.536,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 106.704,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 107.064,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 107.488,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 107.864,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 108.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 108.592,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 108.92,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 109.48,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 109.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 110.088,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 110.448,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 110.848,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 110.968,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 111.176,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 111.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 111.912,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 112.088,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 112.552,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 112.792,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 113.04,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 113.18,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 113.352,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 113.688,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 113.888,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 114.088,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 114.236,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 114.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 114.648,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 115.072,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 115.296,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 115.48,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 115.642,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 115.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 115.88,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 116.12,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 116.304,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 116.464,
+            "EndTime": 116.888
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 116.968,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 117.264,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 117.517,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 117.648,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 118.064,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 118.416,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 118.552,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 118.664,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 119.04,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 119.125,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 119.392,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 119.576,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 119.92,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 120.128,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 120.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 120.544,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 120.84,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 121.056,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 121.408,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 121.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 121.86,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 122.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 122.536,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 122.896,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 123.008,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 123.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 123.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 123.64,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 123.92,
+            "EndTime": 124.374
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 124.454,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 124.642,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 124.829,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 125.328,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 125.448,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 125.664,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 125.968,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 126.236,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 126.416,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 126.648,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 126.768,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 127.264,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 127.368,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 127.548,
+            "EndTime": 128.24
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 128.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 128.448,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 128.624,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 128.861,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 129.236,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 129.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 129.568,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 129.92,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 130.176,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 130.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 130.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 131.504,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 131.872,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 132.142,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 132.392,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 132.656,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 133.08,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 133.4,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 133.528,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 133.808,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 134.176,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 134.416,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 134.624,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 134.888,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 135.048,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 135.264,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 135.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 135.821,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 136.152,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 136.352,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 136.76,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 137.144,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 137.488,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 137.579,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 137.808,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 138.016,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 138.28,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 138.4,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 138.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 139.032,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 139.4,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 139.568,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 139.768,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 140.112,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 140.464,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 140.673,
+            "EndTime": 141.155
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 141.236,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 141.408,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 141.784,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 141.92,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 142.056,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 142.344,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 142.736,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 142.912,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 143.552,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 143.68,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 143.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 144.2,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 144.4,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 144.648,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 145.056,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 145.376,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 145.528,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 145.744,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 146.111,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 146.673,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 146.861,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 147.024,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 147.272,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 147.968,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 148.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 148.512,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 148.688,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 149.104,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 149.456,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 149.616,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 149.832,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 150.232,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 150.536,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 150.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 151.136,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 151.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 151.48,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 151.728,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 152.08,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 152.464,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 152.861,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 153.016,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 153.28,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 153.6,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 154.104,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 154.32,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 154.712,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 155.16,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 155.464,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 155.808,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 156.016,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 156.24,
+            "EndTime": 156.718
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 156.798,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 157.0,
+            "EndTime": 157.4
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 157.48,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 157.744,
+            "EndTime": 158.593
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 158.673,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 158.8,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 159.016,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 159.216,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 159.64,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 159.824,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 159.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 160.173,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 160.36,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 160.552,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 160.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 161.08,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 161.272,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 161.488,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 161.856,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 162.236,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 162.66,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 162.798,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 162.984,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 163.192,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 163.352,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 163.552,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 163.72,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 164.08,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 164.272,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 164.488,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 164.848,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 165.216,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 165.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 165.798,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 165.968,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 166.232,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 166.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 166.512,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 166.696,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 167.104,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 167.456,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 167.6,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 167.792,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 168.208,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 168.611,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 168.976,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 169.144,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 2,
+            "StartTime": 169.336,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 169.728,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 170.096,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 170.486,
+            "EndTime": 0
+        },
+        {
+            "dir": 1,
+            "type": 3,
+            "StartTime": 170.861,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 1,
+            "StartTime": 171.28,
+            "EndTime": 0
+        },
+        {
+            "dir": 0,
+            "type": 0,
+            "StartTime": 171.592,
+            "EndTime": 0
+        }
+    ]
+}

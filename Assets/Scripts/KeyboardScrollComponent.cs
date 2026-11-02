@@ -145,6 +145,6 @@ public class KeyboardScrollComponent : MonoBehaviour
     void SetSong()
     {
         SongName.text = SongsInfo.Songs[index].Name;
-        Point.text = ScoreInfo.Scores[index].score.ToString();
+        Point.text = ScoreInfo.Scores[index].score.ToString("N0");
     }
 }
