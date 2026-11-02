@@ -160,7 +160,7 @@ public class LongNoteComponent : MonoBehaviour, INote
                         if(tail.position.x - judgeX < 0)
                         {
                             scale.z = Mathf.Abs(tail.position.x - judgeX) * 0.9f;
-                            pos.x = (tail.position.x - judgeX) / 2 * 0.902f + judgeX;
+                            pos.x = (tail.position.x - judgeX) / 2 *    0.902f + judgeX;
                         }
                         break;
                     case NOTE_STATE.FAILED:
@@ -186,7 +186,7 @@ public class LongNoteComponent : MonoBehaviour, INote
                         if(tail.position.x - FailedX > 0)
                         {
                             scale.z = Mathf.Abs(tail.position.x - FailedX) * 0.9f;
-                            pos.x = (tail.position.x - FailedX) / 2 * 0.902f + judgeX;
+                            pos.x = (tail.position.x - FailedX) / 2 * 0.902f + FailedX;
                         }
                         break;
                 }
