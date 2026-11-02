@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Camera GameCamera;
     public ParticleSystem GameOverVFX;
     public int GameIndex;
+    public double InputCalibration = 0;
     void Awake()
     {
         i = this;

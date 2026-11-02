@@ -1,0 +1,69 @@
+using System.Collections.Generic;
+using Unity.Mathematics;
+using UnityEngine;
+
+public class InputCalibrationComponent : MonoBehaviour
+{
+    const double BEAT_INTERVAL  = 0.5;
+    const int COUNT = 20;
+
+    double firstBeatTime;
+    double lastBeatTime = -1;
+    double timer;
+    int scheduledCount;
+    List<double> player_input = new List<double>();
+
+    void OnEnable()
+    {
+        player_input.Clear();
+        scheduledCount = 0;
+        lastBeatTime = -1;
+        firstBeatTime = AudioSettings.dspTime;
+        timer = firstBeatTime + BEAT_INTERVAL;
+        AudioManager.i.StopSong();
+        AudioManager.i.Metronome.Stop();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(scheduledCount >= COUNT)
+        {
+            Finish();
+            return;
+        }
+        if(AudioSettings.dspTime >= timer - 0.1) 
+        {
+            AudioManager.i.Metronome.PlayScheduled(timer);
+            timer += BEAT_INTERVAL;
+        }
+        if(Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        if(Input.GetKeyDown(KeyCode.Space)) RecordInput();
+    }
+    void RecordInput()
+    {
+        double inputTime = AudioSettings.dspTime;
+        double elapsed = inputTime - firstBeatTime;
+        double nearestBeat = math.round(elapsed / BEAT_INTERVAL) * BEAT_INTERVAL;
+        if(lastBeatTime == -1) lastBeatTime = nearestBeat;
+        else if(lastBeatTime == nearestBeat) return;
+        lastBeatTime = nearestBeat;
+        ++scheduledCount;
+        double result = elapsed - nearestBeat;
+        player_input.Add(result);
+    }
+    void Finish()
+    {
+        player_input.Sort();
+        GameManager.i.InputCalibration = COUNT % 2 == 0 ? (player_input[(COUNT / 2) - 1] + player_input[COUNT / 2]) / 2 : player_input[COUNT / 2];
+        gameObject.SetActive(false);
+    }
+    void OnDisable()
+    {
+        AudioManager.i.Metronome.Stop();
+    }
+}

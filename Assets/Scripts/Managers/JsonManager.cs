@@ -123,7 +123,7 @@ public class JsonManager : MonoBehaviour
     float GetSpawnTime(NoteData note)
     {
         float MoveTime = distance / speed;
-        return note.StartTime - MoveTime;
+        return note.StartTime - MoveTime - (float)GameManager.i.InputCalibration;
     }
     public void SavePoint(Score score, int num)
     {
