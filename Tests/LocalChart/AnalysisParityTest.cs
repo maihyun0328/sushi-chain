@@ -153,10 +153,27 @@ namespace SushiChain.LocalChart.Tests
             var cases = Directory.GetFiles(dir, "analysis_*.lcg").Where(p => !p.EndsWith("analysis_constants.lcg")).OrderBy(p => p).ToList();
             cases.AddRange(extra);
             foreach (var path in cases) RunCase(path, dump);
+            ConcurrencyCheck(cases[0]);
 
             Console.WriteLine();
             Console.WriteLine(_failures == 0 ? "ALL REQUIRED CHECKS PASSED" : $"{_failures} REQUIRED CHECK(S) FAILED: {string.Join("; ", FailNames)}");
             return _failures == 0 ? 0 : 1;
+        }
+
+        // Analyze has no shared state: four concurrent runs must equal a sequential run bit for bit.
+        private static void ConcurrencyCheck(string path)
+        {
+            var input = GoldenFile.Read(path)["input"].F4();
+            var reference = AudioAnalyzer.Analyze(input);
+            var results = new AudioFeatures[4];
+            System.Threading.Tasks.Parallel.For(0, results.Length, i => results[i] = AudioAnalyzer.Analyze(input));
+            bool ok = results.All(r => Sha(r.OnsetEnv) == Sha(reference.OnsetEnv) && Sha(r.SpectralCentroid) == Sha(reference.SpectralCentroid)
+                                       && Sha(r.HarmonicRms) == Sha(reference.HarmonicRms) && r.BeatTimes.SequenceEqual(reference.BeatTimes)
+                                       && r.OnsetTimes.SequenceEqual(reference.OnsetTimes) && r.ChromaArgmax.SequenceEqual(reference.ChromaArgmax)
+                                       && r.Tempo == reference.Tempo && r.DownbeatPhase == reference.DownbeatPhase);
+            Console.WriteLine();
+            Console.WriteLine($"== concurrency: 4 parallel Analyze runs {(ok ? "IDENTICAL" : "DIFFERENT")} to a sequential run");
+            if (!ok) Fail("concurrency");
         }
 
         private static void Constants(string path)

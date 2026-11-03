@@ -16,8 +16,11 @@ Cases
   synth93c     synth_track(93 BPM, 10 s, seed 3, no pads) analysed with CHUNK_FRAMES = 300 so the
                multi-chunk HPSS / tempogram path runs (the C# test passes the same chunk size)
 
-`--full-song` additionally writes a whole-song golden (not committed; ~2.5 min of audio) to
-`--out-extra` for a long-track check (> CHUNK_FRAMES frames with the production chunk size).
+`--full-song` additionally writes a whole-song golden (not committed; ~2.9 min of audio) to
+`--out-extra` for a long-track check (> CHUNK_FRAMES frames with the production chunk size), and
+`--extra-cases` writes more uncommitted cases there (the server team's tests/golden/input.f32,
+four SOUTHSIDE windows, 20-60 s synth tracks, a 3 s track, a 1000-sample input, 2 s of silence).
+Run them with `AnalysisParityTest ... --extra <file>` and `compare_charts.py ... --extra <file>`.
 The server code is imported read-only; nothing in it is modified (CHUNK_FRAMES is patched on the
 imported module object only for the synth93c case and restored afterwards).
 """
@@ -314,6 +317,7 @@ def main() -> None:
     ap.add_argument("--out", type=Path, default=HERE.parent / "golden")
     ap.add_argument("--full-song", action="store_true")
     ap.add_argument("--out-extra", type=Path, default=None)
+    ap.add_argument("--extra-cases", action="store_true")
     args = ap.parse_args()
 
     ss = southside_excerpt()
@@ -323,9 +327,23 @@ def main() -> None:
     build_case("synth128", y128, None, args.out)
     y93, _ = synth_track(93.0, 10.0, sr=SR, seed=3, sustained_pads=False)
     build_case("synth93c", y93, 300, args.out)
+    extra = args.out_extra or args.out
     if args.full_song:
-        extra = args.out_extra or args.out
         build_case("southside_full", decode_mono(SOUTHSIDE, sr=SR), None, extra)
+    if args.extra_cases:
+        server_input = SERVER / "tests" / "golden" / "input.f32"
+        if server_input.is_file():
+            build_case("server_synth128_30", np.fromfile(server_input, dtype="<f4"), None, extra)
+        full = decode_mono(SOUTHSIDE, sr=SR)
+        for off in (0, 20, 100, 140):
+            build_case(f"southside_at{off}", full[off * SR : (off + 25) * SR], None, extra)
+        for bpm, sec, seed, pads in ((174.0, 20.0, 11, True), (75.0, 40.0, 5, False), (140.0, 60.0, 2, True)):
+            y, _ = synth_track(bpm, sec, sr=SR, seed=seed, sustained_pads=pads)
+            build_case(f"synth{int(bpm)}_{int(sec)}s", y, None, extra)
+        y, _ = synth_track(120.0, 3.0, sr=SR, seed=1)
+        build_case("synth120_short3s", y, None, extra)
+        build_case("tiny_1000samples", y[:1000], None, extra)
+        build_case("silence_2s", np.zeros(2 * SR, np.float32), None, extra)
 
 
 if __name__ == "__main__":
