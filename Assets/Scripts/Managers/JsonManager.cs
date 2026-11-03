@@ -128,6 +128,9 @@ public class JsonManager : MonoBehaviour
     public void SavePoint(Score score, int num)
     {
         ScoreList list = TakeScoreData();
+        if(list == null) list = new ScoreList();
+        // 곡 수보다 기록이 적으면 빈 기록으로 채운다
+        while(list.Scores.Count <= num) list.Scores.Add(new Score());
         list.Scores[num] = score;
         string json = JsonUtility.ToJson(list, true);
         File.WriteAllText(Application.persistentDataPath + "/Scores.json", json);

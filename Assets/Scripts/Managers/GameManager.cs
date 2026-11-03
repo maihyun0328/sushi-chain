@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public ParticleSystem GameOverVFX;
     public int GameIndex;
     public double InputCalibration = 0;
+    // 현재 플레이 중인 커스텀 곡 (내장곡이면 null)
+    public CustomSongMeta CurrentCustom { get; private set; }
+    AudioClip customClip; // 런타임 로드한 커스텀 곡 오디오 (다음 시작 시 해제)
     void Awake()
     {
         i = this;
@@ -21,7 +24,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         Debug.Log(InputCalibration);
-        if(Input.GetKeyDown(KeyCode.W)) AudioManager.i.StopSong();
+        if(!CustomSongInputLock.IsLocked && Input.GetKeyDown(KeyCode.W)) AudioManager.i.StopSong();
         if(!IsGameStart) return;
         if(Life <= 0) 
         {
@@ -32,10 +35,17 @@ public class GameManager : MonoBehaviour
     }
     public void GameStart(int index)
     {
-        Life = 3;
         GameIndex = index;
         SongList list = JsonManager.i.TakeSongData();
-        JsonManager.i.CurrentSongNote = JsonManager.i.TakeSongNoteData(list.Songs[index].Name);
+        NoteList notes = JsonManager.i.TakeSongNoteData(list.Songs[index].Name);
+        GameStart(notes, AudioManager.i.songs[index], null);
+    }
+    // 내장곡/커스텀곡 공통 진입점
+    public void GameStart(NoteList notes, AudioClip clip, CustomSongMeta custom)
+    {
+        CurrentCustom = custom;
+        Life = 3;
+        JsonManager.i.CurrentSongNote = notes;
         JsonManager.i.NoteIndex = 0;
         PointManager.i.SetPoint();
         UIManager.i.PointUIInitialization();
@@ -52,7 +62,9 @@ public class GameManager : MonoBehaviour
                 break;
         }
         AudioManager.i.StopSong();
-        AudioManager.i.ChangeSong(AudioManager.i.songs[index]);
+        AudioManager.i.ChangeSong(clip);
+        if(customClip != null && customClip != clip) Destroy(customClip);
+        customClip = custom != null ? clip : null;
         AudioManager.i.music.loop = false;
         AudioManager.i.PlaySong();
         IsGameOver = false;
@@ -88,6 +100,7 @@ public class GameManager : MonoBehaviour
         AudioManager.i.ChangeSong(AudioManager.i.BGM);
         AudioManager.i.music.loop = true;
         AudioManager.i.PlaySong();
-        JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
+        if(CurrentCustom != null) CustomSongStore.SaveScore(CurrentCustom.id, PointManager.i.GetScore());
+        else JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
@@ -70,6 +71,18 @@ public class UIManager : MonoBehaviour
     public void GameStart(int index = 0)
     {
         Transition(Songs, GamePlay, true, false, index);
+        ResetPlayUI();
+    }
+    // 전환을 시작하면 true. 전환 중이거나 입력이 잘못되면 false (호출자가 clip을 해제해야 한다)
+    public bool GameStartCustom(CustomSongMeta meta, NoteList notes, AudioClip clip)
+    {
+        if(IsTransitioning || meta == null || notes == null || clip == null) return false;
+        Transition(Songs, GamePlay, false, false, 0, () => GameManager.i.GameStart(notes, clip, meta));
+        ResetPlayUI();
+        return true;
+    }
+    void ResetPlayUI()
+    {
         Gauge.maxValue = 10;
         Gauge.value = 0;
         for(int i = 0; i < 3; i++)
@@ -78,6 +91,7 @@ public class UIManager : MonoBehaviour
         }
         GaugeObj.SetActive(false);
     }
+    public bool IsInTransition => IsTransitioning;
     public void GameClear()
     {
         Transition(GamePlay, GameResult, false, true);
@@ -134,7 +148,7 @@ public class UIManager : MonoBehaviour
         Combo.text = "";
     }
     public void Transition(GameObject obj1, GameObject obj2, bool IsGameStart = false,bool IsGameClear = false,
-     int index = 0)
+     int index = 0, Action onMidpoint = null)
     {
         if(IsTransitioning) return;
         IsTransitioning = true;
@@ -147,6 +161,7 @@ public class UIManager : MonoBehaviour
             TransitionMat.SetColor("_InColor", Color.white);
             if(IsGameStart) GameManager.i.GameStart(index);
             if(IsGameClear) GameManager.i.GameClear();
+            onMidpoint?.Invoke();
             obj1.SetActive(false);
             obj2.SetActive(true);
             TransitionMat.DOFloat(2.6f, "_Scroll", 0.5f).SetEase(Ease.InQuad).OnComplete(() =>
