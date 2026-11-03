@@ -108,3 +108,6 @@ InitTestScene*.unity*
 # AI chart server (separate project)
 /ai-chart-server/
 
+
+# Parallel work worktrees
+/.worktrees/

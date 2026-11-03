@@ -1,0 +1,14 @@
+{
+    "name": "SushiChain.LocalChart",
+    "rootNamespace": "SushiChain.LocalChart",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}
