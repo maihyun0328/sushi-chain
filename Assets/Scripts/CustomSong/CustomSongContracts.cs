@@ -86,7 +86,7 @@ public static class ChartDifficulty
 // ===== 로컬 저장 모델 =====
 // 오디오와 썸네일은 곡(youtubeId)당 1벌, 채보는 (youtubeId, difficulty)별로 저장한다.
 // persistentDataPath/CustomSongs/index.json                         → CustomSongIndex
-// persistentDataPath/CustomSongs/{youtubeId}/audio.mp3
+// persistentDataPath/CustomSongs/{youtubeId}/audio.{audioExt}      (서버 곡은 mp3, 로컬 파일 곡은 mp3/wav/ogg)
 // persistentDataPath/CustomSongs/{youtubeId}/thumb.jpg
 // persistentDataPath/CustomSongs/{youtubeId}/chart_{difficulty}.json → NoteList
 
@@ -104,9 +104,36 @@ public class CustomSongMeta
     public float bpm;
     public string addedAt;          // ISO-8601
     public Score score = new Score(); // 마지막 플레이 기록 (내장곡 Scores.json과 같은 정책)
+    public string audioExt = CustomSongAudio.DefaultExt; // 오디오 확장자. 이 필드가 없는 예전 index.json은 mp3로 본다
 
     public static string MakeId(string youtubeId, string difficulty) => youtubeId + "_" + difficulty;
     public string DisplayName => $"{title} [{(difficulty ?? "").ToUpperInvariant()}]";
+    public string AudioExtOrDefault => CustomSongAudio.Normalize(audioExt) ?? CustomSongAudio.DefaultExt;
+}
+
+// 저장소가 허용하는 오디오 확장자. 경로에 들어가므로 이 목록 밖의 값은 쓰지 않는다
+public static class CustomSongAudio
+{
+    public const string DefaultExt = "mp3";
+    public static readonly string[] Extensions = { "mp3", "wav", "ogg" };
+
+    // "mp3" | ".MP3" → "mp3". 허용하지 않는 값이면 null
+    public static string Normalize(string ext)
+    {
+        if (string.IsNullOrEmpty(ext)) return null;
+        string e = ext.Trim().TrimStart('.').ToLowerInvariant();
+        return Array.IndexOf(Extensions, e) >= 0 ? e : null;
+    }
+
+    public static UnityEngine.AudioType ToAudioType(string ext)
+    {
+        switch (Normalize(ext))
+        {
+            case "wav": return UnityEngine.AudioType.WAV;
+            case "ogg": return UnityEngine.AudioType.OGGVORBIS;
+            default: return UnityEngine.AudioType.MPEG;
+        }
+    }
 }
 
 [Serializable]
