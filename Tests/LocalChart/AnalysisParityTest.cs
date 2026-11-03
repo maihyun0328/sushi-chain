@@ -184,8 +184,8 @@ namespace SushiChain.LocalChart.Tests
             var mel = Spectral.MelBasis(sr, AudioAnalyzer.NMels, 11025.0, out _, out _);
             Cmp("mel_basis", mel, g["mel_basis"].F4(), true);
             Cmp("chroma_basis", Spectral.ChromaBasis(sr), g["chroma_basis"].F4(), true);
-            Cmp("stft_window", NumpyCompat.HannPeriodic(2048), g["stft_window"].F8(), true);
-            Cmp("tempogram_window", NumpyCompat.HannPeriodic(689), g["tempogram_window"].F8(), true);
+            Cmp("stft_window", Analysis.NumpyCompat.HannPeriodic(2048), g["stft_window"].F8(), true);
+            Cmp("tempogram_window", Analysis.NumpyCompat.HannPeriodic(689), g["tempogram_window"].F8(), true);
             Cmp("mel_centers", Spectral.MelFrequencies(98, 11025.0), g["mel_centers"].F8(), true);
             Cmp("fft_freqs", Spectral.FftFrequencies32(sr), g["fft_freqs"].F4(), true);
             if (g.Has("fft2048_in"))
@@ -344,7 +344,7 @@ namespace SushiChain.LocalChart.Tests
             for (int t = 0; t < F; t++) for (int c = 0; c < 12; c++) chromaFm[t * 12 + c] = chromaG[c * F + t];
             var all12 = Enumerable.Range(0, 12).ToArray();
             Cmp("flux(server chroma)", Spectral.SpectralFlux(chromaFm, 12, F, all12, 3, F <= chunk), g["chroma_flux_raw"].F4(), true);
-            Cmp("rms pct99 scale", new[] { (double)NumpyCompat.Percentile32(g["rms_raw"].F4(), 99.0) }, new[] { g.Meta.GetProperty("rms_scale").GetDouble() }, true);
+            Cmp("rms pct99 scale", new[] { (double)Analysis.NumpyCompat.Percentile32(g["rms_raw"].F4(), 99.0) }, new[] { g.Meta.GetProperty("rms_scale").GetDouble() }, true);
             var rt = new AnalysisTrace();
             double duration = g.Meta.GetProperty("duration").GetDouble();
             var rr = AudioAnalyzer.AnalyzeRhythm(envFull, g["env_low"].F4(), g["env_mid"].F4(), g["harmonic_change"].F4(),

@@ -93,7 +93,7 @@ namespace SushiChain.LocalChart
                     for (int k = mFirst[m]; k <= mLast[m]; k++)
                     {
                         float v = perc[po + k];
-                        acc = NumpyCompat.Fma32(melBasis[bo + k], (float)(v * v), acc);
+                        acc = Analysis.NumpyCompat.Fma32(melBasis[bo + k], (float)(v * v), acc);
                     }
                     mel[mo + m] = acc;
                     if (acc > melMax) melMax = acc;
@@ -135,7 +135,7 @@ namespace SushiChain.LocalChart
             var rh = AnalyzeRhythm(onsetEnv, onsetEnvLow, onsetEnvMid, harmonicChange, sr, hop, chunkFrames, duration, trace);
 
             // --- energy normalization ---------------------------------------------------------
-            double rmsScale = rmsRaw.Length > 0 ? NumpyCompat.Percentile32(rmsRaw, RmsNormPercentile) : 0.0;
+            double rmsScale = rmsRaw.Length > 0 ? Analysis.NumpyCompat.Percentile32(rmsRaw, RmsNormPercentile) : 0.0;
             var rms = new float[nFrames];
             var harmonicRms = new float[nFrames];
             if (rmsScale > Eps)
@@ -157,7 +157,7 @@ namespace SushiChain.LocalChart
                 SampleRate = sr,
                 HopLength = hop,
                 Duration = duration,
-                Tempo = NumpyCompat.PyRound(rh.Tempo, 3),
+                Tempo = Analysis.NumpyCompat.PyRound(rh.Tempo, 3),
                 BeatTimes = rh.BeatTimes,
                 DownbeatPhase = rh.DownbeatPhase,
                 FrameTimes = frameTimes,
@@ -247,7 +247,7 @@ namespace SushiChain.LocalChart
             }
             if (x.Length > 0)
             {
-                float mean = (float)NumpyCompat.MeanAsFloat64(x);
+                float mean = (float)Analysis.NumpyCompat.MeanAsFloat64(x);
                 float peak = 0f;
                 for (int i = 0; i < x.Length; i++)
                 {
