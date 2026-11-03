@@ -40,3 +40,28 @@ Feature/CustomSong
 
 - YouTube를 기기에서 직접 다운로드하는 기능 (기존 서버 경로 유지)
 - 모바일 성능 최적화 (Burst/Jobs)
+
+## 포팅 기준선 (동결: 2026-11-04)
+
+ai-chart-server는 git으로 관리되지 않으므로, 기준선은 파일 해시로 고정한다. CHART_ALGO_VERSION=1.0.0, FEATURE_VERSION=2 (HPSS 2x2 pooling 버전).
+seed key(upload)는 `upload:<원본 파일 바이트 sha256>|<difficulty>|1.0.0` 형식이다. 디코딩한 PCM의 해시가 아니다.
+
+```
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  app/audio/__init__.py
+0ee0f18be108ce392551a8bafd84c38c5bf949d788449b69ba4b949a2acb3cc5  app/audio/analysis.py
+eedc0d99715ded7ca572d7c2c55781b8f48a60ec8d65b9a5ac67af733817d7b3  app/audio/decode.py
+d239d16cda71eb9de2c78db1b085de52d25bbad884198da353e7aa09d5fb4850  app/audio/features.py
+fd585914ebc43f2bca90c1cb9d3bac18f38bff05494e8ac9f1fa9b0bfb007449  app/audio/synth.py
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  app/chart/__init__.py
+d7499cb8da56b3bbfd2c938c10dac96bd75cb101a9f5b13ccc150a72c504c6bf  app/chart/candidates.py
+45ea5c0d6d6f196c232823abfb2838345825cc2a38459cb3d21d7811bc2e5edf  app/chart/density.py
+aa62401957c58de56309c9a33c95c25bc59fe8748e756bccb80979172bf92a41  app/chart/generator.py
+2773cde9c8331b7be346bcad789ca77a5a5b96ac150aae7c8fc982fc9b09d320  app/chart/grid.py
+511cd0ad7fe1226d930f57e0abe2857a624f73f831ecdda2a4f0d539eb8316e0  app/chart/lanes.py
+ebcb0bd6d0b211ee1a8afed3bafa61cb9635630b2261fbcfcfd30929ece7823d  app/chart/longnotes.py
+17a19c6a087b047d35f36c3ed36870c5b2282ec16a92604d26dbcbcdc066735a  app/chart/params.py
+904999fd9eb2b3fe06def89268ebfc16e35d60103cfdc7be1dda32d604f581b2  app/chart/serialize.py
+9ad4f95d4345b5da6fa3967ef233c7797f626d827afb1f0806380c2838be31f9  app/chart/validate.py
+305c11de49c9822679bc2ac7777e3b4df595c92b3630507223b85a81b80768ef  app/core/constants.py
+752f1d34eb538b02421faa6a78f9a65a7f32ea8656a0827e98fecbc70f163dbb  app/models/notes.py
+```
