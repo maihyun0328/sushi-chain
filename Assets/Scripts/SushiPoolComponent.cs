@@ -147,7 +147,7 @@ public class SushiPoolComponent : MonoBehaviour
                         Inactive_L2_Short.transform.GetChild(0).SetParent(Active_L2_Short.transform);
                         break;
                     case NOTE_TYPE.LONG:
-                        if(Inactive_L2_Short.transform.childCount == 0) SushiCreate(SUSHI_TYPE.L2, NOTE_TYPE.LONG);
+                        if(Inactive_L2_Long.transform.childCount == 0) SushiCreate(SUSHI_TYPE.L2, NOTE_TYPE.LONG);
                         GameObject Obj = Inactive_L2_Long.transform.GetChild(0).gameObject;
                         Obj.SetActive(true);
                         Obj.transform.position = L2Vector;
