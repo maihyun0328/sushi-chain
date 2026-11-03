@@ -15,7 +15,7 @@ namespace SushiChain.LocalChart
     public static class LocalChartConstants
     {
         public const string ChartAlgoVersion = "1.0.0";   // app/core/constants.py CHART_ALGO_VERSION
-        public const string FeatureVersion = "2";         // app/core/constants.py FEATURE_VERSION
+        public const string FeatureVersion = "3";         // app/core/constants.py FEATURE_VERSION
         public const int AnalysisSampleRate = 22050;      // ANALYSIS_SAMPLE_RATE
         public const int AnalysisHopLength = 256;         // ANALYSIS_HOP_LENGTH
     }
