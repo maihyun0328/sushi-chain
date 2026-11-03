@@ -2,8 +2,9 @@
 // analysis._hpss_features: 2x2 풀링 스펙트로그램에서 median filter(scipy.ndimage, mode="reflect") →
 // softmask(power=2, split_zeros=False) → 2x2 업샘플 + edge 패딩 → harmonic/percussive 분리.
 // harmonic RMS와 chroma(tuning=0)는 청크 안에서 바로 계산한다.
-// _map_time_chunks와 같은 청크(CHUNK_FRAMES, context=27)로 처리한다. 청크 시작이 홀수면 풀링 짝이
-// 달라지므로 청크 경계는 결과에 영향을 준다 (서버와 같은 경계를 써야 같은 값이 나온다).
+// _map_time_chunks와 같은 청크(CHUNK_FRAMES, context=27, 시작 프레임 짝수 정렬 — FEATURE_VERSION 3)로
+// 처리한다. 정렬 덕분에 perc/h_rms/chroma 값은 비청크와 같지만, 서버의 chroma 메모리 배치가
+// 단일 청크(Fortran)와 다중 청크(C)에서 달라 chroma flux 합산 순서가 바뀐다 (AudioAnalyzer 참고).
 // ─────────────────────────────────────────────────────────────
 using System;
 
@@ -43,6 +44,7 @@ namespace SushiChain.LocalChart.Analysis
             {
                 int stop = Math.Min(nFrames, start + chunkFrames);
                 int lo = Math.Max(0, start - Context), hi = Math.Min(nFrames, stop + Context);
+                lo -= lo % 2; // FEATURE_VERSION 3: even chunk start keeps the global 2x2 pooling pairs
                 RunChunk(mag, lo, hi, start, stop, chromaBasis, res, false);
             }
             return res;
