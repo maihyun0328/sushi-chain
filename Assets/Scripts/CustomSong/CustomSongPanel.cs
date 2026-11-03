@@ -420,10 +420,9 @@ public class CustomSongPanel : MonoBehaviour
     {
         if (state == State.Busy || mode == next) return;
         mode = next;
-        if (state == State.Done || state == State.Failed) SetState(State.Idle);
-        else errorText.gameObject.SetActive(false);
         if (mode == Mode.Local) RefreshFileList();
         RefreshMode();
+        SetState(State.Idle); // 버튼 라벨(요청/생성), 이전 결과/오류 정리, 포커스
         RestartFocus();
     }
 
