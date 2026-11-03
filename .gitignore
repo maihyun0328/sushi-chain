@@ -108,6 +108,3 @@ InitTestScene*.unity*
 # AI chart server (separate project)
 /ai-chart-server/
 
-# Playtest JWT (Resources에 넣어 빌드에 포함, 저장소에는 커밋하지 않음)
-/Assets/Resources/CustomSongPlaytestToken.txt
-/Assets/Resources/CustomSongPlaytestToken.txt.meta

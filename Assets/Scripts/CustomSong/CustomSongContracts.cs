@@ -161,7 +161,7 @@ public interface ITokenProvider
 }
 
 // 플레이테스트용 장기 토큰. ai-chart-server/secrets/playtest-token.txt를
-// Assets/Resources/CustomSongPlaytestToken.txt로 복사해 쓴다 (.gitignore 대상, 빌드에는 포함됨).
+// Assets/Resources/CustomSongPlaytestToken.txt로 복사해 쓴다 (저장소에 커밋됨, 빌드에도 포함됨).
 // 유출되면 서버에서 jti(secrets/playtest-jti.txt)로 폐기한다.
 public static class PlaytestToken
 {
