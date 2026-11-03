@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 씬 로드 후 커스텀 곡 기능을 런타임으로 붙인다. 씬/프리팹은 수정하지 않는다.
-// - "CustomSongService" GameObject (DontDestroyOnLoad)
+// - "CustomSongService" GameObject (DontDestroyOnLoad): CustomSongService(YouTube → 서버) + LocalChartService(로컬 파일 → 온디바이스)
 // - UIManager.i.Songs 아래 "CustomSongUI" (버튼 + 모달 패널)
 public static class CustomSongBootstrap
 {
@@ -16,6 +16,7 @@ public static class CustomSongBootstrap
         CustomSongInputLock.IsLocked = false;
 
         EnsureService();
+        EnsureLocalService();
 
         // 토큰 공급자 기본값: 개발용 PlayerPrefs 토큰. 다른 공급자를 쓰려면 이보다 먼저 설정한다
         if (CustomSongService.TokenProvider == null) CustomSongService.TokenProvider = new PlayerPrefsTokenProvider();
@@ -58,6 +59,25 @@ public static class CustomSongBootstrap
         GameObject go = new GameObject(ServiceObjectName);
         Object.DontDestroyOnLoad(go);
         go.AddComponent<CustomSongService>();
+    }
+
+    // 로컬 파일 채보 생성 서비스는 CustomSongService와 같은 GameObject에 붙인다
+    static void EnsureLocalService()
+    {
+        if (LocalChartService.i != null) return;
+        LocalChartService existing = Object.FindFirstObjectByType<LocalChartService>(FindObjectsInactive.Include);
+        if (existing != null)
+        {
+            LocalChartService.i = existing;
+            return;
+        }
+        GameObject host = CustomSongService.i != null ? CustomSongService.i.gameObject : null;
+        if (host == null)
+        {
+            host = new GameObject(ServiceObjectName);
+            Object.DontDestroyOnLoad(host);
+        }
+        host.AddComponent<LocalChartService>();
     }
 
     // 우상단 "+ 커스텀 곡 (C)" 버튼
