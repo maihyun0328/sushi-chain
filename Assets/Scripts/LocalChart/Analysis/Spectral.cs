@@ -92,23 +92,51 @@ namespace SushiChain.LocalChart.Analysis
         }
 
         // Server centroid: where(sum > eps, (freqs @ mag) / max(sum, eps), 0) in float32.
-        // freqs @ mag is an Accelerate sgemv; it is modelled as a sequential float32 FMA over bins
-        // (bit-exact for Accelerate's 512-column blocks, may differ by ~1 ulp elsewhere).
+        // freqs @ mag is a BLAS sgemv. The summation order below reproduces Accelerate (macOS arm64,
+        // measured with numpy 2.5): columns go in blocks of 512 / 256 / 128 / <=64 with 1 / 2 / 4 / 8
+        // interleaved float32 FMA accumulators over the bins, combined by halves; fewer than 16 columns
+        // use one accumulator. Bit-exact on the golden tracks below 2048 frames; for longer tracks
+        // Accelerate splits the work across threads and a few tail frames differ by ~1 ulp.
+        // Other BLAS builds (OpenBLAS on x86 Linux) use yet another order; only lane brightness ranks
+        // read this value.
         public static float[] Centroid(float[] mag, int nFrames, int sr, out float[] magSum, out float[] num)
         {
             var freqs = FftFrequencies32(sr);
             var c = new float[nFrames];
             magSum = new float[nFrames];
             num = new float[nFrames];
+            var acc = new float[8];
+            int col = 0;
+            while (col < nFrames)
+            {
+                int left = nFrames - col, block, lanes;
+                if (nFrames < 16) { block = left; lanes = 1; }
+                else if (left >= 512) { block = 512; lanes = 1; }
+                else if (left >= 256) { block = 256; lanes = 2; }
+                else if (left >= 128) { block = 128; lanes = 4; }
+                else { block = 1; while (block * 2 <= Math.Min(left, 64)) block *= 2; lanes = 8; }
+                for (int t = col; t < col + block; t++)
+                {
+                    int o = t * Bins;
+                    for (int l = 0; l < lanes; l++) acc[l] = 0f;
+                    for (int b = 0; b < Bins; b++)
+                    {
+                        int l = b % lanes;
+                        acc[l] = NumpyCompat.Fma32(freqs[b], mag[o + b], acc[l]);
+                    }
+                    for (int h = lanes / 2; h >= 1; h /= 2)
+                        for (int l = 0; l < h; l++) acc[l] = (float)(acc[l] + acc[l + h]);
+                    num[t] = acc[0];
+                }
+                col += block;
+            }
             for (int t = 0; t < nFrames; t++)
             {
                 int o = t * Bins;
                 float s = mag[o];
                 for (int b = 1; b < Bins; b++) s = (float)(s + mag[o + b]);
-                float n = 0f;
-                for (int b = 0; b < Bins; b++) n = NumpyCompat.Fma32(freqs[b], mag[o + b], n);
                 magSum[t] = s;
-                num[t] = n;
+                float n = num[t];
                 c[t] = s > Eps32 ? (float)(n / Math.Max(s, Eps32)) : 0f;
             }
             return c;
