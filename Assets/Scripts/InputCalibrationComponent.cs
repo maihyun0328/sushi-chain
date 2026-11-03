@@ -37,11 +37,6 @@ public class InputCalibrationComponent : MonoBehaviour
             AudioManager.i.Metronome.PlayScheduled(timer);
             timer += BEAT_INTERVAL;
         }
-        if(Input.GetKeyDown(KeyCode.Escape)) 
-        {
-            gameObject.SetActive(false);
-            return;
-        }
         if(Input.GetKeyDown(KeyCode.Space)) RecordInput();
     }
     void RecordInput()
@@ -60,6 +55,7 @@ public class InputCalibrationComponent : MonoBehaviour
     {
         player_input.Sort();
         GameManager.i.InputCalibration = COUNT % 2 == 0 ? (player_input[(COUNT / 2) - 1] + player_input[COUNT / 2]) / 2 : player_input[COUNT / 2];
+        UIManager.i.Options.SetActive(true);
         gameObject.SetActive(false);
     }
     void OnDisable()

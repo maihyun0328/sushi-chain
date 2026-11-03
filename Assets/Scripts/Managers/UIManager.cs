@@ -1,8 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.Experimental.GraphView;
-using DG.Tweening.Plugins.Options;
 
 public class UIManager : MonoBehaviour
 {

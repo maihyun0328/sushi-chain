@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(InputCalibration);
         if(Input.GetKeyDown(KeyCode.W)) AudioManager.i.StopSong();
         if(!IsGameStart) return;
         if(Life <= 0) 

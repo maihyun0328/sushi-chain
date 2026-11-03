@@ -1,18 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BackComponent : MonoBehaviour
 {
-    [SerializeField] private GameObject priorityPanel;
+    [SerializeField] private UnityEvent evt;
     void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.Escape)) return;
-
-        if (priorityPanel != null && priorityPanel.activeSelf)
-        {
-            priorityPanel.SetActive(false);
-            return;
-        }
-
-        UIManager.i.OnMenu();
+        if (Input.GetKeyDown(KeyCode.Escape)) evt?.Invoke();
     }
 }
