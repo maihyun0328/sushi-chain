@@ -37,11 +37,11 @@ public class InputCalibrationComponent : MonoBehaviour
             AudioManager.i.Metronome.PlayScheduled(timer);
             timer += BEAT_INTERVAL;
         }
-        if(Input.GetKeyDown(KeyCode.Space)) RecordInput();
+        // 프레임 시각 대신 키가 실제로 눌린 시각을 dsp 시간축으로 바꿔 기록한다
+        if(TimedKeyInput.GetKeyDown(KeyCode.Space, out double realtime)) RecordInput(SongClock.i.RealtimeToDsp(realtime));
     }
-    void RecordInput()
+    void RecordInput(double inputTime)
     {
-        double inputTime = AudioSettings.dspTime;
         double elapsed = inputTime - firstBeatTime;
         double nearestBeat = math.round(elapsed / BEAT_INTERVAL) * BEAT_INTERVAL;
         if(lastBeatTime == -1) lastBeatTime = nearestBeat;

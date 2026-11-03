@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(InputCalibration);
         if(!CustomSongInputLock.IsLocked && Input.GetKeyDown(KeyCode.W)) AudioManager.i.StopSong();
         if(!IsGameStart) return;
         if(Life <= 0) 
@@ -31,7 +30,8 @@ public class GameManager : MonoBehaviour
             GameOver();
             return;
         }
-        if(!AudioManager.i.music.isPlaying) UIManager.i.GameClear();
+        // 예약 재생 중(시작 전)에는 isPlaying만으로 끝을 판단하지 않는다
+        if(SongClock.i.SongTime > 0.5 && !AudioManager.i.music.isPlaying) UIManager.i.GameClear();
     }
     public void GameStart(int index)
     {
@@ -66,16 +66,27 @@ public class GameManager : MonoBehaviour
         if(customClip != null && customClip != clip) Destroy(customClip);
         customClip = custom != null ? clip : null;
         AudioManager.i.music.loop = false;
-        AudioManager.i.PlaySong();
+        // dsp 시간축에 예약 재생한다. 첫 노트가 스폰 위치에서 출발할 수 있을 만큼 앞에 여유를 둔다.
+        SongClock.i.StartSong(AudioManager.i.music, LeadIn(notes));
         IsGameOver = false;
         IsGameClear = false;
         IsGameStart = true;
         GamePlay.SetActive(true);
     }
+    double LeadIn(NoteList notes)
+    {
+        double first = double.MaxValue;
+        if(notes != null && notes.Notes != null)
+            foreach(NoteData n in notes.Notes) if(n.StartTime < first) first = n.StartTime;
+        if(first == double.MaxValue) first = 0;
+        double moveTime = JsonManager.i.MoveTime;
+        return System.Math.Min(moveTime, System.Math.Max(0.1, moveTime - first - InputCalibration));
+    }
     public void GameOver()
     {
         IsGameStart = false;
         IsGameOver = true;
+        SongClock.i.Stop();
         AudioManager.i.StopSong();
         DOVirtual.DelayedCall(1.0f, () =>
         {
@@ -96,6 +107,7 @@ public class GameManager : MonoBehaviour
     {
         IsGameStart = false;
         IsGameClear = true;
+        SongClock.i.Stop();
         SushiPoolComponent.i.ReturnAllSushi();
         AudioManager.i.ChangeSong(AudioManager.i.BGM);
         AudioManager.i.music.loop = true;

@@ -52,7 +52,8 @@ public class JsonManager : MonoBehaviour
     public NoteList CurrentSongNote;
     public int NoteIndex;
     public float speed;
-    float distance = 8.67f;
+    // 스폰 위치(SushiPoolComponent L1Vector 등, x = ±11)에서 판정선(x = ±1.33)까지의 거리
+    public const float SpawnDistance = 9.67f;
     public void InitScoresData()
     {
         ScoreList list = new ScoreList();
@@ -104,27 +105,30 @@ public class JsonManager : MonoBehaviour
         if(!GameManager.i.IsGameStart) return;
         SpawnCheck();
     }
+    // 판정선에 도착하기 MoveTime초 전에 스폰한다. 같은 프레임에 스폰할 노트(동시치기 등)는 모두 스폰한다.
+    // 노트 위치는 시계로 다시 계산하므로, 스폰이 한 프레임 늦어도 판정 시각은 밀리지 않는다.
     void SpawnCheck()
     {
-        if(NoteIndex >= CurrentSongNote.Notes.Count) return;
-        NoteData note = CurrentSongNote.Notes[NoteIndex];
-        if(AudioManager.i.music.time >= GetSpawnTime(note))
+        if(!SongClock.i.IsRunning) return;
+        double now = SongClock.i.GameTime;
+        double moveTime = MoveTime;
+        while(NoteIndex < CurrentSongNote.Notes.Count)
         {
-            if(note.EndTime == 0) SushiPoolComponent.i.UseSushi(note.type, NOTE_TYPE.SHORT);
-            else 
+            NoteData note = CurrentSongNote.Notes[NoteIndex];
+            if(note.StartTime - now > moveTime) break;
+            GameObject obj;
+            if(note.EndTime == 0) obj = SushiPoolComponent.i.UseSushi(note.type, NOTE_TYPE.SHORT);
+            else
             {
-                float length = (CurrentSongNote.Notes[NoteIndex].EndTime - CurrentSongNote.Notes[NoteIndex].StartTime) * speed;
-                SushiPoolComponent.i.UseSushi(note.type, NOTE_TYPE.LONG, length);
+                float length = (note.EndTime - note.StartTime) * speed;
+                obj = SushiPoolComponent.i.UseSushi(note.type, NOTE_TYPE.LONG, length);
             }
+            if(obj != null) obj.GetComponent<INote>()?.Init(note);
             NoteIndex++;
         }
-        
     }
-    float GetSpawnTime(NoteData note)
-    {
-        float MoveTime = distance / speed;
-        return note.StartTime - MoveTime - (float)GameManager.i.InputCalibration;
-    }
+    // 스폰 위치(x = ±11)에서 판정선(x = ±1.33)까지 가는 시간
+    public double MoveTime => SpawnDistance / speed;
     public void SavePoint(Score score, int num)
     {
         ScoreList list = TakeScoreData();

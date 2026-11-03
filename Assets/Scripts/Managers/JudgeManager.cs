@@ -21,7 +21,7 @@ public class JudgeManager : MonoBehaviour
     [SerializeField] GameObject Active_L2_Long;
     [SerializeField] GameObject Active_R1_Long;
     [SerializeField] GameObject Active_R2_Long;
-    [SerializeField] float LeftJudgeX;
+    [SerializeField] float LeftJudgeX;   // 시간 기반 판정으로 바뀐 뒤로는 쓰지 않는다 (씬 직렬화 유지용)
     [SerializeField] float RightJudgeX;
     [Serializable]
     public class NoteData
@@ -55,54 +55,41 @@ public class JudgeManager : MonoBehaviour
     }
     void InputCheck()
     {
-        if(Input.GetKeyDown(L1_Key))
-        {
-            CheckNearestNote(Active_L1_Short, Active_L1_Long, LeftJudgeX, L1_Key);
-        }
-        if(Input.GetKeyDown(L2_Key))
-        {
-            CheckNearestNote(Active_L2_Short, Active_L2_Long, LeftJudgeX, L2_Key);
-        }
-        if(Input.GetKeyDown(R1_Key))
-        {
-            CheckNearestNote(Active_R1_Short, Active_R1_Long, RightJudgeX, R1_Key);
-        }
-        if(Input.GetKeyDown(R2_Key))
-        {
-            CheckNearestNote(Active_R2_Short, Active_R2_Long, RightJudgeX, R2_Key);
-        }
+        CheckLane(L1_Key, Active_L1_Short, Active_L1_Long);
+        CheckLane(L2_Key, Active_L2_Short, Active_L2_Long);
+        CheckLane(R1_Key, Active_R1_Short, Active_R1_Long);
+        CheckLane(R2_Key, Active_R2_Short, Active_R2_Long);
     }
-    void CheckNearestNote(GameObject obj1, GameObject obj2, float JudgeX, KeyCode key)
+    void CheckLane(KeyCode key, GameObject shortParent, GameObject longParent)
     {
-        List<GameObject> obj = new List<GameObject>();
-        for(int i = 0; i < obj1.transform.childCount; i++)
+        if(!TimedKeyInput.GetKeyDown(key, out double realtime)) return;
+        // 프레임 시각이 아니라 키가 실제로 눌린 시각으로 판정한다
+        double inputTime = SongClock.i.GameTimeAt(realtime);
+        CheckNearestNote(shortParent, longParent, key, inputTime);
+    }
+    // 노트 시각이 입력 시각에 가장 가까운 노트 하나를 판정한다
+    void CheckNearestNote(GameObject obj1, GameObject obj2, KeyCode key, double inputTime)
+    {
+        INote nearest = null;
+        double nearestGap = double.MaxValue;
+        FindNearest(obj1.transform, inputTime, ref nearest, ref nearestGap);
+        FindNearest(obj2.transform, inputTime, ref nearest, ref nearestGap);
+        if(nearest != null) nearest.NoteCheck(key, inputTime);
+    }
+    static void FindNearest(Transform parent, double inputTime, ref INote nearest, ref double nearestGap)
+    {
+        for(int i = 0; i < parent.childCount; i++)
         {
-            obj.Add(obj1.transform.GetChild(i).gameObject);
-        }
-        for(int i = 0; i < obj2.transform.childCount; i++)
-        {
-            obj.Add(obj2.transform.GetChild(i).gameObject);
-        }
-        if(obj.Count == 0)
-        {
-            return;
-        }
-        float NearestDistance;
-        int count = 0;
-        INote note = obj[0].GetComponent<INote>();
-        NearestDistance = Mathf.Abs(note.GetJudgeX() - JudgeX);
-        for(int i = 1; i < obj.Count; i++)
-        {
-            note = obj[i].GetComponent<INote>();
-            float distance = Mathf.Abs(note.GetJudgeX() - JudgeX);
-            if(distance < NearestDistance)
+            INote note = parent.GetChild(i).GetComponent<INote>();
+            double? judgeTime = note?.GetJudgeTime();
+            if(!judgeTime.HasValue) continue;
+            double gap = Math.Abs(judgeTime.Value - inputTime);
+            if(gap < nearestGap)
             {
-                NearestDistance = distance;
-                count = i;
+                nearestGap = gap;
+                nearest = note;
             }
         }
-        note = obj[count].GetComponent<INote>();
-        note.NoteCheck(key);
     }
     public void SetKey(SUSHI_TYPE type, KeyCode key)
     {

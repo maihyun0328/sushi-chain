@@ -108,8 +108,9 @@ public class SushiPoolComponent : MonoBehaviour
             }
         }
     }
-    public void UseSushi(SUSHI_TYPE sushi, NOTE_TYPE note, float length = 0)
+    public GameObject UseSushi(SUSHI_TYPE sushi, NOTE_TYPE note, float length = 0)
     {
+        GameObject spawned = null;
         switch(sushi)
         {
             case SUSHI_TYPE.L1:
@@ -117,6 +118,7 @@ public class SushiPoolComponent : MonoBehaviour
                 {
                     case NOTE_TYPE.SHORT:
                         if(Inactive_L1_Short.transform.childCount == 0) SushiCreate(SUSHI_TYPE.L1, NOTE_TYPE.SHORT);
+                        spawned = Inactive_L1_Short.transform.GetChild(0).gameObject;
                         Inactive_L1_Short.transform.GetChild(0).gameObject.SetActive(true);
                         Inactive_L1_Short.transform.GetChild(0).position = L1Vector;
                         Inactive_L1_Short.transform.GetChild(0).rotation = LeftEuler;
@@ -125,6 +127,7 @@ public class SushiPoolComponent : MonoBehaviour
                     case NOTE_TYPE.LONG:
                         if(Inactive_L1_Long.transform.childCount == 0) SushiCreate(SUSHI_TYPE.L1, NOTE_TYPE.LONG);
                         GameObject Obj = Inactive_L1_Long.transform.GetChild(0).gameObject;
+                        spawned = Obj;
                         Obj.SetActive(true);
                         Obj.transform.position = L1Vector;
                         Obj.transform.rotation = LeftEuler;
@@ -141,6 +144,7 @@ public class SushiPoolComponent : MonoBehaviour
                 {
                     case NOTE_TYPE.SHORT:
                         if(Inactive_L2_Short.transform.childCount == 0) SushiCreate(SUSHI_TYPE.L2, NOTE_TYPE.SHORT);
+                        spawned = Inactive_L2_Short.transform.GetChild(0).gameObject;
                         Inactive_L2_Short.transform.GetChild(0).gameObject.SetActive(true);
                         Inactive_L2_Short.transform.GetChild(0).position = L2Vector;
                         Inactive_L2_Short.transform.GetChild(0).rotation = LeftEuler;
@@ -149,6 +153,7 @@ public class SushiPoolComponent : MonoBehaviour
                     case NOTE_TYPE.LONG:
                         if(Inactive_L2_Long.transform.childCount == 0) SushiCreate(SUSHI_TYPE.L2, NOTE_TYPE.LONG);
                         GameObject Obj = Inactive_L2_Long.transform.GetChild(0).gameObject;
+                        spawned = Obj;
                         Obj.SetActive(true);
                         Obj.transform.position = L2Vector;
                         Obj.transform.rotation = LeftEuler;
@@ -165,6 +170,7 @@ public class SushiPoolComponent : MonoBehaviour
                 {
                     case NOTE_TYPE.SHORT:
                         if(Inactive_R1_Short.transform.childCount == 0) SushiCreate(SUSHI_TYPE.R1, NOTE_TYPE.SHORT);
+                        spawned = Inactive_R1_Short.transform.GetChild(0).gameObject;
                         Inactive_R1_Short.transform.GetChild(0).gameObject.SetActive(true);
                         Inactive_R1_Short.transform.GetChild(0).position = R1Vector;
                         Inactive_R1_Short.transform.GetChild(0).rotation = RightEuler;
@@ -173,6 +179,7 @@ public class SushiPoolComponent : MonoBehaviour
                     case NOTE_TYPE.LONG:
                         if(Inactive_R1_Long.transform.childCount == 0) SushiCreate(SUSHI_TYPE.R1, NOTE_TYPE.LONG);
                         GameObject Obj = Inactive_R1_Long.transform.GetChild(0).gameObject;
+                        spawned = Obj;
                         Obj.SetActive(true);
                         Obj.transform.position = R1Vector;
                         Obj.transform.rotation = RightEuler;
@@ -189,6 +196,7 @@ public class SushiPoolComponent : MonoBehaviour
                 {
                     case NOTE_TYPE.SHORT:
                         if(Inactive_R2_Short.transform.childCount == 0) SushiCreate(SUSHI_TYPE.R2, NOTE_TYPE.SHORT);
+                        spawned = Inactive_R2_Short.transform.GetChild(0).gameObject;
                         Inactive_R2_Short.transform.GetChild(0).gameObject.SetActive(true);
                         Inactive_R2_Short.transform.GetChild(0).position = R2Vector;
                         Inactive_R2_Short.transform.GetChild(0).rotation = RightEuler;
@@ -197,6 +205,7 @@ public class SushiPoolComponent : MonoBehaviour
                     case NOTE_TYPE.LONG:
                         if(Inactive_R2_Long.transform.childCount == 0) SushiCreate(SUSHI_TYPE.R2, NOTE_TYPE.LONG);
                         GameObject Obj = Inactive_R2_Long.transform.GetChild(0).gameObject;
+                        spawned = Obj;
                         Obj.SetActive(true);
                         Obj.transform.position = R2Vector;
                         Obj.transform.rotation = RightEuler;
@@ -209,6 +218,7 @@ public class SushiPoolComponent : MonoBehaviour
                 }
                 break;
         }
+        return spawned;
     }
     public void ReturnSushi(SUSHI_TYPE sushi, NOTE_TYPE note, GameObject obj)
     {

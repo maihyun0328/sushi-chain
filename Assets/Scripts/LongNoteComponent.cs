@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class LongNoteComponent : MonoBehaviour, INote
     [SerializeField] KeyCode inputKey;
 
     NOTE_STATE state = NOTE_STATE.WAITING;
+    double startTime;   // 머리가 판정선에 닿는 게임 시간 (초)
+    double endTime;     // 꼬리가 판정선에 닿는 게임 시간 (초)
     List<Renderer> rends = new List<Renderer>();
     IEnumerator cor;
 
@@ -39,6 +42,12 @@ public class LongNoteComponent : MonoBehaviour, INote
         SetTransparency(0);
         cor = null;
     }
+    public void Init(NoteData note)
+    {
+        startTime = note.StartTime;
+        endTime = note.EndTime;
+        Move();
+    }
     void Update()
     {
         if(GameManager.i.IsGameOver) return;
@@ -46,7 +55,7 @@ public class LongNoteComponent : MonoBehaviour, INote
         switch(state)
         {
             case NOTE_STATE.WAITING:
-                MissCheck(head.position.x);
+                MissCheck(startTime);
                 break;
             case NOTE_STATE.HOLDING:
                 CheckHolding();
@@ -54,44 +63,44 @@ public class LongNoteComponent : MonoBehaviour, INote
         }
     }
 
+    // 위치는 누적 이동(deltaTime)이 아니라 시계로 매 프레임 다시 계산한다 (머리 = 오브젝트 원점)
     void Move()
     {
-        switch(dir)
-        {
-            case NOTE_DIRECT.RIGHT:
-                transform.position += Vector3.left * speed * Time.deltaTime;
-                break;
-            case NOTE_DIRECT.LEFT:
-                transform.position += Vector3.right * speed * Time.deltaTime;
-                break;
-        }
+        float sign = dir == NOTE_DIRECT.LEFT ? -1f : 1f;
+        Vector3 pos = transform.position;
+        pos.x = judgeX + sign * (float)(startTime - SongClock.i.GameTime) * speed;
+        transform.position = pos;
     }
 
-    public void NoteCheck(KeyCode key)
+    public double? GetJudgeTime() => state == NOTE_STATE.WAITING ? (double?)startTime : null;
+
+    public void NoteCheck(KeyCode key, double inputTime)
     {
-        inputKey = key;
-        if(state == NOTE_STATE.FAILED) return;
-        if (IsInJudgeRange(head.position.x))
+        if(state != NOTE_STATE.WAITING) return;
+        float distance = TimeToDistance(inputTime - startTime);
+        if (distance <= judgeRange)
         {
+            inputKey = key;
             cor = HoldingParticle();
             StartCoroutine(cor);
             head.gameObject.SetActive(false);
-            UIManager.i.SetPointUI(PointManager.i.GetPoint(Mathf.Abs(GetJudgeX() - judgeX)));
+            UIManager.i.SetPointUI(PointManager.i.GetPoint(distance));
             state = NOTE_STATE.HOLDING;
-            return;
         }
     }
+    float TimeToDistance(double dt) => (float)Math.Abs(dt) * speed;
 
     void CheckHolding()
     {
         SetBody();
-        // 키를 떼었을 때
-        if (Input.GetKeyUp(inputKey))
+        // 키를 떼었을 때 (뗀 시각의 timestamp로 판정)
+        if (TimedKeyInput.GetKeyUp(inputKey, out double realtime))
         {
+            float distance = TimeToDistance(SongClock.i.GameTimeAt(realtime) - endTime);
             // Tail이 판정선 근처인지 확인
-            if (IsInJudgeRange(tail.position.x))
+            if (distance <= judgeRange)
             {
-                Complete();
+                Complete(distance);
             }
             else
             {
@@ -100,43 +109,23 @@ public class LongNoteComponent : MonoBehaviour, INote
             }
             return;
         }
-        MissCheck(tail.transform.position.x);
+        MissCheck(endTime);
     }
-    void MissCheck(float NoteX)
+    // noteTime(머리 또는 꼬리)이 FailedX까지 지나갔는데 입력이 없음
+    void MissCheck(double noteTime)
     {
-        switch(dir)
+        if (SongClock.i.GameTime > noteTime + Mathf.Abs(FailedX - judgeX) / speed)
         {
-            case NOTE_DIRECT.RIGHT:
-                // Tail이 판정선을 완전히 지나갔는데도 안 뗐음
-                if (NoteX < FailedX)
-                {
-                    Fail();
-                }
-                break;
-            case NOTE_DIRECT.LEFT:
-                // Tail이 판정선을 완전히 지나갔는데도 안 뗐음
-                if (NoteX > FailedX)
-                {
-                    Fail();
-                }
-                break;
+            Fail();
         }
     }
 
-    bool IsInJudgeRange(float x)
-    {
-        return Mathf.Abs(x - judgeX) <= judgeRange;
-    }
-    public float GetJudgeX()
-    {
-        return head.position.x;
-    }
-    void Complete()
+    void Complete(float distance)
     {
         StopCoroutine(cor);
         state = NOTE_STATE.COMPLETED;
         VFXManager.i.SushiVFX(type);
-        UIManager.i.SetPointUI(PointManager.i.GetPoint(Mathf.Abs(tail.transform.position.x - judgeX)));
+        UIManager.i.SetPointUI(PointManager.i.GetPoint(distance));
         SushiPoolComponent.i.ReturnSushi(type, NOTE_TYPE.LONG, gameObject);
     }
 
