@@ -1,0 +1,94 @@
+{
+ "numpy": "2.5.4",
+ "chart_algo_version": "1.0.0",
+ "cases": {
+  "southside30": {
+   "easy": 32,
+   "easy/alt": 32,
+   "normal": 66,
+   "normal/alt": 66,
+   "hard": 93,
+   "hard/alt": 93
+  },
+  "southside_full": {
+   "easy": 198,
+   "easy/alt": 198,
+   "normal": 383,
+   "normal/alt": 383,
+   "hard": 552,
+   "hard/alt": 552
+  },
+  "synth128": {
+   "easy": 33,
+   "easy/alt": 33,
+   "normal": 65,
+   "normal/alt": 65,
+   "hard": 97,
+   "hard/alt": 97
+  },
+  "synth92": {
+   "easy": 22,
+   "easy/alt": 22,
+   "normal": 49,
+   "normal/alt": 49,
+   "hard": 73,
+   "hard/alt": 73
+  },
+  "synth174": {
+   "easy": 19,
+   "easy/alt": 19,
+   "normal": 39,
+   "normal/alt": 39,
+   "hard": 57,
+   "hard/alt": 57
+  },
+  "silence": {
+   "easy": "ChartGenerationError",
+   "easy/alt": "ChartGenerationError",
+   "normal": "ChartGenerationError",
+   "normal/alt": "ChartGenerationError",
+   "hard": "ChartGenerationError",
+   "hard/alt": "ChartGenerationError"
+  },
+  "short": {
+   "easy": "ChartGenerationError",
+   "easy/alt": "ChartGenerationError",
+   "normal": "ChartGenerationError",
+   "normal/alt": "ChartGenerationError",
+   "hard": "ChartGenerationError",
+   "hard/alt": "ChartGenerationError"
+  },
+  "no_beats": {
+   "easy": 20,
+   "easy/alt": 20,
+   "normal": 48,
+   "normal/alt": 48,
+   "hard": 73,
+   "hard/alt": 73
+  },
+  "no_grid": {
+   "easy": "ChartGenerationError",
+   "easy/alt": "ChartGenerationError",
+   "normal": "ChartGenerationError",
+   "normal/alt": "ChartGenerationError",
+   "hard": "ChartGenerationError",
+   "hard/alt": "ChartGenerationError"
+  },
+  "messy": {
+   "easy": 23,
+   "easy/alt": 23,
+   "normal": 49,
+   "normal/alt": 49,
+   "hard": 72,
+   "hard/alt": 72
+  },
+  "mismatch": {
+   "easy": "ChartGenerationError",
+   "easy/alt": "ChartGenerationError",
+   "normal": "ChartGenerationError",
+   "normal/alt": "ChartGenerationError",
+   "hard": "ChartGenerationError",
+   "hard/alt": "ChartGenerationError"
+  }
+ }
+}
