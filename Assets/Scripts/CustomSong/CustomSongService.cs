@@ -228,15 +228,16 @@ public class CustomSongService : MonoBehaviour
                 else
                     jobId = created.jobId;
             }
-            else if (req.responseCode == 503 && IsRetryable503(ReadDetail(req)) && attempt < MaxQueueFullRetries)
+            else if (attempt < MaxQueueFullRetries && TryGetRetryWait(req, out float wait))
             {
-                retryAfter = ParseRetryAfter(req.GetResponseHeader("Retry-After"));
+                retryAfter = wait;
             }
+            long code = req.responseCode;
             DisposeInFlight();
 
             if (retryAfter < 0f) break;
             error = null;
-            Debug.Log($"[CustomSongService] 서버 대기열이 가득 찼습니다. {retryAfter:0}초 후 재시도 ({attempt + 1}/{MaxQueueFullRetries})");
+            Debug.Log($"[CustomSongService] 서버 혼잡/요청 한도(HTTP {code}). {retryAfter:0}초 후 재시도 ({attempt + 1}/{MaxQueueFullRetries})");
             yield return new WaitForSecondsRealtime(retryAfter);
         }
         if (error != null) { Fail(gen); yield break; }
@@ -261,18 +262,27 @@ public class CustomSongService : MonoBehaviour
             {
                 error = "서버에서 작업을 찾을 수 없습니다. 다시 요청해 주세요.";
             }
+            // 조회 한도(429)는 실패로 끝내지 않고 Retry-After만큼 쉬었다가 계속 polling한다
+            float pollWait = CustomSongConfig.PollIntervalSec;
+            if (error != null && TryGetRetryWait(req, out float limitWait))
+            {
+                Debug.Log($"[CustomSongService] 조회 한도(HTTP {req.responseCode}). {limitWait:0}초 후 다시 조회합니다.");
+                error = null;
+                pollWait = Mathf.Max(pollWait, limitWait);
+            }
             DisposeInFlight();
             if (error != null) break;
 
-            if (status.status == ChartJobState.Completed) { done = status; break; }
-            if (status.status == ChartJobState.Failed)
+            if (status == null) { /* 한도 대기 후 다시 조회 */ }
+            else if (status.status == ChartJobState.Completed) { done = status; break; }
+            else if (status.status == ChartJobState.Failed)
             {
                 error = DescribeJobError(status.error);
                 break;
             }
 
-            // queued | processing
-            float waitUntil = Time.realtimeSinceStartup + CustomSongConfig.PollIntervalSec;
+            // queued | processing | 조회 한도 대기
+            float waitUntil = Time.realtimeSinceStartup + pollWait;
             while (true)
             {
                 float elapsed = Time.realtimeSinceStartup - startedAt;
@@ -336,16 +346,27 @@ public class CustomSongService : MonoBehaviour
 
         if (needAudio)
         {
-            var req = Create(() =>
+            // 에셋 다운로드 한도(429)는 Retry-After만큼 기다렸다가 최대 MaxQueueFullRetries번 재시도
+            for (int attempt = 0; ; attempt++)
             {
-                var r = UnityWebRequest.Get(Resolve(baseUrl, song.audioUrl));
-                r.downloadHandler = new DownloadHandlerFile(tmpAudio) { removeFileOnAbort = true };
-                return r;
-            });
-            if (req == null) yield break;
-            yield return Send(req, CustomSongConfig.AssetTimeoutSec,
-                p => Progress(CUSTOM_SONG_STAGE.DOWNLOADING, Mathf.Clamp01(p) * audioWeight));
-            DisposeInFlight();
+                var req = Create(() =>
+                {
+                    var r = UnityWebRequest.Get(Resolve(baseUrl, song.audioUrl));
+                    r.downloadHandler = new DownloadHandlerFile(tmpAudio) { removeFileOnAbort = true };
+                    return r;
+                });
+                if (req == null) yield break;
+                yield return Send(req, CustomSongConfig.AssetTimeoutSec,
+                    p => Progress(CUSTOM_SONG_STAGE.DOWNLOADING, Mathf.Clamp01(p) * audioWeight));
+                float wait = -1f;
+                if (error != null && attempt < MaxQueueFullRetries && TryGetRetryWait(req, out float w)) wait = w;
+                DisposeInFlight();
+                if (wait < 0f) break;
+                error = null;
+                TryDelete(tmpAudio);
+                Debug.Log($"[CustomSongService] 오디오 다운로드 한도. {wait:0}초 후 재시도 ({attempt + 1}/{MaxQueueFullRetries})");
+                yield return new WaitForSecondsRealtime(wait);
+            }
             if (error == null && !IsNonEmptyFile(tmpAudio))
                 error = "받은 오디오 파일이 비어 있습니다.";
             if (error != null) { error = "오디오 다운로드 실패: " + error; Fail(gen); yield break; }
@@ -513,7 +534,13 @@ public class CustomSongService : MonoBehaviour
                     ? "올바른 YouTube URL이 아닙니다."
                     : $"올바른 YouTube URL이 아닙니다. ({detail})";
             case 429:
-                return "요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.";
+            {
+                // 플레이테스트 토큰은 모든 플레이어가 한도를 공유한다 (채보 생성 시간당 20회 등)
+                float wait = RawRetryAfter(req.GetResponseHeader("Retry-After"));
+                return wait >= 60f
+                    ? $"요청 한도를 초과했습니다. 약 {Mathf.CeilToInt(wait / 60f)}분 후 다시 시도해 주세요."
+                    : "요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.";
+            }
             case 503:
                 switch (detail)
                 {
@@ -564,13 +591,30 @@ public class CustomSongService : MonoBehaviour
 
     static bool IsRetryable503(string detail) => detail == "queue_full" || detail == "busy";
 
-    static float ParseRetryAfter(string header)
+    static float ParseRetryAfter(string header) => Mathf.Min(RawRetryAfter(header), MaxRetryAfterSec);
+
+    // Retry-After 헤더(초). 없거나 형식이 틀리면 기본값
+    static float RawRetryAfter(string header)
     {
         if (!string.IsNullOrEmpty(header) &&
             float.TryParse(header.Trim(), System.Globalization.NumberStyles.Float,
                 System.Globalization.CultureInfo.InvariantCulture, out float sec) && sec > 0f)
-            return Mathf.Min(sec, MaxRetryAfterSec);
+            return sec;
         return DefaultRetryAfterSec;
+    }
+
+    // 429(요청 한도) 또는 재시도 가능한 503이고, 기다릴 시간이 MaxRetryAfterSec 이하면 재시도한다.
+    // 한도가 시간 단위로 걸린 경우(Retry-After가 길면)는 기다리지 않고 실패 처리한다.
+    static bool TryGetRetryWait(UnityWebRequest req, out float wait)
+    {
+        wait = -1f;
+        bool retryable = req.responseCode == 429 ||
+                         (req.responseCode == 503 && IsRetryable503(ReadDetail(req)));
+        if (!retryable) return false;
+        float raw = RawRetryAfter(req.GetResponseHeader("Retry-After"));
+        if (raw > MaxRetryAfterSec) return false;
+        wait = raw;
+        return true;
     }
 
     // {"detail":"..."} 의 문자열 detail. 목록 형태(검증 오류)면 null

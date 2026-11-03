@@ -16,7 +16,7 @@ Sushi Chain 클라이언트(Unity)가 채보 생성 서버 `ai-chart-server`를 
 Client                                              ai-chart-server (/api/v1)
   │ POST /charts {youtubeUrl, difficulty}  + Bearer   │
   │ ────────────────────────────────────────────────▶ │ 202 {jobId, status: queued | completed}
-  │ GET /charts/{jobId}  (2초마다)          + Bearer   │
+  │ GET /charts/{jobId}  (3초마다)          + Bearer   │
   │ ────────────────────────────────────────────────▶ │ 200 {status: queued | processing}
   │                    ...                            │
   │ GET /charts/{jobId}                     + Bearer   │
@@ -169,10 +169,10 @@ uv run python scripts/issue_dev_token.py \
 
 ### Polling 정책
 
-- `CustomSongConfig.PollIntervalSec`(2초)마다 조회한다.
+- `CustomSongConfig.PollIntervalSec`(3초)마다 조회한다.
 - 서버 작업 하나는 최대 180초다(넘으면 `timeout`으로 failed). 클라이언트는 큐 대기까지 감안해 `CustomSongConfig.JobTimeoutSec`(600초)에서 포기한다.
 - 서버가 진행률을 주지 않으므로 UI는 `PROCESSING` 단계에서 **제출 후 경과 초**를 보여준다. 다운로드 단계(`DOWNLOADING`)만 0..1 진행률이 있다.
-- 일시적인 네트워크 오류, 5xx, 429는 polling 중에는 다음 주기에 다시 시도한다. 403과 404는 즉시 실패 처리한다.
+- polling 중 429(조회 한도)는 실패로 끝내지 않고 `Retry-After`만큼 쉬었다가 계속 조회한다. 그 외 오류(네트워크 오류, 403, 404, 5xx)는 즉시 실패 처리한다.
 
 ## 6. 상태 코드와 클라이언트 메시지
 
@@ -188,14 +188,25 @@ HTTP 오류 본문은 항상 `{"detail": ...}`이다. `detail`은 보통 문자�
 | 413 | `payload_too_large` | 본문이 너무 큼 | "요청이 너무 큽니다." (정상 사용에서는 나오지 않음) |
 | 422 | `invalid_youtube_url` | 서버가 URL을 거부 | "올바른 YouTube URL이 아닙니다." |
 | 422 | `invalid_request` | difficulty 오류, 모르는 필드, JSON 오류 | "요청 형식이 올바르지 않습니다." (클라이언트 버그) |
-| 429 | (rate limit) | 요청 제한. `Retry-After` 헤더 | "요청이 너무 많습니다. 잠시 후 다시 시도해 주세요." 생성 제한은 기본 시간당 20회 |
+| 429 | (rate limit) | 요청 한도. `Retry-After` 헤더 | Retry-After가 60초 이하면 자동 재시도. 더 길면 "요청 한도를 초과했습니다. 약 N분 후 다시 시도해 주세요." |
 | 503 | `queue_full` | 큐가 가득 참. `Retry-After` 헤더 | "서버가 바쁩니다. 잠시 후 다시 시도해 주세요." |
 | 503 | `busy` | 같은 요청이 동시에 들어옴. `Retry-After: 2` | `Retry-After`만큼 기다렸다가 1회 재시도 |
 | 503 | `storage_full`, `queue_unavailable` | 서버 상태 문제 | "서버를 일시적으로 사용할 수 없습니다. 잠시 후 다시 시도해 주세요." |
 | 503 | `youtube_disabled` | 서버에서 YouTube 다운로드가 꺼짐 | "지금은 YouTube 곡을 만들 수 없습니다." |
 | 500 | `internal_error` | 서버 오류 | "서버 오류가 발생했습니다." |
 
-`POST /charts`의 503/429는 자동 재시도하지 않고 사용자에게 알린다. 단, `busy`는 짧게 1회 재시도해도 된다. 재시도할 때는 `Retry-After`(초)를 지킨다.
+`POST /charts`와 오디오 다운로드는 429 또는 503(`queue_full`/`busy`)에 대해 `Retry-After`(60초 이하일 때만)를 지키며 최대 2회 자동 재시도한다. Retry-After가 60초보다 길면(예: 시간당 생성 한도 소진) 바로 사용자에게 알린다.
+
+### 플레이테스트 토큰 요청 한도 (서버 설정, sub=playtest 전원 공유)
+
+| 대상 | 한도 |
+|---|---|
+| 채보 생성 `POST /charts` | 1시간에 20회 |
+| 조회 `GET /charts/{jobId}` | 1분에 300회 (3초 polling 기준 약 15명 동시 대기) |
+| 에셋 다운로드 | 10분에 120회 |
+| IP당 | 1분에 120회 |
+
+플레이테스트 인원이 많아 한도가 부족하면 서버 쪽에 한도 상향을 요청한다.
 
 ### 작업 실패 코드 (`error.code`)
 

@@ -133,7 +133,7 @@ public static class CustomSongConfig
     const string BaseUrlKey = "CustomSong.BaseUrl";
     public const string LocalBaseUrl = "http://localhost:8000/api/v1";
     public const string ProductionBaseUrl = "https://sushi-chain.aidengoldkr.dev/api/v1";
-    public const float PollIntervalSec = 2f;
+    public const float PollIntervalSec = 3f;  // 조회 한도(sub당 분당 300회)를 플레이어 전원이 공유하므로 3초
     public const float JobTimeoutSec = 600f;   // 서버의 작업당 최대 시간은 180초
     public const int RequestTimeoutSec = 30;
     public const int AssetTimeoutSec = 300;
