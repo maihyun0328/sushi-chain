@@ -1,0 +1,1486 @@
+{
+ "cases": [
+  {
+   "name": "valid",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000001040"
+    ],
+    [
+     1,
+     3,
+     "0000000000001240",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "valid",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000001040"
+    ],
+    [
+     1,
+     3,
+     "0000000000001240",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "valid",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000001040"
+    ],
+    [
+     1,
+     3,
+     "0000000000001240",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "valid",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000001040"
+    ],
+    [
+     1,
+     3,
+     "0000000000001240",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "dir_mismatch",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     2,
+     "0000000000000040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: dir 0 does not match type 2",
+    "note 1: dir 1 does not match type 0"
+   ]
+  },
+  {
+   "name": "dir_mismatch",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     2,
+     "0000000000000040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: dir 0 does not match type 2",
+    "note 1: dir 1 does not match type 0"
+   ]
+  },
+  {
+   "name": "dir_mismatch",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     2,
+     "0000000000000040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: dir 0 does not match type 2",
+    "note 1: dir 1 does not match type 0"
+   ]
+  },
+  {
+   "name": "dir_mismatch",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     2,
+     "0000000000000040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: dir 0 does not match type 2",
+    "note 1: dir 1 does not match type 0"
+   ]
+  },
+  {
+   "name": "unknown_type",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     7,
+     "0000000000000040",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: unknown dir/type (0, 7)"
+   ]
+  },
+  {
+   "name": "unknown_type",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     7,
+     "0000000000000040",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: unknown dir/type (0, 7)"
+   ]
+  },
+  {
+   "name": "unknown_type",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     7,
+     "0000000000000040",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: unknown dir/type (0, 7)"
+   ]
+  },
+  {
+   "name": "unknown_type",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     7,
+     "0000000000000040",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: unknown dir/type (0, 7)"
+   ]
+  },
+  {
+   "name": "negative_beyond_unsorted",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "000000000000f0bf",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000002640",
+     "0000000000002840"
+    ]
+   ],
+   "problems": [
+    "note 1: negative time",
+    "note 1: not sorted by StartTime (-1.0 < 5.0)",
+    "note 2: time beyond duration 10.000s"
+   ]
+  },
+  {
+   "name": "negative_beyond_unsorted",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "000000000000f0bf",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000002640",
+     "0000000000002840"
+    ]
+   ],
+   "problems": [
+    "note 1: negative time",
+    "note 1: not sorted by StartTime (-1.0 < 5.0)",
+    "note 2: time beyond duration 10.000s",
+    "note 1: StartTime -1.0 inside the 2.0s lead-in"
+   ]
+  },
+  {
+   "name": "negative_beyond_unsorted",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "000000000000f0bf",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000002640",
+     "0000000000002840"
+    ]
+   ],
+   "problems": [
+    "note 1: negative time",
+    "note 1: not sorted by StartTime (-1.0 < 5.0)",
+    "note 2: time beyond duration 10.000s",
+    "note 1: StartTime -1.0 inside the 2.0s lead-in"
+   ]
+  },
+  {
+   "name": "negative_beyond_unsorted",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "000000000000f0bf",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000002640",
+     "0000000000002840"
+    ]
+   ],
+   "problems": [
+    "note 1: negative time",
+    "note 1: not sorted by StartTime (-1.0 < 5.0)",
+    "note 2: time beyond duration 10.000s",
+    "note 1: StartTime -1.0 inside the 2.0s lead-in"
+   ]
+  },
+  {
+   "name": "bad_long_end",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000440"
+    ],
+    [
+     1,
+     2,
+     "0000000000001040",
+     "0000000000001040"
+    ]
+   ],
+   "problems": [
+    "note 0: long note EndTime 2.5 <= StartTime 3.0",
+    "note 1: long note EndTime 4.0 <= StartTime 4.0"
+   ]
+  },
+  {
+   "name": "bad_long_end",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000440"
+    ],
+    [
+     1,
+     2,
+     "0000000000001040",
+     "0000000000001040"
+    ]
+   ],
+   "problems": [
+    "note 0: long note EndTime 2.5 <= StartTime 3.0",
+    "note 1: long note EndTime 4.0 <= StartTime 4.0"
+   ]
+  },
+  {
+   "name": "bad_long_end",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000440"
+    ],
+    [
+     1,
+     2,
+     "0000000000001040",
+     "0000000000001040"
+    ]
+   ],
+   "problems": [
+    "note 0: long note EndTime 2.5 <= StartTime 3.0",
+    "note 1: long note EndTime 4.0 <= StartTime 4.0"
+   ]
+  },
+  {
+   "name": "bad_long_end",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000440"
+    ],
+    [
+     1,
+     2,
+     "0000000000001040",
+     "0000000000001040"
+    ]
+   ],
+   "problems": [
+    "note 0: long note EndTime 2.5 <= StartTime 3.0",
+    "note 1: long note EndTime 4.0 <= StartTime 4.0"
+   ]
+  },
+  {
+   "name": "lane_overlap",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000040",
+     "0000000000001040"
+    ],
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     0,
+     "8d976e1283001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000001440",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 1: overlaps note 0 in lane 0",
+    "note 2: overlaps note 0 in lane 0",
+    "note 4: overlaps note 3 in lane 3"
+   ]
+  },
+  {
+   "name": "lane_overlap",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000040",
+     "0000000000001040"
+    ],
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     0,
+     "8d976e1283001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000001440",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 1: overlaps note 0 in lane 0",
+    "note 2: overlaps note 0 in lane 0",
+    "note 4: overlaps note 3 in lane 3",
+    "2 simultaneous notes at 5.0s (max 1 for easy)",
+    "note 1: on the same side as long note 0 while it is held"
+   ]
+  },
+  {
+   "name": "lane_overlap",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000040",
+     "0000000000001040"
+    ],
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     0,
+     "8d976e1283001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000001440",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 1: overlaps note 0 in lane 0",
+    "note 2: overlaps note 0 in lane 0",
+    "note 4: overlaps note 3 in lane 3",
+    "chord at 5.0s is not one LEFT + one RIGHT note",
+    "note 1: on the same side as long note 0 while it is held"
+   ]
+  },
+  {
+   "name": "lane_overlap",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000040",
+     "0000000000001040"
+    ],
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     0,
+     "8d976e1283001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000001440",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 1: overlaps note 0 in lane 0",
+    "note 2: overlaps note 0 in lane 0",
+    "note 4: overlaps note 3 in lane 3",
+    "chord at 5.0s is not one LEFT + one RIGHT note"
+   ]
+  },
+  {
+   "name": "lead_in",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "666666666666fe3f",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "ef38454772f9ff3f",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "cdcccccccccc0440",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "lead_in",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "666666666666fe3f",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "ef38454772f9ff3f",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "cdcccccccccc0440",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: StartTime 1.9 inside the 2.0s lead-in",
+    "note 1: StartTime 1.9984 inside the 2.0s lead-in",
+    "gap 0.098s between 1.9s and 1.998s below min 0.33s for easy"
+   ]
+  },
+  {
+   "name": "lead_in",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "666666666666fe3f",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "ef38454772f9ff3f",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "cdcccccccccc0440",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: StartTime 1.9 inside the 2.0s lead-in",
+    "note 1: StartTime 1.9984 inside the 2.0s lead-in",
+    "gap 0.098s between 1.9s and 1.998s below min 0.18s for normal"
+   ]
+  },
+  {
+   "name": "lead_in",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "666666666666fe3f",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "ef38454772f9ff3f",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "cdcccccccccc0440",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 0: StartTime 1.9 inside the 2.0s lead-in",
+    "note 1: StartTime 1.9984 inside the 2.0s lead-in"
+   ]
+  },
+  {
+   "name": "triple",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "triple",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "3 simultaneous notes at 3.0s (max 1 for easy)"
+   ]
+  },
+  {
+   "name": "triple",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "3 simultaneous notes at 3.0s (max 2 for normal)"
+   ]
+  },
+  {
+   "name": "triple",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "3 simultaneous notes at 3.0s (max 2 for hard)"
+   ]
+  },
+  {
+   "name": "chord_same_side",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "71ac8bdb68001040",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "chord_same_side",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "71ac8bdb68001040",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "2 simultaneous notes at 3.0s (max 1 for easy)",
+    "2 simultaneous notes at 4.0s (max 1 for easy)"
+   ]
+  },
+  {
+   "name": "chord_same_side",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "71ac8bdb68001040",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "chord at 3.0s is not one LEFT + one RIGHT note",
+    "chord at 4.0s is not one LEFT + one RIGHT note"
+   ]
+  },
+  {
+   "name": "chord_same_side",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "71ac8bdb68001040",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "chord at 3.0s is not one LEFT + one RIGHT note",
+    "chord at 4.0s is not one LEFT + one RIGHT note"
+   ]
+  },
+  {
+   "name": "small_gap",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "9a99999999990940",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "3333333333330b40",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000000c40",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "small_gap",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "9a99999999990940",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "3333333333330b40",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000000c40",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "gap 0.200s between 3.0s and 3.2s below min 0.33s for easy",
+    "gap 0.200s between 3.2s and 3.4s below min 0.33s for easy",
+    "gap 0.100s between 3.4s and 3.5s below min 0.33s for easy"
+   ]
+  },
+  {
+   "name": "small_gap",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "9a99999999990940",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "3333333333330b40",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000000c40",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "gap 0.100s between 3.4s and 3.5s below min 0.18s for normal"
+   ]
+  },
+  {
+   "name": "small_gap",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "9a99999999990940",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "3333333333330b40",
+     "0000000000000000"
+    ],
+    [
+     1,
+     3,
+     "0000000000000c40",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "held_side",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000001440"
+    ],
+    [
+     0,
+     1,
+     "0000000000001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000001240",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000001840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "held_side",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000001440"
+    ],
+    [
+     0,
+     1,
+     "0000000000001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000001240",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000001840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 1: on the same side as long note 0 while it is held",
+    "note 3: on the same side as long note 0 while it is held"
+   ]
+  },
+  {
+   "name": "held_side",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000001440"
+    ],
+    [
+     0,
+     1,
+     "0000000000001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000001240",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000001840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "note 1: on the same side as long note 0 while it is held",
+    "note 3: on the same side as long note 0 while it is held"
+   ]
+  },
+  {
+   "name": "held_side",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000001440"
+    ],
+    [
+     0,
+     1,
+     "0000000000001040",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000001240",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000001440",
+     "0000000000000000"
+    ],
+    [
+     0,
+     1,
+     "0000000000001840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": []
+  },
+  {
+   "name": "non_finite",
+   "difficulty": null,
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "000000000000f87f",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000840",
+     "000000000000f07f"
+    ]
+   ],
+   "problems": [
+    "note 0: non-finite time",
+    "note 1: non-finite time"
+   ]
+  },
+  {
+   "name": "non_finite",
+   "difficulty": "easy",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "000000000000f87f",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000840",
+     "000000000000f07f"
+    ]
+   ],
+   "problems": [
+    "note 0: non-finite time",
+    "note 1: non-finite time"
+   ]
+  },
+  {
+   "name": "non_finite",
+   "difficulty": "normal",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "000000000000f87f",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000840",
+     "000000000000f07f"
+    ]
+   ],
+   "problems": [
+    "note 0: non-finite time",
+    "note 1: non-finite time"
+   ]
+  },
+  {
+   "name": "non_finite",
+   "difficulty": "hard",
+   "duration": 10.0,
+   "notes": [
+    [
+     0,
+     0,
+     "000000000000f87f",
+     "0000000000000000"
+    ],
+    [
+     1,
+     2,
+     "0000000000000840",
+     "000000000000f07f"
+    ]
+   ],
+   "problems": [
+    "note 0: non-finite time",
+    "note 1: non-finite time"
+   ]
+  },
+  {
+   "name": "bad_duration",
+   "difficulty": null,
+   "duration": 0.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "invalid duration 0.0"
+   ]
+  },
+  {
+   "name": "bad_duration",
+   "difficulty": "easy",
+   "duration": 0.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "invalid duration 0.0"
+   ]
+  },
+  {
+   "name": "bad_duration",
+   "difficulty": "normal",
+   "duration": 0.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "invalid duration 0.0"
+   ]
+  },
+  {
+   "name": "bad_duration",
+   "difficulty": "hard",
+   "duration": 0.0,
+   "notes": [
+    [
+     0,
+     0,
+     "0000000000000840",
+     "0000000000000000"
+    ]
+   ],
+   "problems": [
+    "invalid duration 0.0"
+   ]
+  }
+ ]
+}
