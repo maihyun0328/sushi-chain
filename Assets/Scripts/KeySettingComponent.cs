@@ -9,7 +9,6 @@ public class KeySettingComponent : MonoBehaviour
     [SerializeField] private Text L2_Key_Text;
     [SerializeField] private Text R1_Key_Text;
     [SerializeField] private Text R2_Key_Text;
-    KeyCode key;
     int waitingType = -1;
     int clickedFrame;
     void OnEnable()
