@@ -18,32 +18,40 @@ namespace SushiChain.LocalChart.Analysis
             int half = NFft / 2;
             nFrames = 1 + x.Length / hop;
             var window = NumpyCompat.HannPeriodic(NFft);
-            var plan = new FftPlan(NFft);
-            var re = new double[NFft];
-            var im = new double[NFft];
-            var outRe = new double[NFft];
-            var outIm = new double[NFft];
             var mag = new float[(long)nFrames * Bins];
-            for (int t = 0; t < nFrames; t++)
+            int len = x.Length;
+            ParallelRange.For(0, nFrames, () => new StftScratch(NFft), (t, w) =>
             {
                 int start = t * hop - half; // index into x of padded[t*hop]
                 for (int i = 0; i < NFft; i++)
                 {
                     int j = start + i;
-                    float v = (j >= 0 && j < x.Length) ? x[j] : 0f;
-                    re[i] = window[i] * v;
-                    im[i] = 0.0;
+                    float v = (j >= 0 && j < len) ? x[j] : 0f;
+                    w.Re[i] = window[i] * v;
+                    w.Im[i] = 0.0;
                 }
-                plan.Transform(re, im, outRe, outIm, false);
+                w.Plan.Transform(w.Re, w.Im, w.OutRe, w.OutIm, false);
                 int o = t * Bins;
                 for (int b = 0; b < Bins; b++)
                 {
                     // complex128 -> complex64, then np.abs (hypotf) in float32
-                    float r = (float)outRe[b], m = (float)outIm[b];
+                    float r = (float)w.OutRe[b], m = (float)w.OutIm[b];
                     mag[o + b] = Hypot32(r, m);
                 }
-            }
+            });
             return mag;
+        }
+
+        // 스레드별 FFT 작업 공간 (FftPlan은 내부 버퍼가 있어 스레드 간 공유할 수 없다)
+        internal sealed class StftScratch
+        {
+            public readonly FftPlan Plan;
+            public readonly double[] Re, Im, OutRe, OutIm;
+            public StftScratch(int n)
+            {
+                Plan = new FftPlan(n);
+                Re = new double[n]; Im = new double[n]; OutRe = new double[n]; OutIm = new double[n];
+            }
         }
 
         // np.abs(complex64) as numpy's SIMD loop computes it (loops_unary_complex.dispatch.c.src):

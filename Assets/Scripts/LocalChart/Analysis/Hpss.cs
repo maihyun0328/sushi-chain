@@ -89,7 +89,10 @@ namespace SushiChain.LocalChart.Analysis
             var hMed = MedianAlongCols(low, rows, cols, kh);
             var pMed = MedianAlongRows(low, rows, cols, kp);
             var mask = new float[rows * cols];
-            for (int i = 0; i < mask.Length; i++) mask[i] = SoftMask(hMed[i], pMed[i]);
+            ParallelRange.For(0, cols, c =>
+            {
+                for (int i = c * rows, e = i + rows; i < e; i++) mask[i] = SoftMask(hMed[i], pMed[i]);
+            });
             if (diag)
             {
                 res.PooledFirstChunk = low;
@@ -97,17 +100,18 @@ namespace SushiChain.LocalChart.Analysis
                 res.PooledFrames = cols;
             }
 
-            var harm = new float[Bins];
-            var power = new float[Bins];
-            for (int f = keepLo; f < keepHi; f++)
+            int outRows = rows, outCols = cols, outFy = fy, outFx = fx;
+            // 출력 프레임마다 독립 (서로 다른 Percussive/HarmonicRmsRaw/Chroma 위치에 기록)
+            ParallelRange.For(keepLo, keepHi, () => new FrameScratch(), (f, w) =>
             {
+                float[] harm = w.Harm, power = w.Power, raw = w.Raw;
                 int cl = f - lo;
-                int mc = Math.Min(cl / fx, cols - 1);
+                int mc = Math.Min(cl / outFx, outCols - 1);
                 int mo = (int)((long)f * Bins);
                 for (int b = 0; b < Bins; b++)
                 {
-                    int mr = Math.Min(b / fy, rows - 1);
-                    float m = mask[mc * rows + mr];
+                    int mr = Math.Min(b / outFy, outRows - 1);
+                    float m = mask[mc * outRows + mr];
                     float v = mag[mo + b];
                     harm[b] = (float)(v * m);
                     res.Percussive[mo + b] = (float)(v * (float)(1f - m));
@@ -115,7 +119,6 @@ namespace SushiChain.LocalChart.Analysis
                 res.HarmonicRmsRaw[f] = Spectral.RmsFrame(harm, 0);
                 for (int b = 0; b < Bins; b++) power[b] = (float)(harm[b] * harm[b]);
                 // chroma_stft(S=harm**2, tuning=0): sgemm (sequential float32 FMA) + inf-norm per frame
-                var raw = new float[12];
                 double mx = 0.0;
                 for (int c = 0; c < 12; c++)
                 {
@@ -129,7 +132,14 @@ namespace SushiChain.LocalChart.Analysis
                 if (mx < NumpyCompat.Float32Tiny) mx = 1.0;
                 int oc = f * 12;
                 for (int c = 0; c < 12; c++) res.Chroma[oc + c] = (float)((double)raw[c] / mx);
-            }
+            });
+        }
+
+        sealed class FrameScratch
+        {
+            public readonly float[] Harm = new float[Bins];
+            public readonly float[] Power = new float[Bins];
+            public readonly float[] Raw = new float[12];
         }
 
         // librosa.util.softmask(X, X_ref, power=2, split_zeros=False) for one float32 element.
@@ -158,18 +168,17 @@ namespace SushiChain.LocalChart.Analysis
         private static float[] MedianAlongCols(float[] x, int rows, int cols, int k)
         {
             var y = new float[x.Length];
-            var buf = new float[k];
             int h = k / 2;
             var idx = new int[cols + 2 * h];
             for (int j = 0; j < idx.Length; j++) idx[j] = Reflect(j - h, cols);
-            for (int r = 0; r < rows; r++)
+            ParallelRange.For(0, rows, () => new float[k], (r, buf) =>
             {
                 for (int c = 0; c < cols; c++)
                 {
                     for (int j = 0; j < k; j++) buf[j] = x[idx[c + j] * rows + r];
                     y[c * rows + r] = SelectMedian(buf, k);
                 }
-            }
+            });
             return y;
         }
 
@@ -177,11 +186,10 @@ namespace SushiChain.LocalChart.Analysis
         private static float[] MedianAlongRows(float[] x, int rows, int cols, int k)
         {
             var y = new float[x.Length];
-            var buf = new float[k];
             int h = k / 2;
             var idx = new int[rows + 2 * h];
             for (int j = 0; j < idx.Length; j++) idx[j] = Reflect(j - h, rows);
-            for (int c = 0; c < cols; c++)
+            ParallelRange.For(0, cols, () => new float[k], (c, buf) =>
             {
                 int o = c * rows;
                 for (int r = 0; r < rows; r++)
@@ -189,7 +197,7 @@ namespace SushiChain.LocalChart.Analysis
                     for (int j = 0; j < k; j++) buf[j] = x[o + idx[r + j]];
                     y[o + r] = SelectMedian(buf, k);
                 }
-            }
+            });
             return y;
         }
 

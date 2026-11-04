@@ -22,6 +22,9 @@ namespace SushiChain.LocalChart
         internal const double RmsNormPercentile = 99.0;
         private const double Eps = 1e-10;
 
+        // 단계별 소요 시간(ms) 콜백. 프로파일링용이며 null이면 측정하지 않는다. 분석 스레드에서 호출된다.
+        public static Action<string, double> StageTimer;
+
         public static AudioFeatures Analyze(float[] mono22050)
         {
             return Analyze(mono22050, ChunkFrames, null);
@@ -31,6 +34,14 @@ namespace SushiChain.LocalChart
         internal static AudioFeatures Analyze(float[] y, int chunkFrames, AnalysisTrace trace)
         {
             if (y == null) throw new ArgumentNullException(nameof(y));
+            Action<string, double> timer = StageTimer;
+            var sw = timer != null ? System.Diagnostics.Stopwatch.StartNew() : null;
+            void Lap(string stage)
+            {
+                if (sw == null) return;
+                timer(stage, sw.Elapsed.TotalMilliseconds);
+                sw.Restart();
+            }
             int sr = LocalChartConstants.AnalysisSampleRate;
             int hop = LocalChartConstants.AnalysisHopLength;
 
@@ -45,7 +56,9 @@ namespace SushiChain.LocalChart
             }
 
             // --- STFT magnitude, RMS, centroid -------------------------------------------
+            Lap("preprocess");
             float[] mag = Spectral.StftMagnitude(x, hop, out int nFrames);
+            Lap("stft");
             float[] rmsRaw = Spectral.RmsFromMagnitude(mag, nFrames);
             float[] centroid = Spectral.Centroid(mag, nFrames, sr, out var magSum, out var centroidNum);
             if (trace != null)
@@ -54,10 +67,12 @@ namespace SushiChain.LocalChart
                 trace.MagSum = magSum; trace.CentroidNum = centroidNum;
             }
 
+            Lap("rms+centroid");
             // --- HPSS ------------------------------------------------------------------------
             float[] chromaBasis = Spectral.ChromaBasis(sr);
             var hp = Hpss.Run(mag, nFrames, chunkFrames, chromaBasis, trace != null);
             mag = null;
+            Lap("hpss");
             var chromaArgmax = new int[nFrames];
             for (int t = 0; t < nFrames; t++)
             {
@@ -81,11 +96,13 @@ namespace SushiChain.LocalChart
             float[] melBasis = Spectral.MelBasis(sr, NMels, fmax, out var mFirst, out var mLast);
             float[] perc = hp.Percussive;
             var mel = new float[(long)nFrames * NMels];
-            float melMax = float.NegativeInfinity;
-            for (int t = 0; t < nFrames; t++)
+            // 프레임마다 독립. 최대값은 순서와 무관하므로 프레임별로 구한 뒤 합친다.
+            var frameMax = new float[nFrames];
+            ParallelRange.For(0, nFrames, t =>
             {
                 int po = t * Spectral.Bins;
                 int mo = t * NMels;
+                float fmaxT = float.NegativeInfinity;
                 for (int m = 0; m < NMels; m++)
                 {
                     float acc = 0f;
@@ -96,9 +113,13 @@ namespace SushiChain.LocalChart
                         acc = Analysis.NumpyCompat.Fma32(melBasis[bo + k], (float)(v * v), acc);
                     }
                     mel[mo + m] = acc;
-                    if (acc > melMax) melMax = acc;
+                    if (acc > fmaxT) fmaxT = acc;
                 }
-            }
+                frameMax[t] = fmaxT;
+            });
+            float melMax = float.NegativeInfinity;
+            for (int t = 0; t < nFrames; t++) if (frameMax[t] > melMax) melMax = frameMax[t];
+            Lap("chroma+mel");
             if (trace != null) trace.Mel = (float[])mel.Clone();
             double reference = mel.Length > 0 ? melMax : 1.0;
             Spectral.PowerToDbInPlace(mel, reference);
@@ -131,8 +152,10 @@ namespace SushiChain.LocalChart
                 trace.FluxFull = fluxFull; trace.FluxLow = fluxLow; trace.FluxMid = fluxMid; trace.FluxHigh = fluxHigh;
             }
 
+            Lap("db+flux");
             // --- tempo + beats ---------------------------------------------------------------
             var rh = AnalyzeRhythm(onsetEnv, onsetEnvLow, onsetEnvMid, harmonicChange, sr, hop, chunkFrames, duration, trace);
+            Lap("rhythm");
 
             // --- energy normalization ---------------------------------------------------------
             double rmsScale = rmsRaw.Length > 0 ? Analysis.NumpyCompat.Percentile32(rmsRaw, RmsNormPercentile) : 0.0;
@@ -151,6 +174,7 @@ namespace SushiChain.LocalChart
 
             var frameTimes = new double[nFrames];
             for (int t = 0; t < nFrames; t++) frameTimes[t] = FramesToTime(t, sr, hop);
+            Lap("energy");
 
             return new AudioFeatures
             {

@@ -219,6 +219,16 @@ public class LocalChartService : MonoBehaviour
             SafeInvoke(() => onProgress?.Invoke(stage, value));
         }
 
+        // 단계별 소요 시간 (끝나면 한 줄로 로그를 남긴다)
+        var total = System.Diagnostics.Stopwatch.StartNew();
+        var lap = System.Diagnostics.Stopwatch.StartNew();
+        var timings = new System.Text.StringBuilder();
+        void Lap(string stage)
+        {
+            timings.Append(stage).Append(' ').Append(lap.ElapsedMilliseconds).Append("ms, ");
+            lap.Restart();
+        }
+
         // 1. sha256 (큰 파일도 메인 스레드를 막지 않게 백그라운드에서)
         Progress(LOCAL_CHART_STAGE.READING, 0f);
         Task<string> hashTask = Task.Run(() => Sha256Hex(path, ct), ct);
@@ -236,6 +246,7 @@ public class LocalChartService : MonoBehaviour
             yield break;
         }
         string seedKey = SeedKeys.ForLocalFile(sha, difficulty);
+        Lap("hash");
 
         // 2. 저장소에 오디오가 없으면 임시 폴더로 먼저 복사하고, 디코딩은 그 복사본(안전한 파일명)에서 한다.
         //    원본 경로에 #, %, 유니코드 등이 있어도 file:// URI 문제가 없다.
@@ -268,6 +279,7 @@ public class LocalChartService : MonoBehaviour
             }
         }
         string decodePath = needAudio ? tmpAudio : finalAudio;
+        if (needAudio) Lap("copy");
 
         // 3. 같은 파일을 이미 분석했으면 디코딩/분석을 건너뛴다
         featureCache.TryGetValue(sha, out AudioFeatures cached);
@@ -354,29 +366,40 @@ public class LocalChartService : MonoBehaviour
             }
             DestroyLoadingClip();
             if (clipError != null) { pcm = null; Fail(gen, clipError); yield break; }
+            Lap($"decode({frequency}Hz x{channels})");
         }
+        else Lap("decode(캐시)");
 
         // 4. 백그라운드: 다운믹스/리샘플/분석(캐시 미스일 때만) → 채보 생성
         Progress(cached == null ? LOCAL_CHART_STAGE.ANALYZING : LOCAL_CHART_STAGE.GENERATING, 0f);
         float[] pcmLocal = pcm;
         pcm = null;
         int ch = channels, rate = frequency;
+        string workerTimings = "";
         Task<WorkResult> work = Task.Run(() =>
         {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            var t = new System.Text.StringBuilder();
             AudioFeatures features = cached;
             if (features == null)
             {
                 Volatile.Write(ref workerStage, (int)LOCAL_CHART_STAGE.ANALYZING);
                 float[] mono = LocalAudioPrep.ToMono22050(pcmLocal, ch, rate, ct);
                 pcmLocal = null;
+                t.Append("resample ").Append(sw.ElapsedMilliseconds).Append("ms, ");
+                sw.Restart();
                 ct.ThrowIfCancellationRequested();
                 features = AudioAnalyzer.Analyze(mono);
                 if (features == null) throw new ChartGenerationException("analysis returned no features");
+                t.Append("analyze ").Append(sw.ElapsedMilliseconds).Append("ms, ");
+                sw.Restart();
             }
             ct.ThrowIfCancellationRequested();
             Volatile.Write(ref workerStage, (int)LOCAL_CHART_STAGE.GENERATING);
             List<LocalNote> notes = ChartEngine.Generate(features, difficulty, seedKey);
             ct.ThrowIfCancellationRequested();
+            t.Append("generate ").Append(sw.ElapsedMilliseconds).Append("ms, ");
+            workerTimings = t.ToString();
             return new WorkResult { Features = features, Chart = ToNoteList(notes) };
         }, ct);
 
@@ -393,6 +416,8 @@ public class LocalChartService : MonoBehaviour
             yield break;
         }
         if (cached == null) CacheFeatures(sha, result.Features);
+        lap.Restart();
+        timings.Append(workerTimings);
 
         NoteList chart = result.Chart;
         string chartError = ValidateChart(chart, result.Features.Duration);
@@ -432,6 +457,9 @@ public class LocalChartService : MonoBehaviour
             yield break;
         }
         CleanTemp();
+        Lap("save");
+        Debug.Log($"[LocalChartService] {difficulty} {result.Features.Duration:0.0}s 곡, 총 {total.ElapsedMilliseconds}ms: " +
+                  timings.ToString().TrimEnd(' ', ','));
 
         if (gen != generation) yield break;
         routine = null;

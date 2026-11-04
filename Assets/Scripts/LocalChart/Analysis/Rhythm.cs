@@ -48,24 +48,21 @@ namespace SushiChain.LocalChart.Analysis
 
             var window = NumpyCompat.HannPeriodic(win);
             int nPad = NextFastLenReal(2 * win - 1);
-            var plan = new FftPlan(nPad);
-            var re = new double[nPad];
-            var im = new double[nPad];
-            var oRe = new double[nPad];
-            var oIm = new double[nPad];
             double fct = 1.0 / nPad;
             var total = new double[win];
-            var col = new double[win];
             for (int start = 0; start < n; start += chunkFrames)
             {
                 int stop = Math.Min(n, start + chunkFrames);
                 int len = stop - start;
                 var block = new double[(long)win * len]; // block[lag * len + j]
-                for (int t = start; t < stop; t++)
+                int chunkStart = start;
+                // 프레임마다 독립 (autocorrelate → max-norm → block의 서로 다른 열에 기록)
+                ParallelRange.For(start, stop, () => new TempoScratch(nPad, win), (t, w) =>
                 {
+                    double[] re = w.Re, im = w.Im, oRe = w.OutRe, oIm = w.OutIm, col = w.Col;
                     for (int i = 0; i < nPad; i++) { re[i] = 0.0; im[i] = 0.0; }
                     for (int i = 0; i < win; i++) re[i] = padded[t + i] * window[i];
-                    plan.Transform(re, im, oRe, oIm, false);
+                    w.Plan.Transform(re, im, oRe, oIm, false);
                     for (int k = 0; k < nPad; k++)
                     {
                         double p = oRe[k] * oRe[k] + oIm[k] * oIm[k];
@@ -74,7 +71,7 @@ namespace SushiChain.LocalChart.Analysis
                     }
                     // irfft uses only bins 0..nPad/2 (Hermitian); the power spectrum is symmetric already
                     for (int k = nPad / 2 + 1; k < nPad; k++) re[k] = re[nPad - k];
-                    plan.Transform(re, im, oRe, oIm, true);
+                    w.Plan.Transform(re, im, oRe, oIm, true);
                     double mx = 0.0;
                     for (int lag = 0; lag < win; lag++)
                     {
@@ -84,9 +81,9 @@ namespace SushiChain.LocalChart.Analysis
                         if (lag == 0 || a > mx) mx = a;
                     }
                     if (mx < NumpyCompat.Float64Tiny) mx = 1.0;
-                    int j = t - start;
+                    int j = t - chunkStart;
                     for (int lag = 0; lag < win; lag++) block[(long)lag * len + j] = col[lag] / mx;
-                }
+                });
                 for (int lag = 0; lag < win; lag++)
                     total[lag] += NumpyCompat.PairwiseSum64(block, lag * len, len, 1);
             }
@@ -115,6 +112,18 @@ namespace SushiChain.LocalChart.Analysis
             int best = 0;
             for (int i = 1; i < win; i++) if (objective[i] > objective[best]) best = i;
             return bpms[best];
+        }
+
+        sealed class TempoScratch
+        {
+            public readonly FftPlan Plan;
+            public readonly double[] Re, Im, OutRe, OutIm, Col;
+            public TempoScratch(int nPad, int win)
+            {
+                Plan = new FftPlan(nPad);
+                Re = new double[nPad]; Im = new double[nPad]; OutRe = new double[nPad]; OutIm = new double[nPad];
+                Col = new double[win];
+            }
         }
 
         public static double[] TempoFrequencies(int nBins, int hop, int sr)
