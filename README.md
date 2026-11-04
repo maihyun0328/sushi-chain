@@ -1,3 +1,6 @@
+## Unity Version
+6000.0.61f1
+
 ## Commit Convention
 type (커밋 종류)
 
