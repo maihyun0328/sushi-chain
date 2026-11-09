@@ -44,3 +44,10 @@ public enum JUDGE_RESULT
     MISS,
     IGNORE
 }
+public enum GAME_STATUS
+{
+    IDLE, 
+    GAMESTART,
+    GAMEOVER,
+    GAMECLEAR
+}

@@ -101,7 +101,7 @@ public class JsonManager : MonoBehaviour
     }
     void Update()
     {
-        if(!GameManager.i.IsGameStart) return;
+        if(GameManager.i.GameStatus != GAME_STATUS.GAMESTART) return;
         SpawnCheck();
     }
     void SpawnCheck()
@@ -131,5 +131,14 @@ public class JsonManager : MonoBehaviour
         list.Scores[num] = score;
         string json = JsonUtility.ToJson(list, true);
         File.WriteAllText(Application.persistentDataPath + "/Scores.json", json);
+    }
+    public void SaveFirstLaunch()
+    {
+        File.WriteAllText(Application.persistentDataPath + "/FirshLaunch.json", "");
+    }
+    public bool HasFirstLaunch()
+    {
+        string json = Application.persistentDataPath + "/FirshLaunch.json";
+        return File.Exists(json);
     }
 }

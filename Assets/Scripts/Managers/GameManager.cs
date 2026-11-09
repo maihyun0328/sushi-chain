@@ -6,39 +6,49 @@ public class GameManager : MonoBehaviour
     public static GameManager i;
     [SerializeField] public GameObject GamePlay;
     public GAME_DIFFICULTY GameDifficulty = GAME_DIFFICULTY.EASY;
-    public bool IsGameStart {get; private set;}
-    public bool IsGameOver {get; private set;}
-    public bool IsGameClear {get; private set;}
+    public GAME_STATUS GameStatus {get; private set;} = GAME_STATUS.IDLE;
     public int Life;
     public Camera GameCamera;
     public ParticleSystem GameOverVFX;
     public int GameIndex;
     public double InputCalibration = 0;
+    public bool IsPaused = false;
     void Awake()
     {
         i = this;
     }
     void Update()
     {
-        Debug.Log(InputCalibration);
         if(Input.GetKeyDown(KeyCode.W)) AudioManager.i.StopSong();
-        if(!IsGameStart) return;
+        if(GameStatus != GAME_STATUS.GAMESTART) return;
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            switch(IsPaused)
+            {
+                case true:
+                    ResumeGame();
+                    break;
+                case false:
+                    PauseGame();
+                    break;
+            }
+        }
         if(Life <= 0) 
         {
             GameOver();
             return;
         }
-        if(!AudioManager.i.music.isPlaying) UIManager.i.GameClear();
+        if(!AudioManager.i.music.isPlaying && !IsPaused) UIManager.i.GameClear();
     }
     public void GameStart(int index)
     {
+        SushiPoolComponent.i.ReturnAllSushi();
         Life = 3;
         GameIndex = index;
         SongList list = JsonManager.i.TakeSongData();
         JsonManager.i.CurrentSongNote = JsonManager.i.TakeSongNoteData(list.Songs[index].Name);
         JsonManager.i.NoteIndex = 0;
         PointManager.i.SetPoint();
-        UIManager.i.PointUIInitialization();
         switch(GameDifficulty)
         {
             case GAME_DIFFICULTY.EASY:
@@ -55,15 +65,12 @@ public class GameManager : MonoBehaviour
         AudioManager.i.ChangeSong(AudioManager.i.songs[index]);
         AudioManager.i.music.loop = false;
         AudioManager.i.PlaySong();
-        IsGameOver = false;
-        IsGameClear = false;
-        IsGameStart = true;
+        GameStatus = GAME_STATUS.GAMESTART;
         GamePlay.SetActive(true);
     }
     public void GameOver()
     {
-        IsGameStart = false;
-        IsGameOver = true;
+        GameStatus = GAME_STATUS.GAMEOVER;
         AudioManager.i.StopSong();
         DOVirtual.DelayedCall(1.0f, () =>
         {
@@ -82,12 +89,54 @@ public class GameManager : MonoBehaviour
     }
     public void GameClear()
     {
-        IsGameStart = false;
-        IsGameClear = true;
+        GameStatus = GAME_STATUS.GAMECLEAR;
         SushiPoolComponent.i.ReturnAllSushi();
         AudioManager.i.ChangeSong(AudioManager.i.BGM);
         AudioManager.i.music.loop = true;
         AudioManager.i.PlaySong();
         JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
+    }
+    public async void CheckFirstLaunch()
+    {
+        if(!JsonManager.i.HasFirstLaunch()) 
+        {
+            await YarnSpinnerManager.i.StartConversation("Tutorial");
+            JsonManager.i.HasFirstLaunch();
+        }
+        UIManager.i.OnMenu();
+    }
+    public void PauseGame()
+    {
+        UIManager.i.PauseUI.SetActive(true);
+        AudioManager.i.music.Pause();
+        Time.timeScale = 0f;
+        IsPaused = true;
+    }
+    public void ResumeGame()
+    {
+        UIManager.i.PauseUI.SetActive(false);
+        AudioManager.i.music.UnPause();
+        Time.timeScale = 1f;
+        IsPaused = false;
+    }
+    public void GameRestart()
+    {
+        ResumeGame();
+        ResetGame();
+        UIManager.i.GameStart(GameIndex);
+    }
+    public void ResetGame()
+    {
+        GameStatus = GAME_STATUS.IDLE;
+    }
+    public void ToMainMenu()
+    {
+        SushiPoolComponent.i.ReturnAllSushi();
+        AudioManager.i.ChangeSong(AudioManager.i.BGM);
+        ResumeGame();
+        ResetGame();
+        AudioManager.i.music.loop = true;
+        AudioManager.i.PlaySong();
+        UIManager.i.Transition(UIManager.i.GamePlay, UIManager.i.Menu, IsMainMenu : true);
     }
 }

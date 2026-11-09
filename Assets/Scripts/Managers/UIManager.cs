@@ -11,12 +11,6 @@ public class UIManager : MonoBehaviour
     public GameObject Options;
     public GameObject Credits;
     public GameObject GamePlay;
-    public Text Score;
-    public Text Perfect;
-    public Text Great;
-    public Text Good;
-    public Text Bad;
-    public Text Miss;
     public Text Combo;
     public GameObject TransitionUI;
     public Material TransitionMat;
@@ -27,6 +21,7 @@ public class UIManager : MonoBehaviour
     public Slider Gauge;
     public GameObject GaugeObj;
     public Image[] Hearts;
+    public GameObject PauseUI;
     private Color Perfect_Color = new Color32(0, 255, 204, 255);
     private Color Great_Color = new Color32(124, 255, 0, 255);
     private Color Good_Color = new Color32(255, 217, 0, 255);
@@ -57,9 +52,10 @@ public class UIManager : MonoBehaviour
         if(Songs.activeSelf) obj = Songs;
         else if(Options.activeSelf) obj = Options;
         else if(Credits.activeSelf) obj = Credits;
-        else if(Title.activeSelf) obj = Title;
         else if(GameResult.activeSelf) obj = GameResult;
         else if(GameOverUI.activeSelf) obj = GameOverUI;
+        else if(GamePlay.activeSelf) obj = GamePlay;
+        else if(Title.activeSelf) obj = Title;
         else return;
         Transition(obj, Menu);
     }
@@ -69,9 +65,10 @@ public class UIManager : MonoBehaviour
     }
     public void GameStart(int index = 0)
     {
-        Transition(Songs, GamePlay, true, false, index);
+        Transition(Songs, GamePlay, GAME_STATUS.GAMESTART, index);
         Gauge.maxValue = 10;
         Gauge.value = 0;
+        Combo.text = "";
         for(int i = 0; i < 3; i++)
         {
             Hearts[i].color = Color.white;
@@ -80,7 +77,8 @@ public class UIManager : MonoBehaviour
     }
     public void GameClear()
     {
-        Transition(GamePlay, GameResult, false, true);
+        Transition(GamePlay, GameResult, GAME_STATUS.GAMECLEAR);
+        GameManager.i.ResetGame();
     }
     public void GameOver()
     {
@@ -89,33 +87,28 @@ public class UIManager : MonoBehaviour
         GameOverText.color = color;
         GameOverUI.SetActive(true);
         GameOverText.DOFade(1f, 1f);
+        GameManager.i.ResetGame();
     }
     public void SetPointUI(JUDGE_RESULT judge_result)
     {
-        Score.text = "Score : " + PointManager.i.Score;
         switch(judge_result)
         {
             case JUDGE_RESULT.PERFECT:
-                Perfect.text = "Perfect : " + PointManager.i.Perfect;
                 Combo.color = Perfect_Color;
                 SetLifeGauge(1);
                 break;
             case JUDGE_RESULT.GREAT:
-                Great.text = "Great : " + PointManager.i.Great;
                 Combo.color = Great_Color;
                 SetLifeGauge(0.5f);
                 break;
             case JUDGE_RESULT.GOOD:
-                Good.text = "Good : " + PointManager.i.Good;
                 Combo.color = Good_Color;
                 SetLifeGauge(0.25f);
                 break;
             case JUDGE_RESULT.BAD:
-                Bad.text = "Bad : " + PointManager.i.Bad;
                 Combo.color = Bad_Color;
                 break;
             case JUDGE_RESULT.MISS:
-                Miss.text = "Miss : " + PointManager.i.Miss;
                 Combo.color = Miss_Color;
                 RemoveLife();
                 break;
@@ -123,18 +116,8 @@ public class UIManager : MonoBehaviour
         Combo.text = judge_result.ToString() + "\nX" + PointManager.i.Combo;
         ComboAnim();
     }
-    public void PointUIInitialization()
-    {
-        Score.text = "Score : 0";
-        Perfect.text = "Perfect : 0";
-        Great.text = "Great : 0";
-        Good.text = "Good : 0";
-        Bad.text = "Bad : 0";
-        Miss.text = "Miss : 0";
-        Combo.text = "";
-    }
-    public void Transition(GameObject obj1, GameObject obj2, bool IsGameStart = false,bool IsGameClear = false,
-     int index = 0)
+    public void Transition(GameObject obj1, GameObject obj2, 
+    GAME_STATUS status = GAME_STATUS.IDLE, int index = 0, bool IsMainMenu = false)
     {
         if(IsTransitioning) return;
         IsTransitioning = true;
@@ -145,8 +128,13 @@ public class UIManager : MonoBehaviour
             TransitionMat.SetFloat("_IsOutColor", 1f);
             TransitionMat.SetColor("_OutColor", Color.black);
             TransitionMat.SetColor("_InColor", Color.white);
-            if(IsGameStart) GameManager.i.GameStart(index);
-            if(IsGameClear) GameManager.i.GameClear();
+            if(status == GAME_STATUS.GAMESTART) GameManager.i.GameStart(index);
+            else if(status == GAME_STATUS.GAMECLEAR) GameManager.i.GameClear();
+            else if(IsMainMenu) 
+            {
+                GameManager.i.GamePlay.SetActive(false);
+                PauseUI.SetActive(false);
+            }
             obj1.SetActive(false);
             obj2.SetActive(true);
             TransitionMat.DOFloat(2.6f, "_Scroll", 0.5f).SetEase(Ease.InQuad).OnComplete(() =>

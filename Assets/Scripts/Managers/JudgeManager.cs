@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class JudgeManager : MonoBehaviour
 {
@@ -41,16 +38,12 @@ public class JudgeManager : MonoBehaviour
     {
         i = this;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.i.IsGameOver || !GameManager.i.IsGameStart) return;
+        if(GameManager.i.GameStatus == GAME_STATUS.GAMEOVER || 
+        GameManager.i.GameStatus != GAME_STATUS.GAMESTART || GameManager.i.IsPaused) return;
         InputCheck();
     }
     void InputCheck()

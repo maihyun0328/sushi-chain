@@ -30,6 +30,7 @@ public class PointManager : MonoBehaviour
         Good = 0;
         Bad = 0;
         Miss = 0;
+        Combo = 0;
     }
     public JUDGE_RESULT GetPoint(float distance)
     {
