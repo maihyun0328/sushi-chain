@@ -10,7 +10,10 @@ public class KeyboardScrollComponent : MonoBehaviour
     int SongsCount;
     SongList SongsInfo;
     ScoreList ScoreInfo;
-    float speed = 5f;
+    const float SPEED = 5f;
+    const int SCROLL_STEP = 130;
+    const float OFFSET = 0.1f;
+    const int STAR_COUNT = 5;
     [SerializeField] Text SongName;
     [SerializeField] Text Point;
     [SerializeField] GameObject SongPrefab;
@@ -39,10 +42,10 @@ public class KeyboardScrollComponent : MonoBehaviour
         for(int i = 0; i < SongsCount; i++)
         {
             GameObject Song = Instantiate(SongPrefab, content);
-            Image[] Stars = new Image[5];
+            Image[] Stars = new Image[STAR_COUNT];
             Songs.Add(Song);
             Song.transform.GetChild(0).GetComponent<Text>().text = SongsInfo.Songs[i].Name;
-            for(int j = 1; j < 6; j++)
+            for(int j = 1; j <= STAR_COUNT; j++)
             {
                 Stars[j - 1] = Song.transform.GetChild(j).GetComponent<Image>();
                 if(j > SongsInfo.Songs[i].Difficulty) Stars[j - 1].color = Color.black;
@@ -66,30 +69,30 @@ public class KeyboardScrollComponent : MonoBehaviour
         {
             if(index == MinimumIndex)
             {
-                MinimumIndex -= 1;
-                MaximumIndex -= 1;
-                ScrollMove(-130f);
+                MinimumIndex--;
+                MaximumIndex--;
+                ScrollMove(-SCROLL_STEP);
             }
             else
             {
-                ArrowTargetPosition += new Vector2(0, 130f);
+                ArrowTargetPosition += new Vector2(0, SCROLL_STEP);
             }
-            index -= 1;
+            index--;
             SetSong();
         }
         if((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && index != SongsCount - 1)
         {
             if(index == MaximumIndex)
             {
-                MinimumIndex += 1;
-                MaximumIndex += 1;
-                ScrollMove(130);
+                MinimumIndex++;
+                MaximumIndex++;
+                ScrollMove(SCROLL_STEP);
             }
             else
             {
-                ArrowTargetPosition -= new Vector2(0, 130f);
+                ArrowTargetPosition -= new Vector2(0, SCROLL_STEP);
             }
-            index += 1;
+            index++;
             SetSong();
         }
     }
@@ -99,21 +102,21 @@ public class KeyboardScrollComponent : MonoBehaviour
     }
     void Move()
     {
-        if(Vector2.Distance(content.anchoredPosition, ContentTargetPosition) < 0.1f) 
+        if(Vector2.Distance(content.anchoredPosition, ContentTargetPosition) < OFFSET) 
         {
             content.anchoredPosition = ContentTargetPosition;
         }
         else 
         {
-            content.anchoredPosition = Vector2.Lerp(content.anchoredPosition, ContentTargetPosition, Time.deltaTime * speed);
+            content.anchoredPosition = Vector2.Lerp(content.anchoredPosition, ContentTargetPosition, Time.deltaTime * SPEED);
         }
-        if(Vector2.Distance(Arrow.transform.position, ArrowTargetPosition) < 0.1f)
+        if(Vector2.Distance(Arrow.transform.position, ArrowTargetPosition) < OFFSET)
         {
             Arrow.transform.position = ArrowTargetPosition;
         }
         else
         {
-            Arrow.transform.position = Vector2.Lerp(Arrow.transform.position, ArrowTargetPosition, Time.deltaTime * speed);
+            Arrow.transform.position = Vector2.Lerp(Arrow.transform.position, ArrowTargetPosition, Time.deltaTime * SPEED);
         }
     }
     void ArrowCheck()

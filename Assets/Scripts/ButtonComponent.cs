@@ -1,13 +1,13 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ButtonComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    float speed = 10f;
+    const float SPEED = 10f;
     Vector3 LargerSize = new Vector3(1.2f, 1.2f, 1.2f);
     Vector3 OriginSize = new Vector3(1,1,1);
+    const float OFFSET = 0.01f;
     Coroutine cor;
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -23,9 +23,9 @@ public class ButtonComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     public IEnumerator ChangeScale(Vector3 size)
     {
-        while(Vector3.Distance(transform.localScale, size) >= 0.01f)
+        while(Vector3.Distance(transform.localScale, size) >= OFFSET)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, size, Time.deltaTime * speed);
+            transform.localScale = Vector3.Lerp(transform.localScale, size, Time.deltaTime * SPEED);
             yield return null;
         }
         transform.localScale = size;

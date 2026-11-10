@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class LongNoteComponent : MonoBehaviour, INote
 {
+    const float BODY_SIZE = 0.9f;
+    const float BODY_POS = 0.902f;
+    const float HOLD_TICK_INTERVAL = 0.2f;
+    const float NORMAL_TRANSPARENCY = 0f;
+    const float FAILED_TRANSPARENCY = -0.5f;
     [Header("Note")]
     [SerializeField] NOTE_DIRECT dir;
     [SerializeField] Transform head;
@@ -36,7 +41,7 @@ public class LongNoteComponent : MonoBehaviour, INote
         head.gameObject.SetActive(true);
         speed = JsonManager.i.speed;
         state = NOTE_STATE.WAITING;
-        SetTransparency(0);
+        SetTransparency(NORMAL_TRANSPARENCY);
         cor = null;
     }
     void Update()
@@ -159,15 +164,15 @@ public class LongNoteComponent : MonoBehaviour, INote
                     case NOTE_STATE.HOLDING:
                         if(tail.position.x - judgeX < 0)
                         {
-                            scale.z = Mathf.Abs(tail.position.x - judgeX) * 0.9f;
-                            pos.x = (tail.position.x - judgeX) / 2 * 0.902f + judgeX;
+                            scale.z = Mathf.Abs(tail.position.x - judgeX) * BODY_SIZE;
+                            pos.x = (tail.position.x - judgeX) / 2 * BODY_POS + judgeX;
                         }
                         break;
                     case NOTE_STATE.FAILED:
                         if(tail.position.x - FailedX < 0)
                         {
-                            scale.z = Mathf.Abs(tail.position.x - FailedX) * 0.9f;
-                            pos.x = (tail.position.x - FailedX) / 2 * 0.902f + FailedX;
+                            scale.z = Mathf.Abs(tail.position.x - FailedX) * BODY_SIZE;
+                            pos.x = (tail.position.x - FailedX) / 2 * BODY_POS + FailedX;
                         }
                         break;
                 }
@@ -178,15 +183,15 @@ public class LongNoteComponent : MonoBehaviour, INote
                     case NOTE_STATE.HOLDING:
                         if(tail.position.x - judgeX > 0)
                         {
-                            scale.z = Mathf.Abs(tail.position.x - judgeX) * 0.9f;
-                            pos.x = (tail.position.x - judgeX) / 2 * 0.902f + judgeX;
+                            scale.z = Mathf.Abs(tail.position.x - judgeX) * BODY_SIZE;
+                            pos.x = (tail.position.x - judgeX) / 2 * BODY_POS + judgeX;
                         }
                         break;
                     case NOTE_STATE.FAILED:
                         if(tail.position.x - FailedX > 0)
                         {
-                            scale.z = Mathf.Abs(tail.position.x - FailedX) * 0.9f;
-                            pos.x = (tail.position.x - FailedX) / 2 * 0.902f + FailedX;
+                            scale.z = Mathf.Abs(tail.position.x - FailedX) * BODY_SIZE;
+                            pos.x = (tail.position.x - FailedX) / 2 * BODY_POS + FailedX;
                         }
                         break;
                 }
@@ -201,13 +206,13 @@ public class LongNoteComponent : MonoBehaviour, INote
         {
             VFXManager.i.SushiVFX(type);
             UIManager.i.SetPointUI(PointManager.i.GetPoint(0f));
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(HOLD_TICK_INTERVAL);
         }
     }
     IEnumerator Failing()
     {
         UIManager.i.SetPointUI(PointManager.i.AddMiss());
-        SetTransparency(-0.5f);
+        SetTransparency(FAILED_TRANSPARENCY);
         head.gameObject.SetActive(false);
         while(!EndCheck())
         {
