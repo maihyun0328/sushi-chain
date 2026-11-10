@@ -8,8 +8,12 @@ public class AudioManager : MonoBehaviour
     public AudioSource UI;
     public AudioSource SFX;
     public List<AudioClip> songs;
+    public AudioClip Tutorial;
     public AudioClip BGM;
     public AudioSource Metronome;
+    public AudioClip Choice;
+    public AudioClip Cancel;
+    public AudioClip SongScroll;
     void Awake()
     {
         i = this;

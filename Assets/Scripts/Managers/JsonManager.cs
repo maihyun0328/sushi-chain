@@ -141,4 +141,10 @@ public class JsonManager : MonoBehaviour
         string json = Application.persistentDataPath + "/FirshLaunch.json";
         return File.Exists(json);
     }
+    public NoteList TakeTutorial()
+    {
+        TextAsset file = Resources.Load<TextAsset>("Tutorial");
+        NoteList Tutorial = JsonUtility.FromJson<NoteList>(file.text);
+        return Tutorial;
+    }
 }

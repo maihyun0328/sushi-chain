@@ -49,5 +49,6 @@ public enum GAME_STATUS
     IDLE, 
     GAMESTART,
     GAMEOVER,
-    GAMECLEAR
+    GAMECLEAR,
+    TUTORIAL
 }

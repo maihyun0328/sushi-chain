@@ -36,14 +36,17 @@ public class UIManager : MonoBehaviour
     }
     public void OnSongs()
     {
+        AudioManager.i.PlayUI(AudioManager.i.Choice);
         Transition(Menu, Songs);
     }
     public void OnOptoins()
     {
+        AudioManager.i.PlayUI(AudioManager.i.Choice);
         Transition(Menu, Options);
     }
     public void OnCredits()
     {
+        AudioManager.i.PlayUI(AudioManager.i.Choice);
         Transition(Menu, Credits);
     }
     public void OnMenu()
@@ -66,6 +69,18 @@ public class UIManager : MonoBehaviour
     public void GameStart(int index = 0)
     {
         Transition(Songs, GamePlay, GAME_STATUS.GAMESTART, index);
+        Gauge.maxValue = 10;
+        Gauge.value = 0;
+        Combo.text = "";
+        for(int i = 0; i < 3; i++)
+        {
+            Hearts[i].color = Color.white;
+        }
+        GaugeObj.SetActive(false);
+    }
+    public void TutorialGameStart()
+    {
+        Transition(Title, GamePlay, GAME_STATUS.TUTORIAL);
         Gauge.maxValue = 10;
         Gauge.value = 0;
         Combo.text = "";
@@ -130,6 +145,7 @@ public class UIManager : MonoBehaviour
             TransitionMat.SetColor("_InColor", Color.white);
             if(status == GAME_STATUS.GAMESTART) GameManager.i.GameStart(index);
             else if(status == GAME_STATUS.GAMECLEAR) GameManager.i.GameClear();
+            else if(status == GAME_STATUS.TUTORIAL) GameManager.i.TutorialGameStart();
             else if(IsMainMenu) 
             {
                 GameManager.i.GamePlay.SetActive(false);
@@ -170,13 +186,13 @@ public class UIManager : MonoBehaviour
     public void AddLife()
     {
         Hearts[GameManager.i.Life].color = Color.white;
-        GameManager.i.Life += 1;
+        GameManager.i.Life++;
         if(GameManager.i.Life == 3) GaugeObj.SetActive(false);
     }
     public void RemoveLife()
     {
         GaugeObj.SetActive(true);
-        GameManager.i.Life -= 1;
+        GameManager.i.Life--;
         Hearts[GameManager.i.Life].color = Color.black;
     }
 }

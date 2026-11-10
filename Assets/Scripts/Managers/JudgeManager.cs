@@ -42,8 +42,8 @@ public class JudgeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.i.GameStatus == GAME_STATUS.GAMEOVER || 
-        GameManager.i.GameStatus != GAME_STATUS.GAMESTART || GameManager.i.IsPaused) return;
+        if(GameManager.i.GameStatus == GAME_STATUS.GAMEOVER || (GameManager.i.GameStatus != GAME_STATUS.GAMESTART && 
+        GameManager.i.GameStatus != GAME_STATUS.TUTORIAL) || GameManager.i.IsPaused) return;
         InputCheck();
     }
     void InputCheck()

@@ -78,6 +78,7 @@ public class KeyboardScrollComponent : MonoBehaviour
                 ArrowTargetPosition += new Vector2(0, SCROLL_STEP);
             }
             index--;
+            AudioManager.i.PlayUI(AudioManager.i.SongScroll);
             SetSong();
         }
         if((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && index != SongsCount - 1)
@@ -93,6 +94,7 @@ public class KeyboardScrollComponent : MonoBehaviour
                 ArrowTargetPosition -= new Vector2(0, SCROLL_STEP);
             }
             index++;
+            AudioManager.i.PlayUI(AudioManager.i.SongScroll);
             SetSong();
         }
     }
@@ -142,6 +144,7 @@ public class KeyboardScrollComponent : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
+            AudioManager.i.PlayUI(AudioManager.i.Choice);
             UIManager.i.GameStart(index);
         }
     }

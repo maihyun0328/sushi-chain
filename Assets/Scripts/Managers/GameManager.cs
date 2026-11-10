@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.W)) AudioManager.i.StopSong();
-        if(GameStatus != GAME_STATUS.GAMESTART) return;
+        if(GameStatus != GAME_STATUS.GAMESTART && GameStatus != GAME_STATUS.TUTORIAL) return;
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             switch(IsPaused)
@@ -39,6 +39,32 @@ public class GameManager : MonoBehaviour
             return;
         }
         if(!AudioManager.i.music.isPlaying && !IsPaused) UIManager.i.GameClear();
+    }
+    public void TutorialGameStart()
+    {
+        SushiPoolComponent.i.ReturnAllSushi();
+        Life = 3;
+        JsonManager.i.CurrentSongNote = JsonManager.i.TakeTutorial();
+        JsonManager.i.NoteIndex = 0;
+        PointManager.i.SetPoint();
+        switch(GameDifficulty)
+        {
+            case GAME_DIFFICULTY.EASY:
+                JsonManager.i.speed = 4.5f;
+                break;
+            case GAME_DIFFICULTY.NORMAL:
+                JsonManager.i.speed = 8f;
+                break;
+            case GAME_DIFFICULTY.HARD:
+                JsonManager.i.speed = 11.5f;
+                break;
+        }
+        AudioManager.i.StopSong();
+        AudioManager.i.ChangeSong(AudioManager.i.Tutorial);
+        AudioManager.i.music.loop = false;
+        AudioManager.i.PlaySong();
+        GameStatus = GAME_STATUS.TUTORIAL;
+        GamePlay.SetActive(true);
     }
     public void GameStart(int index)
     {
@@ -96,14 +122,18 @@ public class GameManager : MonoBehaviour
         AudioManager.i.PlaySong();
         JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
     }
-    public async void CheckFirstLaunch()
+    public void CheckFirstLaunch()
     {
-        if(!JsonManager.i.HasFirstLaunch()) 
-        {
-            await YarnSpinnerManager.i.StartConversation("Tutorial");
-            JsonManager.i.HasFirstLaunch();
-        }
-        UIManager.i.OnMenu();
+        if(JsonManager.i.HasFirstLaunch()) Tutorial();
+        else UIManager.i.OnMenu();
+    }
+    public async void Tutorial()
+    {
+        YarnSpinnerManager.i.dialogueRunner.gameObject.SetActive(true);
+        await YarnSpinnerManager.i.StartConversation("Tutorial");
+        JsonManager.i.HasFirstLaunch();
+        YarnSpinnerManager.i.dialogueRunner.gameObject.SetActive(false);
+        UIManager.i.TutorialGameStart();
     }
     public void PauseGame()
     {
