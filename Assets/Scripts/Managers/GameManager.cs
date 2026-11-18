@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int GameIndex;
     public double InputCalibration = 0;
     public bool IsPaused = false;
+    private bool isTutorialStarting = false;
     void Awake()
     {
         i = this;
@@ -129,9 +130,12 @@ public class GameManager : MonoBehaviour
     }
     public async void Tutorial()
     {
+        if(isTutorialStarting) return;
+        isTutorialStarting = true;
         YarnSpinnerManager.i.dialogueRunner.gameObject.SetActive(true);
         UIManager.i.Transition(UIManager.i.Title, UIManager.i.Tutorial.gameObject);
         await YarnSpinnerManager.i.StartConversation("Tutorial");
+        isTutorialStarting = false;
         JsonManager.i.HasFirstLaunch();
         UIManager.i.TutorialGameStart();
     }
