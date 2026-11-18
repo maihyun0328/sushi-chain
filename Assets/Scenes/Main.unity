@@ -6634,6 +6634,7 @@ MonoBehaviour:
   Choice: {fileID: 8300000, guid: 868a63965fcaa455d9ada8a71b14cd74, type: 3}
   Cancel: {fileID: 8300000, guid: 5036ce94db1044217bc538475523baac, type: 3}
   SongScroll: {fileID: 8300000, guid: d7badd2867ab7452e98b2d850f1b5db2, type: 3}
+  GameClear: {fileID: 8300000, guid: 05017d2c22b0c4a089a62e0d9ef33785, type: 3}
 --- !u!4 &832651847
 Transform:
   m_ObjectHideFlags: 0

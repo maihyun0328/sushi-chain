@@ -63,6 +63,9 @@ public class UIManager : MonoBehaviour
         else if(GamePlay.activeSelf) obj = GamePlay;
         else if(Title.activeSelf) obj = Title;
         else return;
+        AudioManager.i.ChangeSong(AudioManager.i.BGM);
+        AudioManager.i.music.loop = true;
+        AudioManager.i.PlaySong();
         Transition(obj, Menu);
     }
     public void OnTitle()

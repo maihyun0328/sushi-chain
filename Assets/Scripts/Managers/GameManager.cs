@@ -119,9 +119,7 @@ public class GameManager : MonoBehaviour
     {
         GameStatus = GAME_STATUS.GAMECLEAR;
         SushiPoolComponent.i.ReturnAllSushi();
-        AudioManager.i.ChangeSong(AudioManager.i.BGM);
-        AudioManager.i.music.loop = true;
-        AudioManager.i.PlaySong();
+        AudioManager.i.PlayUI(AudioManager.i.GameClear);
         JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
     }
     public void CheckFirstLaunch()

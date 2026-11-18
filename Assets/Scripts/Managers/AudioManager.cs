@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip Choice;
     public AudioClip Cancel;
     public AudioClip SongScroll;
+    public AudioClip GameClear;
     void Awake()
     {
         i = this;
