@@ -1,4 +1,5 @@
 using DG.Tweening;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         i = this;
+        Debug.Log(Application.persistentDataPath);
     }
     void Update()
     {
@@ -124,15 +126,15 @@ public class GameManager : MonoBehaviour
     }
     public void CheckFirstLaunch()
     {
-        if(JsonManager.i.HasFirstLaunch()) Tutorial();
+        if(!JsonManager.i.HasFirstLaunch()) Tutorial();
         else UIManager.i.OnMenu();
     }
     public async void Tutorial()
     {
         YarnSpinnerManager.i.dialogueRunner.gameObject.SetActive(true);
+        UIManager.i.Transition(UIManager.i.Title, UIManager.i.Tutorial.gameObject);
         await YarnSpinnerManager.i.StartConversation("Tutorial");
         JsonManager.i.HasFirstLaunch();
-        YarnSpinnerManager.i.dialogueRunner.gameObject.SetActive(false);
         UIManager.i.TutorialGameStart();
     }
     public void PauseGame()

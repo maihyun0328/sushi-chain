@@ -101,7 +101,7 @@ public class JsonManager : MonoBehaviour
     }
     void Update()
     {
-        if(GameManager.i.GameStatus != GAME_STATUS.GAMESTART) return;
+        if(GameManager.i.GameStatus != GAME_STATUS.GAMESTART && GameManager.i.GameStatus != GAME_STATUS.TUTORIAL) return;
         SpawnCheck();
     }
     void SpawnCheck()

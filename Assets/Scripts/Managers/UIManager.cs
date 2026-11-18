@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     public GameObject GaugeObj;
     public Image[] Hearts;
     public GameObject PauseUI;
+    public Sprite[] TutorialImgs;
+    public Image Tutorial;
+    public Text[] Keys;
     private Color Perfect_Color = new Color32(0, 255, 204, 255);
     private Color Great_Color = new Color32(124, 255, 0, 255);
     private Color Good_Color = new Color32(255, 217, 0, 255);
@@ -72,6 +75,10 @@ public class UIManager : MonoBehaviour
         Gauge.maxValue = 10;
         Gauge.value = 0;
         Combo.text = "";
+        Keys[0].text = JudgeManager.i.L1_Key.ToString();
+        Keys[1].text = JudgeManager.i.L2_Key.ToString();
+        Keys[2].text = JudgeManager.i.R1_Key.ToString();
+        Keys[3].text = JudgeManager.i.R2_Key.ToString();
         for(int i = 0; i < 3; i++)
         {
             Hearts[i].color = Color.white;
@@ -80,7 +87,8 @@ public class UIManager : MonoBehaviour
     }
     public void TutorialGameStart()
     {
-        Transition(Title, GamePlay, GAME_STATUS.TUTORIAL);
+        Transition(Tutorial.gameObject, GamePlay, GAME_STATUS.TUTORIAL);
+        YarnSpinnerManager.i.dialogueRunner.gameObject.SetActive(false);
         Gauge.maxValue = 10;
         Gauge.value = 0;
         Combo.text = "";
@@ -194,5 +202,9 @@ public class UIManager : MonoBehaviour
         GaugeObj.SetActive(true);
         GameManager.i.Life--;
         Hearts[GameManager.i.Life].color = Color.black;
+    }
+    public void SetImg(int index)
+    {
+        Tutorial.sprite = TutorialImgs[index];
     }
 }
