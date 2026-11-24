@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     {
         i = this;
         Debug.Log(Application.persistentDataPath);
+        Debug.Log(Application.persistentDataPath + "/Scores.json");
     }
     void Update()
     {
@@ -118,10 +119,13 @@ public class GameManager : MonoBehaviour
     }
     public void GameClear()
     {
+        if(GameStatus != GAME_STATUS.TUTORIAL)
+        {
+            JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
+        }
         GameStatus = GAME_STATUS.GAMECLEAR;
         SushiPoolComponent.i.ReturnAllSushi();
         AudioManager.i.PlayUI(AudioManager.i.GameClear);
-        JsonManager.i.SavePoint(PointManager.i.GetScore(), GameIndex);
     }
     public void CheckFirstLaunch()
     {
@@ -161,6 +165,7 @@ public class GameManager : MonoBehaviour
     }
     public void ResetGame()
     {
+        if(GameStatus == GAME_STATUS.TUTORIAL) return;
         GameStatus = GAME_STATUS.IDLE;
     }
     public void ToMainMenu()
