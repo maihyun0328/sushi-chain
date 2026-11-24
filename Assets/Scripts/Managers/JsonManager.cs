@@ -121,7 +121,6 @@ public class JsonManager : MonoBehaviour
             }
             NoteIndex++;
         }
-        
     }
     float GetSpawnTime(NoteData note)
     {
