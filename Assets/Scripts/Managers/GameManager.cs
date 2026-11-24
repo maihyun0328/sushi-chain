@@ -178,4 +178,8 @@ public class GameManager : MonoBehaviour
         AudioManager.i.PlaySong();
         UIManager.i.Transition(UIManager.i.GamePlay, UIManager.i.Menu, IsMainMenu : true);
     }
+    public void GameExit()
+    {
+        Application.Quit();
+    }
 }
