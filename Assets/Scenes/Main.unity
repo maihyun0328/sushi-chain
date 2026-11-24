@@ -6628,7 +6628,7 @@ MonoBehaviour:
   SFX: {fileID: 640485342}
   songs:
   - {fileID: 8300000, guid: 9eadb505411b94036908ebb6dc82e139, type: 3}
-  Tutorial: {fileID: 8300000, guid: 9eadb505411b94036908ebb6dc82e139, type: 3}
+  Tutorial: {fileID: 8300000, guid: 9f18b211112be42d19b5911ae6f668ba, type: 3}
   BGM: {fileID: 8300000, guid: cf26d3658f7634d3cbfdcb8fc3fbb5e8, type: 3}
   Metronome: {fileID: 640485342}
   Choice: {fileID: 8300000, guid: 868a63965fcaa455d9ada8a71b14cd74, type: 3}

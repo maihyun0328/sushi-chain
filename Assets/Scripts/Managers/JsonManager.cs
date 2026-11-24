@@ -78,7 +78,10 @@ public class JsonManager : MonoBehaviour
         {
             InitScoresData();
         }
-        Debug.Log(Application.persistentDataPath);
+        string json = File.ReadAllText(path);
+        ScoreList scoreList = JsonUtility.FromJson<ScoreList>(json);
+        SongList songList = TakeSongData();
+        if(scoreList.Scores.Count < songList.Songs.Count) ScoreListSet(scoreList, songList);
     }
 
     public ScoreList TakeScoreData()
@@ -146,5 +149,15 @@ public class JsonManager : MonoBehaviour
         TextAsset file = Resources.Load<TextAsset>("Tutorial");
         NoteList Tutorial = JsonUtility.FromJson<NoteList>(file.text);
         return Tutorial;
+    }
+    public void ScoreListSet(ScoreList scoreList, SongList songList)
+    {
+        while(scoreList.Scores.Count < songList.Songs.Count)
+        {
+            Score score = new Score();
+            scoreList.Scores.Add(score);
+        }
+        string json = JsonUtility.ToJson(scoreList, true);
+        File.WriteAllText(Application.persistentDataPath + "/Scores.json", json);
     }
 }
