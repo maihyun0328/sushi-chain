@@ -131,9 +131,11 @@ public class JsonManager : MonoBehaviour
     public void SavePoint(Score score, int num)
     {
         ScoreList list = TakeScoreData();
-        list.Scores[num] = score;
-        string json = JsonUtility.ToJson(list, true);
-        File.WriteAllText(Application.persistentDataPath + "/Scores.json", json);
+        if(list.Scores[num].score < score.score) {
+            list.Scores[num] = score;
+            string json = JsonUtility.ToJson(list, true);
+            File.WriteAllText(Application.persistentDataPath + "/Scores.json", json);
+        }
     }
     public void SaveFirstLaunch()
     {
