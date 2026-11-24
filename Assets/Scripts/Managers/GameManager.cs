@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         UIManager.i.Transition(UIManager.i.Title, UIManager.i.Tutorial.gameObject);
         await YarnSpinnerManager.i.StartConversation("Tutorial");
         isTutorialStarting = false;
-        JsonManager.i.HasFirstLaunch();
+        JsonManager.i.SaveFirstLaunch();
         UIManager.i.TutorialGameStart();
     }
     public void PauseGame()
