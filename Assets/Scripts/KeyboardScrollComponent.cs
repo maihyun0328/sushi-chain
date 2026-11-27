@@ -14,6 +14,7 @@ public class KeyboardScrollComponent : MonoBehaviour
     const int SCROLL_STEP = 130;
     const float OFFSET = 0.1f;
     const int STAR_COUNT = 5;
+    const int VISIBLE_SONG_COUNT = 5;
     [SerializeField] Text SongName;
     [SerializeField] Text Point;
     [SerializeField] GameObject SongPrefab;
@@ -131,7 +132,7 @@ public class KeyboardScrollComponent : MonoBehaviour
         {
             UpArrow.SetActive(true);
         }
-        if(MaximumIndex == SongsCount - 1 || SongsCount < 7)
+        if(MaximumIndex == SongsCount - 1 || SongsCount <= VISIBLE_SONG_COUNT)
         {
             DownArrow.SetActive(false);
         }
