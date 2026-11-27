@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour
     public void SetBGM()
     {
         music.clip = BGM;
+        AudioManager.i.music.loop = true;
+        AudioManager.i.PlaySong();
     }
     public void ChangeSong(AudioClip audio)
     {
@@ -47,4 +49,5 @@ public class AudioManager : MonoBehaviour
     {
         music.Stop();
     }
+    
 }

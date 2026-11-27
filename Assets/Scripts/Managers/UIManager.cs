@@ -58,14 +58,27 @@ public class UIManager : MonoBehaviour
         if(Songs.activeSelf) obj = Songs;
         else if(Options.activeSelf) obj = Options;
         else if(Credits.activeSelf) obj = Credits;
-        else if(GameResult.activeSelf) obj = GameResult;
-        else if(GameOverUI.activeSelf) obj = GameOverUI;
-        else if(GamePlay.activeSelf) obj = GamePlay;
-        else if(Title.activeSelf) obj = Title;
+        else if(GameResult.activeSelf) 
+        {
+            obj = GameResult;
+            AudioManager.i.SetBGM();
+        }
+        else if(GameOverUI.activeSelf) 
+        {
+            obj = GameOverUI;
+            AudioManager.i.SetBGM();
+        }
+        else if(GamePlay.activeSelf) 
+        {
+            obj = GamePlay;
+            AudioManager.i.SetBGM();
+        }
+        else if(Title.activeSelf) 
+        {
+            obj = Title;
+            AudioManager.i.SetBGM();
+        }
         else return;
-        AudioManager.i.ChangeSong(AudioManager.i.BGM);
-        AudioManager.i.music.loop = true;
-        AudioManager.i.PlaySong();
         Transition(obj, Menu);
     }
     public void OnTitle()
