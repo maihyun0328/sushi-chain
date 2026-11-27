@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     public Sprite[] TutorialImgs;
     public Image Tutorial;
     public Text[] Keys;
+    public Sprite[] SongImgs;
+    public Image SongImgUI;
     private Color Perfect_Color = new Color32(0, 255, 204, 255);
     private Color Great_Color = new Color32(124, 255, 0, 255);
     private Color Good_Color = new Color32(255, 217, 0, 255);
@@ -222,5 +224,9 @@ public class UIManager : MonoBehaviour
     public void SetImg(int index)
     {
         Tutorial.sprite = TutorialImgs[index];
+    }
+    public void SetSongImg(int index)
+    {
+        SongImgUI.sprite = SongImgs[index];
     }
 }

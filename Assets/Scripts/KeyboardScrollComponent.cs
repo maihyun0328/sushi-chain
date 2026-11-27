@@ -152,5 +152,6 @@ public class KeyboardScrollComponent : MonoBehaviour
     {
         SongName.text = SongsInfo.Songs[index].Name;
         Point.text = ScoreInfo.Scores[index].score.ToString("N0");
+        UIManager.i.SetSongImg(index);
     }
 }
