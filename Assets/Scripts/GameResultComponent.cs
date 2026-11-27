@@ -15,9 +15,11 @@ public class GameResultComponent : MonoBehaviour
     [SerializeField] RectTransform Results_UI1;
     [SerializeField] RectTransform Results_UI2;
     [SerializeField] RectTransform Results_UI3;
+    [SerializeField] RectTransform Results_UI4;
     Vector2 ResultsImg1_Vector = new Vector2(172.5f, -98.2f);
     Vector2 ResultsImg2_Vector = new Vector2(-170.3f, 226.8f);
     Vector2 ResultsImg3_Vector = new Vector2(148, 14.37f);
+    Vector2 ResultsImg4_Vector = new Vector2(-592, 96);
     Vector2 Accuracys_Vector = new Vector2(285, 283);
     Vector2 offset = new Vector2(960, 0);
     Sequence seq;
@@ -34,6 +36,7 @@ public class GameResultComponent : MonoBehaviour
         seq.Join(Results_UI1.DOAnchorPos(ResultsImg1_Vector, 1f).SetEase(Ease.OutQuad));
         seq.Join(Results_UI2.DOAnchorPos(ResultsImg2_Vector, 1f).SetEase(Ease.OutQuad));
         seq.Join(Results_UI3.DOAnchorPos(ResultsImg3_Vector, 1f).SetEase(Ease.OutQuad));
+        seq.Join(Results_UI4.DOAnchorPos(ResultsImg4_Vector, 1f).SetEase(Ease.OutQuad));
         seq.Join(Accuracys.DOAnchorPos(Accuracys_Vector, 1f).SetEase(Ease.OutQuad));
         seq.AppendCallback(() =>
         {
@@ -48,6 +51,7 @@ public class GameResultComponent : MonoBehaviour
         Results_UI1.anchoredPosition = ResultsImg1_Vector - offset;
         Results_UI2.anchoredPosition = ResultsImg2_Vector + offset;
         Results_UI3.anchoredPosition = ResultsImg3_Vector - offset;
+        Results_UI4.anchoredPosition = ResultsImg3_Vector + offset;
         Accuracys.anchoredPosition = Accuracys_Vector - offset;
     }
 }
